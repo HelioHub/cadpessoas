@@ -1,6 +1,6 @@
 --
 -- PostgreSQL database dump WK Cadastro de Pessoas. Teste Técnico.
--- CRIAR numero do endereço e tipo de endereço (residencia, trabalho, casadepraia, casadaoutra, casadopai)
+-- Criar número do endereço e tipo de endereço (residencia, trabalho, casadepraia, casadaoutra, casadopai e etc...)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;

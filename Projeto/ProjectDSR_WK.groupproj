@@ -3,7 +3,7 @@
         <ProjectGuid>{167B2803-D0C1-4658-8CDB-0AD2D9A04416}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="C:\Users\helio\OneDrive\Documentos\Embarcadero\Studio\Projects\Project2\ServidorSnapRestWK.dproj">
+        <Projects Include="DataSnapRestWK\ServidorSnapRestWK.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -15,13 +15,13 @@
         </BorlandProject>
     </ProjectExtensions>
     <Target Name="ServidorSnapRestWK">
-        <MSBuild Projects="C:\Users\helio\OneDrive\Documentos\Embarcadero\Studio\Projects\Project2\ServidorSnapRestWK.dproj"/>
+        <MSBuild Projects="DataSnapRestWK\ServidorSnapRestWK.dproj"/>
     </Target>
     <Target Name="ServidorSnapRestWK:Clean">
-        <MSBuild Projects="C:\Users\helio\OneDrive\Documentos\Embarcadero\Studio\Projects\Project2\ServidorSnapRestWK.dproj" Targets="Clean"/>
+        <MSBuild Projects="DataSnapRestWK\ServidorSnapRestWK.dproj" Targets="Clean"/>
     </Target>
     <Target Name="ServidorSnapRestWK:Make">
-        <MSBuild Projects="C:\Users\helio\OneDrive\Documentos\Embarcadero\Studio\Projects\Project2\ServidorSnapRestWK.dproj" Targets="Make"/>
+        <MSBuild Projects="DataSnapRestWK\ServidorSnapRestWK.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
         <CallTarget Targets="ServidorSnapRestWK"/>

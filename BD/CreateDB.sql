@@ -1,8 +1,8 @@
--- Database: wkcadpessoas
+-- Database: CadPessoas
 
--- DROP DATABASE IF EXISTS wkcadpessoas;
+DROP DATABASE IF EXISTS cadpessoas;
 
-CREATE DATABASE wkcadpessoas
+CREATE DATABASE cadpessoas
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
@@ -12,5 +12,5 @@ CREATE DATABASE wkcadpessoas
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 
-COMMENT ON DATABASE wkcadpessoas
+COMMENT ON DATABASE cadpessoas
     IS 'Banco de Dados WK Cadastro de Pessoas. Teste Técnico.';
