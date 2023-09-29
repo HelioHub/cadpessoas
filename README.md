@@ -10,3 +10,12 @@ Hélio Marques
 ## Diagrama de Entidade e Relacionamento CadPessoas
 
 ![## Diagrama de Entidade e Relacionamento CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/BD/Modelo.png)
+
+## Arquitetura do sistema em três camadas
+
+	• Comunicação Rest com JSON entre aplicação Cliente / Servidor
+	• Aplicação de Clean Code
+	• Orientação a objetos
+	• Padrões de projeto
+	• Garantir integridade entre registros (não ter pessoa sem endereço)
+	• Camada de persistência, utilizar Firedac

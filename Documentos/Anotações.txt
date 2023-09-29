@@ -1,0 +1,12 @@
+
+# PW DB 
+
+postgreesql wk@2023
+
+# SOAP X REST:
+
+O SOAP e o REST são dois mecanismos de troca de dados na Internet. 
+Por exemplo, imagine que seu sistema de contas interno compartilhe dados com o sistema de contabilidade do seu cliente para automatizar tarefas de faturamento. 
+As duas aplicações compartilham dados usando uma API que define regras de comunicação. 
+O SOAP e o REST são duas abordagens diferentes para o design de APIs. A abordagem do SOAP é altamente estruturada e usa o formato de dados XML. 
+O REST é mais flexível e permite que as aplicações troquem dados em vários formatos.
