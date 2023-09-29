@@ -5,7 +5,7 @@ Hélio Marques
 
 ## Documento de Requisitos CadPessoas
 
-![## Documento de Requisitos CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/Teste Técnico Delphi MultiTier.pdf)
+![## Documento de Requisitos CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/Requisitos/Requisitos.png)
 
 ## Diagrama de Entidade e Relacionamento CadPessoas
 
