@@ -6,6 +6,9 @@
         <Projects Include="DataSnapRestWK\ServidorSnapRestWK.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="ClientDSWK\ProjectCliDSWK.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +26,23 @@
     <Target Name="ServidorSnapRestWK:Make">
         <MSBuild Projects="DataSnapRestWK\ServidorSnapRestWK.dproj" Targets="Make"/>
     </Target>
+    <Target Name="ProjectCliDSWK">
+        <MSBuild Projects="ClientDSWK\ProjectCliDSWK.dproj"/>
+    </Target>
+    <Target Name="ProjectCliDSWK:Clean">
+        <MSBuild Projects="ClientDSWK\ProjectCliDSWK.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProjectCliDSWK:Make">
+        <MSBuild Projects="ClientDSWK\ProjectCliDSWK.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="ServidorSnapRestWK"/>
+        <CallTarget Targets="ServidorSnapRestWK;ProjectCliDSWK"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="ServidorSnapRestWK:Clean"/>
+        <CallTarget Targets="ServidorSnapRestWK:Clean;ProjectCliDSWK:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="ServidorSnapRestWK:Make"/>
+        <CallTarget Targets="ServidorSnapRestWK:Make;ProjectCliDSWK:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
