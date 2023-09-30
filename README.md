@@ -1,6 +1,7 @@
 # Projeto CadPessoas - Cadastro de Pessoas - WK Teste Técnico Delphi MultiTier
 
-Projeto Teste Técnico Delphi MultiTier aplicando técnicas de POO, MVC e Clean Code.
+Projeto Teste Técnico Delphi MultiTier aplicando técnicas de POO, MVC e Clean Code. 
+Utilizando DELPHI XE3 (somente componentes nativos) e Banco de dados PostGreSQL.
 Hélio Marques
 
 ## Documento de Requisitos CadPessoas
@@ -20,29 +21,36 @@ Hélio Marques
 	• Garantir integridade entre registros (não ter pessoa sem endereço)
 	• Camada de persistência, utilizar Firedac
 
-### Criação de Banco de Dados no PostGreSQL
+## PW DB 
 
-	-- Database: CadPessoas
+	pw: wk@2023
+	Dlls para conectar PostGreSQL no DELPHI XE3: https://www.postgresql.org/ftp/odbc/versions/dll/
 
-	DROP DATABASE IF EXISTS cadpessoas;
+## Clean Code
 
-	CREATE DATABASE cadpessoas
-		WITH
-		OWNER = postgres
-		ENCODING = 'UTF8'
-		LC_COLLATE = 'Portuguese_Brazil.1252'
-		LC_CTYPE = 'Portuguese_Brazil.1252'
-		TABLESPACE = pg_default
-		CONNECTION LIMIT = -1
-		IS_TEMPLATE = False;
+	https://balta.io/artigos/clean-code	
 
-	COMMENT ON DATABASE cadpessoas
-		IS 'Banco de Dados WK Cadastro de Pessoas. Teste Técnico.';
+## Criação de Banco de Dados no PostGreSQL
 
+-- Database: wkcadpessoas
 
-### Script criação Schemas no PostGreSQL
+-- DROP DATABASE IF EXISTS wkcadpessoas;
 
-	--
+CREATE DATABASE wkcadpessoas
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Portuguese_Brazil.1252'
+    LC_CTYPE = 'Portuguese_Brazil.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+COMMENT ON DATABASE wkcadpessoas
+    IS 'Banco de Dados WK Cadastro de Pessoas.  Teste Técnico.';
+
+## Script criação Schemas no PostGreSQL
+
 	-- PostgreSQL database dump WK Cadastro de Pessoas. Teste Técnico.
 	-- Criar número do endereço e tipo de endereço (residencia, trabalho, casadepraia, casadaoutra, casadopai e etc...)
 
@@ -106,11 +114,32 @@ Hélio Marques
 	);
 	CREATE INDEX enderecointegracao_idendereco ON endereco_integracao (idendereco);
 
+
+	-- AJUSTES NO MODELO
+
+	ALTER TABLE endereco ADD COLUMN  dsnumero integer;		
+
+	ALTER TABLE pessoa DROP COLUMN flnatureza;
+	CREATE DOMAIN sexo_full AS char(1) DEFAULT 'M' NOT NULL CHECK ( VALUE IN ('M', 'F'));
+	ALTER TABLE pessoa ADD COLUMN flnatureza sexo_full;
+
 	--
 	-- PostgreSQL database dump complete
 	--
 
+## Alteração no Modelo de Dados conforme meu entendimento, óbvio que tivesse em equipe seria colocado em debate.
 
+	### Criação de Indices para melhor performar nos relacionamentos
+		CREATE INDEX pessoa_idpessoa ON pessoa (idpessoa);
+		CREATE INDEX endereco_idendereco ON endereco (idendereco);
+		CREATE INDEX enderecointegracao_idendereco ON endereco_integracao (idendereco);
+		
+	### Criação do campo dsnumero na Table endereco do CEP 
+		ALTER TABLE endereco ADD COLUMN  dsnumero integer;		
 
-
-
+	### Definição do Domínio do campo flnatureza (cláusula CHECK restringindo os sexos a masculino e feminino) 
+		ALTER TABLE pessoa DROP COLUMN flnatureza;
+		CREATE DOMAIN sexo_full AS char(1) DEFAULT 'M' NOT NULL CHECK ( VALUE IN ('M', 'F'));
+        ALTER TABLE pessoa ADD COLUMN flnatureza sexo_full;
+		
+		

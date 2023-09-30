@@ -1,4 +1,4 @@
---
+
 -- PostgreSQL database dump WK Cadastro de Pessoas. Teste Técnico.
 -- Criar número do endereço e tipo de endereço (residencia, trabalho, casadepraia, casadaoutra, casadopai e etc...)
 
@@ -61,6 +61,15 @@ CREATE TABLE endereco_integracao (
     CONSTRAINT enderecointegracao_fk_endereco FOREIGN KEY (idendereco) REFERENCES endereco(idendereco) ON DELETE CASCADE
 );
 CREATE INDEX enderecointegracao_idendereco ON endereco_integracao (idendereco);
+
+
+-- AJUSTES NO MODELO
+
+ALTER TABLE endereco ADD COLUMN  dsnumero integer;		
+
+ALTER TABLE pessoa DROP COLUMN flnatureza;
+CREATE DOMAIN sexo_full AS char(1) DEFAULT 'M' NOT NULL CHECK ( VALUE IN ('M', 'F'));
+ALTER TABLE pessoa ADD COLUMN flnatureza sexo_full;
 
 --
 -- PostgreSQL database dump complete

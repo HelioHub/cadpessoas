@@ -3,7 +3,7 @@
         <ProjectGuid>{E1CA5E0D-C589-4C2E-B899-0B9EB9A5A1C6}</ProjectGuid>
         <ProjectVersion>15.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
-        <MainSource>ServidorSnapRestWK.dpr</MainSource>
+        <MainSource>ServidorDSRestWK.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -46,7 +46,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <SanitizedProjectName>ServidorSnapRestWK</SanitizedProjectName>
+        <SanitizedProjectName>ServidorDSRestWK</SanitizedProjectName>
         <PostBuildEvent><![CDATA[if exist "$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat" ( call "$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat" "$(PROJECTDIR)" "$(OUTPUTDIR)" )
 $(PostBuildEvent)]]></PostBuildEvent>
         <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
@@ -160,7 +160,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">ServidorSnapRestWK.dpr</Source>
+                    <Source Name="MainSource">ServidorDSRestWK.dpr</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k200.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>

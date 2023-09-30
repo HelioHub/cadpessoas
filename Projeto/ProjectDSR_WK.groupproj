@@ -3,7 +3,7 @@
         <ProjectGuid>{167B2803-D0C1-4658-8CDB-0AD2D9A04416}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="DataSnapRestWK\ServidorSnapRestWK.dproj">
+        <Projects Include="DataSnapRestWK\ServidorDSRestWK.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="ClientDSWK\ProjectCliDSWK.dproj">
@@ -17,14 +17,14 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="ServidorSnapRestWK">
-        <MSBuild Projects="DataSnapRestWK\ServidorSnapRestWK.dproj"/>
+    <Target Name="ServidorDSRestWK">
+        <MSBuild Projects="DataSnapRestWK\ServidorDSRestWK.dproj"/>
     </Target>
-    <Target Name="ServidorSnapRestWK:Clean">
-        <MSBuild Projects="DataSnapRestWK\ServidorSnapRestWK.dproj" Targets="Clean"/>
+    <Target Name="ServidorDSRestWK:Clean">
+        <MSBuild Projects="DataSnapRestWK\ServidorDSRestWK.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="ServidorSnapRestWK:Make">
-        <MSBuild Projects="DataSnapRestWK\ServidorSnapRestWK.dproj" Targets="Make"/>
+    <Target Name="ServidorDSRestWK:Make">
+        <MSBuild Projects="DataSnapRestWK\ServidorDSRestWK.dproj" Targets="Make"/>
     </Target>
     <Target Name="ProjectCliDSWK">
         <MSBuild Projects="ClientDSWK\ProjectCliDSWK.dproj"/>
@@ -36,13 +36,13 @@
         <MSBuild Projects="ClientDSWK\ProjectCliDSWK.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="ServidorSnapRestWK;ProjectCliDSWK"/>
+        <CallTarget Targets="ServidorDSRestWK;ProjectCliDSWK"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="ServidorSnapRestWK:Clean;ProjectCliDSWK:Clean"/>
+        <CallTarget Targets="ServidorDSRestWK:Clean;ProjectCliDSWK:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="ServidorSnapRestWK:Make;ProjectCliDSWK:Make"/>
+        <CallTarget Targets="ServidorDSRestWK:Make;ProjectCliDSWK:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

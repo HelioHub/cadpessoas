@@ -10,3 +10,7 @@ Por exemplo, imagine que seu sistema de contas interno compartilhe dados com o s
 As duas aplicações compartilham dados usando uma API que define regras de comunicação. 
 O SOAP e o REST são duas abordagens diferentes para o design de APIs. A abordagem do SOAP é altamente estruturada e usa o formato de dados XML. 
 O REST é mais flexível e permite que as aplicações troquem dados em vários formatos.
+
+# Dlls para conectar PostGreSQL:
+
+https://www.postgresql.org/ftp/odbc/versions/dll/
