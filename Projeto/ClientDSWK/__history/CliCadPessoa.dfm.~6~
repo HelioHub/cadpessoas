@@ -20,9 +20,7 @@ object Form1: TForm1
     Top = 0
     Width = 662
     Height = 137
-    Hint = 'Click e seja bem-vindo ao nosso Site'
     Align = alTop
-    ParentShowHint = False
     Picture.Data = {
       0B546478504E47496D61676589504E470D0A1A0A0000000D4948445200000708
       000002580806000001012282400000001974455874536F667477617265004164
@@ -2685,18 +2683,14 @@ object Form1: TForm1
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000040EBFE07C6A80AF060B259750000000049454E44AE426082}
-    ShowHint = True
     Stretch = True
-    OnClick = ImageWKClick
-    ExplicitLeft = -8
-    ExplicitTop = -6
+    ExplicitWidth = 635
   end
   object BBCadPessoas: TBitBtn
     Left = 0
     Top = 137
     Width = 662
     Height = 280
-    Hint = 'Acessa tela de cadastro de pessoas'
     Align = alTop
     Caption = 'Cadastro de Pessoas'
     Font.Charset = DEFAULT_CHARSET
@@ -9036,16 +9030,15 @@ object Form1: TForm1
       F7FFF7F7F7FFF7F7F7FFF7F7F7FFF7F7F7FFF7F7F7FFF7F7F7FFF7F7F7FFF7F7
       F7FFF7F7F7FFF7F7F7FFF7F7F7FFF7F7F7FFF7F7F7FFF7F7F7FFF7F7F7FF}
     ParentFont = False
-    ParentShowHint = False
-    ShowHint = True
     TabOrder = 0
+    ExplicitLeft = -8
+    ExplicitTop = 131
   end
   object BBFechar: TBitBtn
     Left = 0
     Top = 417
     Width = 662
     Height = 51
-    Hint = 'Fecha aplica'#231#227'o'
     Align = alClient
     Caption = 'Fechar'
     Font.Charset = DEFAULT_CHARSET
@@ -9054,8 +9047,6 @@ object Form1: TForm1
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    ParentShowHint = False
-    ShowHint = True
     TabOrder = 1
     OnClick = BBFecharClick
   end

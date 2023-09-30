@@ -6,7 +6,10 @@
         <Projects Include="DataSnapRestWK\ServidorDSRestWK.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="ClientDSWK\ProjectCliDSWK.dproj">
+        <Projects Include="ClientDSWK\ClientDSWK.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ServidorDSWK\ServidorDSWK.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -26,23 +29,32 @@
     <Target Name="ServidorDSRestWK:Make">
         <MSBuild Projects="DataSnapRestWK\ServidorDSRestWK.dproj" Targets="Make"/>
     </Target>
-    <Target Name="ProjectCliDSWK">
-        <MSBuild Projects="ClientDSWK\ProjectCliDSWK.dproj"/>
+    <Target Name="ClientDSWK">
+        <MSBuild Projects="ClientDSWK\ClientDSWK.dproj"/>
     </Target>
-    <Target Name="ProjectCliDSWK:Clean">
-        <MSBuild Projects="ClientDSWK\ProjectCliDSWK.dproj" Targets="Clean"/>
+    <Target Name="ClientDSWK:Clean">
+        <MSBuild Projects="ClientDSWK\ClientDSWK.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="ProjectCliDSWK:Make">
-        <MSBuild Projects="ClientDSWK\ProjectCliDSWK.dproj" Targets="Make"/>
+    <Target Name="ClientDSWK:Make">
+        <MSBuild Projects="ClientDSWK\ClientDSWK.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ServidorDSWK">
+        <MSBuild Projects="ServidorDSWK\ServidorDSWK.dproj"/>
+    </Target>
+    <Target Name="ServidorDSWK:Clean">
+        <MSBuild Projects="ServidorDSWK\ServidorDSWK.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ServidorDSWK:Make">
+        <MSBuild Projects="ServidorDSWK\ServidorDSWK.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="ServidorDSRestWK;ProjectCliDSWK"/>
+        <CallTarget Targets="ServidorDSRestWK;ClientDSWK;ServidorDSWK"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="ServidorDSRestWK:Clean;ProjectCliDSWK:Clean"/>
+        <CallTarget Targets="ServidorDSRestWK:Clean;ClientDSWK:Clean;ServidorDSWK:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="ServidorDSRestWK:Make;ProjectCliDSWK:Make"/>
+        <CallTarget Targets="ServidorDSRestWK:Make;ClientDSWK:Make;ServidorDSWK:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
