@@ -3,9 +3,6 @@
         <ProjectGuid>{167B2803-D0C1-4658-8CDB-0AD2D9A04416}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="DataSnapRestWK\ServidorDSRestWK.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="ClientDSWK\ClientDSWK.dproj">
             <Dependencies/>
         </Projects>
@@ -20,15 +17,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="ServidorDSRestWK">
-        <MSBuild Projects="DataSnapRestWK\ServidorDSRestWK.dproj"/>
-    </Target>
-    <Target Name="ServidorDSRestWK:Clean">
-        <MSBuild Projects="DataSnapRestWK\ServidorDSRestWK.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ServidorDSRestWK:Make">
-        <MSBuild Projects="DataSnapRestWK\ServidorDSRestWK.dproj" Targets="Make"/>
-    </Target>
     <Target Name="ClientDSWK">
         <MSBuild Projects="ClientDSWK\ClientDSWK.dproj"/>
     </Target>
@@ -48,13 +36,13 @@
         <MSBuild Projects="ServidorDSWK\ServidorDSWK.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="ServidorDSRestWK;ClientDSWK;ServidorDSWK"/>
+        <CallTarget Targets="ClientDSWK;ServidorDSWK"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="ServidorDSRestWK:Clean;ClientDSWK:Clean;ServidorDSWK:Clean"/>
+        <CallTarget Targets="ClientDSWK:Clean;ServidorDSWK:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="ServidorDSRestWK:Make;ClientDSWK:Make;ServidorDSWK:Make"/>
+        <CallTarget Targets="ClientDSWK:Make;ServidorDSWK:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

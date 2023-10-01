@@ -90,24 +90,29 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="FUServidorDataSnapRest.pas">
+        <DCCReference Include="View\FUServidorDataSnapRest.pas">
             <Form>FServidorDataSnapRest</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="ServerMethodsWK.pas">
+        <DCCReference Include="Controller\ServerMethodsWK.pas">
             <Form>ServerMethods1</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="ServerContainerWK.pas">
+        <DCCReference Include="View\ServerContainerWK.pas">
             <Form>ServerContainer2</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="WebModuleWK.pas">
+        <DCCReference Include="View\WebModuleWK.pas">
             <Form>WebModule1</Form>
             <FormType>dfm</FormType>
             <DesignClass>TWebModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Model\UDMBanco.pas">
+            <Form>DataModule1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <None Include="js\base64.js"/>
         <None Include="js\ServerFunctionExecutor.js"/>

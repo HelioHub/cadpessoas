@@ -2,9 +2,9 @@ program ClientDSWK;
 
 uses
   Vcl.Forms,
-  CliCadPessoa in 'View\CliCadPessoa.pas' {Form1},
-  ClientClassesWK in 'Controller\ClientClassesWK.pas',
-  ClientModuleWK in 'Model\ClientModuleWK.pas' {ClientModule1: TDataModule};
+  CliCadPessoa in 'CliCadPessoa.pas' {Form1},
+  ClientClassesWK in 'ClientClassesWK.pas',
+  ClientModuleWK in 'ClientModuleWK.pas' {ClientModule1: TDataModule};
 
 {$R *.res}
 

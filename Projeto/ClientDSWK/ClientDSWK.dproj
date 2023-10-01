@@ -87,12 +87,12 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="CliCadPessoa.pas">
+        <DCCReference Include="View\CliCadPessoa.pas">
             <Form>Form1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="ClientClassesWK.pas"/>
-        <DCCReference Include="ClientModuleWK.pas">
+        <DCCReference Include="Controller\ClientClassesWK.pas"/>
+        <DCCReference Include="Model\ClientModuleWK.pas">
             <Form>ClientModule1</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>

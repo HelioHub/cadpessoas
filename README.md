@@ -21,8 +21,9 @@ Hélio Marques
 	• Garantir integridade entre registros (não ter pessoa sem endereço)
 	• Camada de persistência, utilizar Firedac
 
-## PW DB 
+## PW DB PostGreSQL
 
+    Database: wkcadpessoas
 	pw: wk@2023
 	Dlls para conectar PostGreSQL no DELPHI XE3: https://www.postgresql.org/ftp/odbc/versions/dll/
 
