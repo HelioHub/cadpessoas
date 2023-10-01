@@ -1,8 +1,8 @@
-object ClientModuleWKX: TClientModuleWKX
+object ClientModule1: TClientModule1
   OldCreateOrder = False
   Height = 271
   Width = 415
-  object DSRestConnectionWK: TDSRestConnection
+  object DSRestConnection1: TDSRestConnection
     Host = 'localhost'
     Port = 8080
     LoginPrompt = False

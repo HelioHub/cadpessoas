@@ -46,7 +46,7 @@ end;
 function TClientModuleWKX.GetServerMethods1Client: TServerMethods1Client;
 begin
   if FServerMethods1Client = nil then
-    FServerMethods1Client:= TServerMethods1Client.Create(DSRestConnectionWK, FInstanceOwner);
+    FServerMethods1Client:= TServerMethods1Client.Create(DSRestConnection1, FInstanceOwner);
   Result := FServerMethods1Client;
 end;
 

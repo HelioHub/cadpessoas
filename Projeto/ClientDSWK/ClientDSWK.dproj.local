@@ -16,5 +16,11 @@
     <Transaction>2023/10/01 10:38:17.452,D:\WK\CadPessoas\Projeto\ClientDSWK\Model\ClientModuleWK.pas=D:\WK\CadPessoas\Projeto\ClientDSWK\ClientModuleWK.pas</Transaction>
     <Transaction>2023/10/01 10:38:17.452,D:\WK\CadPessoas\Projeto\ClientDSWK\Model\ClientModuleWK.dfm=D:\WK\CadPessoas\Projeto\ClientDSWK\ClientModuleWK.dfm</Transaction>
     <Transaction>2023/10/01 10:38:33.126,D:\WK\CadPessoas\Projeto\ClientDSWK\Controller\ClientClassesWK.pas=D:\WK\CadPessoas\Projeto\ClientDSWK\ClientClassesWK.pas</Transaction>
+    <Transaction>2023/10/01 12:10:17.979,=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit2.pas</Transaction>
+    <Transaction>2023/10/01 12:43:53.992,D:\WK\CadPessoas\Projeto\ClientDSWK\View\UGridBase.pas=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit2.pas</Transaction>
+    <Transaction>2023/10/01 12:43:53.992,D:\WK\CadPessoas\Projeto\ClientDSWK\View\UGridBase.dfm=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit2.dfm</Transaction>
+    <Transaction>2023/10/01 12:59:49.912,=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.pas</Transaction>
+    <Transaction>2023/10/01 13:04:20.367,D:\WK\CadPessoas\Projeto\ClientDSWK\View\UDadosBase.dfm=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.dfm</Transaction>
+    <Transaction>2023/10/01 13:04:20.367,D:\WK\CadPessoas\Projeto\ClientDSWK\View\UDadosBase.pas=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

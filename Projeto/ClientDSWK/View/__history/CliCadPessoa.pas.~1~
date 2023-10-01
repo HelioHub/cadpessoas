@@ -8,7 +8,7 @@ uses
   dxGDIPlusClasses, Vcl.ExtCtrls, Winapi.ShellApi;
 
 type
-  TFCliCadPessoa = class(TForm)
+  TForm1 = class(TForm)
     ImageWK: TImage;
     BBCadPessoas: TBitBtn;
     BBFechar: TBitBtn;
@@ -21,7 +21,7 @@ type
   end;
 
 var
-  FCliCadPessoa: TFCliCadPessoa;
+  Form1: TForm1;
 
 const
   urlWK = 'https://wktechnology.com.br/';
@@ -30,12 +30,12 @@ implementation
 
 {$R *.dfm}
 
-procedure TFCliCadPessoa.BBFecharClick(Sender: TObject);
+procedure TForm1.BBFecharClick(Sender: TObject);
 begin
   Application.Terminate;
 end;
 
-procedure TFCliCadPessoa.ImageWKClick(Sender: TObject);
+procedure TForm1.ImageWKClick(Sender: TObject);
 begin
   ShellExecute(Handle, nil, PChar(urlWK), nil, nil, SW_SHOWNORMAL);
 end;
