@@ -16,7 +16,7 @@ implementation
 
 { TClaIni }
 
-uses ConstWK;
+uses ClientConstWK;
 
 class function TClaIni.LerIni(StrArquivo, StrTabela, StrCampo : string) : string;
 var

@@ -1,6 +1,6 @@
 //
 // Created by the DataSnap proxy generator.
-// 02/10/2023 11:05:13
+// 02/10/2023 04:24:06
 //
 
 unit ClientClassesWK;
@@ -23,8 +23,8 @@ type
     constructor Create(ARestConnection: TDSRestConnection); overload;
     constructor Create(ARestConnection: TDSRestConnection; AInstanceOwner: Boolean); overload;
     destructor Destroy; override;
-    function GetPessoa(IDPessoa: string; SLimit: string; const ARequestFilter: string = ''): TFDJSONDataSets;
-    function GetPessoa_Cache(IDPessoa: string; SLimit: string; const ARequestFilter: string = ''): IDSRestCachedTFDJSONDataSets;
+    function GetPessoa(IDPessoa: string; const ARequestFilter: string = ''): TFDJSONDataSets;
+    function GetPessoa_Cache(IDPessoa: string; const ARequestFilter: string = ''): IDSRestCachedTFDJSONDataSets;
     function EchoString(Value: string; const ARequestFilter: string = ''): string;
     function ReverseString(Value: string; const ARequestFilter: string = ''): string;
   end;
@@ -36,17 +36,15 @@ type
   end;
 
 const
-  TServerMethods_WK_GetPessoa: array [0..2] of TDSRestParameterMetaData =
+  TServerMethods_WK_GetPessoa: array [0..1] of TDSRestParameterMetaData =
   (
     (Name: 'IDPessoa'; Direction: 1; DBXType: 26; TypeName: 'string'),
-    (Name: 'SLimit'; Direction: 1; DBXType: 26; TypeName: 'string'),
     (Name: ''; Direction: 4; DBXType: 37; TypeName: 'TFDJSONDataSets')
   );
 
-  TServerMethods_WK_GetPessoa_Cache: array [0..2] of TDSRestParameterMetaData =
+  TServerMethods_WK_GetPessoa_Cache: array [0..1] of TDSRestParameterMetaData =
   (
     (Name: 'IDPessoa'; Direction: 1; DBXType: 26; TypeName: 'string'),
-    (Name: 'SLimit'; Direction: 1; DBXType: 26; TypeName: 'string'),
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'String')
   );
 
@@ -64,7 +62,7 @@ const
 
 implementation
 
-function TServerMethods_WKClient.GetPessoa(IDPessoa: string; SLimit: string; const ARequestFilter: string): TFDJSONDataSets;
+function TServerMethods_WKClient.GetPessoa(IDPessoa: string; const ARequestFilter: string): TFDJSONDataSets;
 begin
   if FGetPessoaCommand = nil then
   begin
@@ -74,13 +72,12 @@ begin
     FGetPessoaCommand.Prepare(TServerMethods_WK_GetPessoa);
   end;
   FGetPessoaCommand.Parameters[0].Value.SetWideString(IDPessoa);
-  FGetPessoaCommand.Parameters[1].Value.SetWideString(SLimit);
   FGetPessoaCommand.Execute(ARequestFilter);
-  if not FGetPessoaCommand.Parameters[2].Value.IsNull then
+  if not FGetPessoaCommand.Parameters[1].Value.IsNull then
   begin
-    FUnMarshal := TDSRestCommand(FGetPessoaCommand.Parameters[2].ConnectionHandler).GetJSONUnMarshaler;
+    FUnMarshal := TDSRestCommand(FGetPessoaCommand.Parameters[1].ConnectionHandler).GetJSONUnMarshaler;
     try
-      Result := TFDJSONDataSets(FUnMarshal.UnMarshal(FGetPessoaCommand.Parameters[2].Value.GetJSONValue(True)));
+      Result := TFDJSONDataSets(FUnMarshal.UnMarshal(FGetPessoaCommand.Parameters[1].Value.GetJSONValue(True)));
       if FInstanceOwner then
         FGetPessoaCommand.FreeOnExecute(Result);
     finally
@@ -91,7 +88,7 @@ begin
     Result := nil;
 end;
 
-function TServerMethods_WKClient.GetPessoa_Cache(IDPessoa: string; SLimit: string; const ARequestFilter: string): IDSRestCachedTFDJSONDataSets;
+function TServerMethods_WKClient.GetPessoa_Cache(IDPessoa: string; const ARequestFilter: string): IDSRestCachedTFDJSONDataSets;
 begin
   if FGetPessoaCommand_Cache = nil then
   begin
@@ -101,9 +98,8 @@ begin
     FGetPessoaCommand_Cache.Prepare(TServerMethods_WK_GetPessoa_Cache);
   end;
   FGetPessoaCommand_Cache.Parameters[0].Value.SetWideString(IDPessoa);
-  FGetPessoaCommand_Cache.Parameters[1].Value.SetWideString(SLimit);
   FGetPessoaCommand_Cache.ExecuteCache(ARequestFilter);
-  Result := TDSRestCachedTFDJSONDataSets.Create(FGetPessoaCommand_Cache.Parameters[2].Value.GetString);
+  Result := TDSRestCachedTFDJSONDataSets.Create(FGetPessoaCommand_Cache.Parameters[1].Value.GetString);
 end;
 
 function TServerMethods_WKClient.EchoString(Value: string; const ARequestFilter: string): string;

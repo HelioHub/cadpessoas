@@ -31,7 +31,7 @@ Const
                'LEFT JOIN endereco_integracao C ON C.idendereco = B.idendereco ';
 
   sSQLWhere = 'WHERE A.idpessoa = ';
-  sSQLOrder = 'ORDER BY A.idpessoa ';
+  sSQLOrder = 'ORDER A.idpessoa ';
   sSQLLimit = 'LIMIT ';
 
 implementation
@@ -65,7 +65,7 @@ begin
   sSQL := sSQL + sSQLOrder + IDPessoa;
 
   if not SLimit.IsEmpty then
-    sSQL := sSQL + sSQLLimit + SLimit;
+    sSQL := sSQL + sSQLLimit + IDPessoa;
 
   DataModuleWK.WKPessoa.Active   := False;
   DataModuleWK.WKPessoa.SQL.Text := sSQL;

@@ -16,7 +16,7 @@ type
     procedure PreparePessoa(const IDPessoa : string = ''; const SLimit : String = '');
   public
     { Public declarations }
-    function GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
+    function GetPessoa(const IDPessoa: string): TFDJSONDataSets;
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
   end;
@@ -31,7 +31,7 @@ Const
                'LEFT JOIN endereco_integracao C ON C.idendereco = B.idendereco ';
 
   sSQLWhere = 'WHERE A.idpessoa = ';
-  sSQLOrder = 'ORDER BY A.idpessoa ';
+  sSQLOrder = 'ORDER A.idpessoa ';
   sSQLLimit = 'LIMIT ';
 
 implementation
@@ -45,9 +45,9 @@ begin
   Result := Value;
 end;
 
-function TServerMethods_WK.GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
+function TServerMethods_WK.GetPessoa(const IDPessoa: string): TFDJSONDataSets;
 begin
-  PreparePessoa(IDPessoa, SLimit);
+  PreparePessoa(IDPessoa);
 
   Result := TFDJSONDataSets.Create;
   TFDJSONDataSetsWriter.ListAdd(Result, DataModuleWK.WKPessoa);
@@ -65,7 +65,7 @@ begin
   sSQL := sSQL + sSQLOrder + IDPessoa;
 
   if not SLimit.IsEmpty then
-    sSQL := sSQL + sSQLLimit + SLimit;
+    sSQL := sSQL + sSQLLimit + IDPessoa;
 
   DataModuleWK.WKPessoa.Active   := False;
   DataModuleWK.WKPessoa.SQL.Text := sSQL;

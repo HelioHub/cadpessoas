@@ -44,7 +44,7 @@ var sLimiteRegistros : String;
 begin
   inherited;
   sLimiteRegistros := ENR.Text;
-  ClientModuleWKX.LoadPessoa('', sLimiteRegistros);
+  ClientModuleWKX.LoadPessoa(sLimiteRegistros);
 end;
 
 end.

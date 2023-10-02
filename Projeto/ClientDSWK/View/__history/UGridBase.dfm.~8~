@@ -143,11 +143,8 @@ object FGridBase: TFGridBase
       Top = 1
       Width = 888
       Height = 366
-      Hint = 'Duplo Click para Consultar o registro...'
       Align = alClient
       DataSource = DSBase
-      ParentShowHint = False
-      ShowHint = True
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText

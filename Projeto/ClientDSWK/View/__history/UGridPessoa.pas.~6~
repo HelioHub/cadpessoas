@@ -21,8 +21,6 @@ type
     DBEBairro: TDBEdit;
     DBEComplemento: TDBEdit;
     DBECidade: TDBEdit;
-    LUF: TLabel;
-    DBEUF: TDBEdit;
     procedure BBAtualizarClick(Sender: TObject);
   private
     { Private declarations }
@@ -44,7 +42,7 @@ var sLimiteRegistros : String;
 begin
   inherited;
   sLimiteRegistros := ENR.Text;
-  ClientModuleWKX.LoadPessoa('', sLimiteRegistros);
+  ClientModuleWKX.LoadPessoa(sLimiteRegistros);
 end;
 
 end.

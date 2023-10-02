@@ -7,7 +7,7 @@ uses
   ClientModuleWK in 'Model\ClientModuleWK.pas' {ClientModuleWKX: TDataModule},
   UGridBase in 'View\UGridBase.pas' {FGridBase},
   UDadosBase in 'View\UDadosBase.pas' {FDadosBase},
-  ConstWK in '..\Biblioteca\ConstWK.pas',
+  ClientConstWK in 'ClientConstWK.pas',
   UGridPessoa in 'View\UGridPessoa.pas' {FGridPessoa},
   UClaIni in '..\Biblioteca\UClaIni.pas',
   UCEP in '..\Biblioteca\UCEP.pas',

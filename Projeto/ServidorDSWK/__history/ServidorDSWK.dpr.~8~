@@ -12,10 +12,10 @@ uses
   ServerContainerWK in 'View\ServerContainerWK.pas' {ServerContainer_WK: TDataModule},
   WebModuleWK in 'View\WebModuleWK.pas' {WebModule_WK: TWebModule},
   UDMBanco in 'Model\UDMBanco.pas' {DataModuleWK: TDataModule},
+  ServerConstWK in 'ServerConstWK.pas',
   UBuscaCEP in '..\Biblioteca\UBuscaCEP.pas',
   UCEP in '..\Biblioteca\UCEP.pas',
-  UClaIni in '..\Biblioteca\UClaIni.pas',
-  ConstWK in '..\Biblioteca\ConstWK.pas';
+  UClaIni in '..\Biblioteca\UClaIni.pas';
 
 {$R *.res}
 

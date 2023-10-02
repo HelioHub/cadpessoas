@@ -13,10 +13,10 @@ type
     FDStanStorageBinLink1: TFDStanStorageBinLink;
   private
     { Private declarations }
-    procedure PreparePessoa(const IDPessoa : string = ''; const SLimit : String = '');
+    procedure PreparePessoa(const IDPessoa: string = '');
   public
     { Public declarations }
-    function GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
+    function GetPessoa(const IDPessoa: string): TFDJSONDataSets;
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
   end;
@@ -30,9 +30,8 @@ Const
                'LEFT JOIN endereco B            ON B.idpessoa = A.idpessoa ' +
                'LEFT JOIN endereco_integracao C ON C.idendereco = B.idendereco ';
 
-  sSQLWhere = 'WHERE A.idpessoa = ';
-  sSQLOrder = 'ORDER BY A.idpessoa ';
-  sSQLLimit = 'LIMIT ';
+   sSQLWhere = 'WHERE A.idpessoa = ';
+   sSQLLimit = 'LIMIT ';
 
 implementation
 
@@ -45,27 +44,22 @@ begin
   Result := Value;
 end;
 
-function TServerMethods_WK.GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
+function TServerMethods_WK.GetPessoa(const IDPessoa: string): TFDJSONDataSets;
 begin
-  PreparePessoa(IDPessoa, SLimit);
+  PreparePessoa(IDPessoa);
 
   Result := TFDJSONDataSets.Create;
   TFDJSONDataSetsWriter.ListAdd(Result, DataModuleWK.WKPessoa);
 end;
 
-procedure TServerMethods_WK.PreparePessoa(const IDPessoa : string = ''; const SLimit : String = '');
+procedure TServerMethods_WK.PreparePessoa(const IDPessoa, pLimit: string = '');
 var
   sSQL: string;
 begin
-  sSQL := sSQLPessoa;
-
+  sSQL := 'SELECT * FROM PESSOA';
+  sSQL := sSQL + ' ORDER BY IDPESSOA';
   if not IDPessoa.IsEmpty then
-    sSQL := sSQL + sSQLWhere + IDPessoa;
-
-  sSQL := sSQL + sSQLOrder + IDPessoa;
-
-  if not SLimit.IsEmpty then
-    sSQL := sSQL + sSQLLimit + SLimit;
+    sSQL := sSQL + ' LIMIT ' + IDPessoa;
 
   DataModuleWK.WKPessoa.Active   := False;
   DataModuleWK.WKPessoa.SQL.Text := sSQL;

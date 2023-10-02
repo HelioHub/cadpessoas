@@ -115,7 +115,7 @@
             <Form>FDadosBase</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="ClientConstWK.pas"/>
+        <DCCReference Include="..\Biblioteca\ConstWK.pas"/>
         <DCCReference Include="View\UGridPessoa.pas">
             <Form>FGridPessoa</Form>
             <FormType>dfm</FormType>

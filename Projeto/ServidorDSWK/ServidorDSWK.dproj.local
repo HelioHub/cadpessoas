@@ -2,40 +2,40 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2023/09/30 10:31:47.000.833,=D:\WK\CadPessoas\Projeto\ServidorDSWK\FormUnit1.pas</Transaction>
-    <Transaction>2023/09/30 10:31:48.000.017,=D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerMethodsUnit1.pas</Transaction>
-    <Transaction>2023/09/30 10:31:48.000.512,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\ServerFunctionExecutor-min.js</Transaction>
-    <Transaction>2023/09/30 10:31:48.000.432,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\base64.js</Transaction>
-    <Transaction>2023/09/30 10:31:48.000.457,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\ServerFunctionExecutor.js</Transaction>
-    <Transaction>2023/09/30 10:31:48.000.165,=D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerContainerUnit1.pas</Transaction>
-    <Transaction>2023/09/30 10:31:48.000.530,=D:\WK\CadPessoas\Projeto\ServidorDSWK\css\main.css</Transaction>
     <Transaction>2023/09/30 10:31:48.000.517,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\CallbackFramework-min.js</Transaction>
-    <Transaction>2023/09/30 10:31:48.000.534,=D:\WK\CadPessoas\Projeto\ServidorDSWK\css\ServerFunctionInvoker.css</Transaction>
-    <Transaction>2023/09/30 10:31:48.000.541,=D:\WK\CadPessoas\Projeto\ServidorDSWK\templates\ServerFunctionInvoker.html</Transaction>
+    <Transaction>2023/09/30 10:31:48.000.017,=D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2023/09/30 10:31:48.000.165,=D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2023/09/30 10:31:48.000.457,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\ServerFunctionExecutor.js</Transaction>
+    <Transaction>2023/09/30 10:31:48.000.530,=D:\WK\CadPessoas\Projeto\ServidorDSWK\css\main.css</Transaction>
+    <Transaction>2023/09/30 10:31:48.000.512,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\ServerFunctionExecutor-min.js</Transaction>
+    <Transaction>2023/09/30 10:31:48.000.538,=D:\WK\CadPessoas\Projeto\ServidorDSWK\templates\ReverseString.html</Transaction>
     <Transaction>2023/09/30 10:31:48.000.326,=D:\WK\CadPessoas\Projeto\ServidorDSWK\WebModuleUnit1.pas</Transaction>
+    <Transaction>2023/09/30 10:31:48.000.541,=D:\WK\CadPessoas\Projeto\ServidorDSWK\templates\ServerFunctionInvoker.html</Transaction>
+    <Transaction>2023/09/30 10:31:48.000.432,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\base64.js</Transaction>
     <Transaction>2023/09/30 10:31:48.000.549,=D:\WK\CadPessoas\Projeto\ServidorDSWK\images\expand.png</Transaction>
     <Transaction>2023/09/30 10:31:48.000.474,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\base64-min.js</Transaction>
-    <Transaction>2023/09/30 10:31:48.000.538,=D:\WK\CadPessoas\Projeto\ServidorDSWK\templates\ReverseString.html</Transaction>
+    <Transaction>2023/09/30 10:31:48.000.520,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\connection.js</Transaction>
     <Transaction>2023/09/30 10:31:48.000.470,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\ServerFunctions.js</Transaction>
     <Transaction>2023/09/30 10:31:48.000.546,=D:\WK\CadPessoas\Projeto\ServidorDSWK\images\collapse.png</Transaction>
     <Transaction>2023/09/30 10:31:48.000.507,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\json2-min.js</Transaction>
     <Transaction>2023/09/30 10:31:48.000.524,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\ServerFunctionInvoker.js</Transaction>
+    <Transaction>2023/09/30 10:31:48.000.534,=D:\WK\CadPessoas\Projeto\ServidorDSWK\css\ServerFunctionInvoker.css</Transaction>
     <Transaction>2023/09/30 10:31:48.000.465,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\CallbackFramework.js</Transaction>
     <Transaction>2023/09/30 10:31:48.000.461,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\json2.js</Transaction>
-    <Transaction>2023/09/30 10:31:48.000.520,=D:\WK\CadPessoas\Projeto\ServidorDSWK\js\connection.js</Transaction>
     <Transaction>2023/09/30 10:35:28.000.674,D:\WK\CadPessoas\Projeto\ServidorDSWK\FUServidorDataSnapRest.dfm=D:\WK\CadPessoas\Projeto\ServidorDSWK\FormUnit1.dfm</Transaction>
     <Transaction>2023/09/30 10:35:28.000.674,D:\WK\CadPessoas\Projeto\ServidorDSWK\FUServidorDataSnapRest.pas=D:\WK\CadPessoas\Projeto\ServidorDSWK\FormUnit1.pas</Transaction>
     <Transaction>2023/09/30 10:35:34.000.669,D:\WK\CadPessoas\Projeto\ServidorDSWK\WebModuleWK.pas=D:\WK\CadPessoas\Projeto\ServidorDSWK\WebModuleUnit1.pas</Transaction>
     <Transaction>2023/09/30 10:35:34.000.669,D:\WK\CadPessoas\Projeto\ServidorDSWK\WebModuleWK.dfm=D:\WK\CadPessoas\Projeto\ServidorDSWK\WebModuleUnit1.dfm</Transaction>
-    <Transaction>2023/09/30 10:35:40.000.043,D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerContainerWK.pas=D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerContainerUnit1.pas</Transaction>
     <Transaction>2023/09/30 10:35:40.000.043,D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerContainerWK.dfm=D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerContainerUnit1.dfm</Transaction>
+    <Transaction>2023/09/30 10:35:40.000.043,D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerContainerWK.pas=D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerContainerUnit1.pas</Transaction>
     <Transaction>2023/09/30 10:35:44.000.657,D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerMethodsWK.dfm=D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerMethodsUnit1.dfm</Transaction>
     <Transaction>2023/09/30 10:35:44.000.657,D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerMethodsWK.pas=D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerMethodsUnit1.pas</Transaction>
-    <Transaction>2023/10/01 10:46:51.000.145,D:\WK\CadPessoas\Projeto\ServidorDSWK\FUServidorDataSnapRest.pas=D:\WK\CadPessoas\Projeto\ServidorDSWK\View\FUServidorDataSnapRest.pas</Transaction>
     <Transaction>2023/10/01 10:46:51.000.145,D:\WK\CadPessoas\Projeto\ServidorDSWK\FUServidorDataSnapRest.dfm=D:\WK\CadPessoas\Projeto\ServidorDSWK\View\FUServidorDataSnapRest.dfm</Transaction>
+    <Transaction>2023/10/01 10:46:51.000.145,D:\WK\CadPessoas\Projeto\ServidorDSWK\FUServidorDataSnapRest.pas=D:\WK\CadPessoas\Projeto\ServidorDSWK\View\FUServidorDataSnapRest.pas</Transaction>
     <Transaction>2023/10/01 10:49:26.000.729,D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerMethodsWK.dfm=D:\WK\CadPessoas\Projeto\ServidorDSWK\View\ServerMethodsWK.dfm</Transaction>
     <Transaction>2023/10/01 10:49:26.000.729,D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerMethodsWK.pas=D:\WK\CadPessoas\Projeto\ServidorDSWK\View\ServerMethodsWK.pas</Transaction>
-    <Transaction>2023/10/01 11:52:32.000.343,D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerContainerWK.dfm=D:\WK\CadPessoas\Projeto\ServidorDSWK\View\ServerContainerWK.dfm</Transaction>
     <Transaction>2023/10/01 11:52:32.000.343,D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerContainerWK.pas=D:\WK\CadPessoas\Projeto\ServidorDSWK\View\ServerContainerWK.pas</Transaction>
+    <Transaction>2023/10/01 11:52:32.000.343,D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerContainerWK.dfm=D:\WK\CadPessoas\Projeto\ServidorDSWK\View\ServerContainerWK.dfm</Transaction>
     <Transaction>2023/10/01 11:53:12.000.187,D:\WK\CadPessoas\Projeto\ServidorDSWK\WebModuleWK.dfm=D:\WK\CadPessoas\Projeto\ServidorDSWK\View\WebModuleWK.dfm</Transaction>
     <Transaction>2023/10/01 11:53:12.000.187,D:\WK\CadPessoas\Projeto\ServidorDSWK\WebModuleWK.pas=D:\WK\CadPessoas\Projeto\ServidorDSWK\View\WebModuleWK.pas</Transaction>
     <Transaction>2023/10/01 11:53:25.000.013,D:\WK\CadPessoas\Projeto\ServidorDSWK\View\ServerMethodsWK.pas=D:\WK\CadPessoas\Projeto\ServidorDSWK\Controller\ServerMethodsWK.pas</Transaction>
@@ -49,6 +49,8 @@
     <Transaction>2023/10/02 08:18:07.439,=D:\WK\CadPessoas\Projeto\Biblioteca\UBuscaCEP.pas</Transaction>
     <Transaction>2023/10/02 08:18:07.485,=D:\WK\CadPessoas\Projeto\Biblioteca\UCEP.pas</Transaction>
     <Transaction>2023/10/02 08:18:07.518,=D:\WK\CadPessoas\Projeto\Biblioteca\UClaIni.pas</Transaction>
+    <Transaction>2023/10/02 11:00:10.787,=D:\WK\CadPessoas\Projeto\Biblioteca\ConstWK.pas</Transaction>
+    <Transaction>2023/10/02 11:01:06.286,D:\WK\CadPessoas\Projeto\ServidorDSWK\ServerConstWK.pas=</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="..\..\Projeto"/>
@@ -56,6 +58,7 @@
     <File Path="..\Biblioteca\UBuscaCEP.pas"/>
     <File Path="..\Biblioteca\UCEP.pas"/>
     <File Path="..\Biblioteca\UClaIni.pas"/>
+    <File Path="..\Biblioteca\ConstWK.pas"/>
     <File Path="Controller"/>
     <File Path="Controller\ServerMethodsWK.pas"/>
     <File Path="Controller\ServerMethodsWK.dfm"/>
@@ -92,6 +95,5 @@
     <File Path="View\ServerContainerWK.dfm"/>
     <File Path="View\WebModuleWK.pas"/>
     <File Path="View\WebModuleWK.dfm"/>
-    <File Path="ServerConstWK.pas"/>
   </ProjectSortOrder>
 </BorlandProject>

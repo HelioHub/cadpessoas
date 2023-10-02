@@ -1,0 +1,28 @@
+inherited FGridPessoa: TFGridPessoa
+  Caption = 'Cadastro de Pessoas'
+  ClientHeight = 547
+  ExplicitHeight = 586
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited PHead: TPanel
+    inherited BBAtualizar: TBitBtn
+      OnClick = BBAtualizarClick
+    end
+  end
+  inherited PRodape: TPanel
+    Top = 462
+    Height = 85
+    ExplicitTop = 463
+    ExplicitHeight = 85
+  end
+  inherited PView: TPanel
+    Height = 418
+    inherited DBGView: TDBGrid
+      Height = 416
+    end
+  end
+  inherited DSBase: TDataSource
+    DataSet = ClientModuleWKX.PessoaMemTable
+    Left = 416
+  end
+end

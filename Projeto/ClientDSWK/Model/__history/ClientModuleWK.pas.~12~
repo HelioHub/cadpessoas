@@ -27,7 +27,7 @@ type
     function GetServerMethods1Client: TServerMethods_WKClient;
     { Private declarations }
   public
-    procedure LoadPessoa(const IDPessoa: string; const SLimit: string);
+    procedure LoadPessoa(const IDPessoa: string);
 
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -64,11 +64,11 @@ begin
   Result := FServerMethods1Client;
 end;
 
-procedure TClientModuleWKX.LoadPessoa(const IDPessoa: string; const SLimit: string);
+procedure TClientModuleWKX.LoadPessoa(const IDPessoa: string);
 var
   LDataSetList: TFDJSONDataSets;
 begin
-  LDataSetList := ServerMethods1Client.GetPessoa(IDPessoa, SLimit);
+  LDataSetList := ServerMethods1Client.GetPessoa(IDPessoa);
 
   PessoaMemTable.Close;
   PessoaMemTable.AppendData(TFDJSONDataSetsReader.GetListValue(LDataSetList, 0));
