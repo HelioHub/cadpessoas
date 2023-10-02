@@ -126,8 +126,11 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </DCCReference>
         <DCCReference Include="..\Biblioteca\UBuscaCEP.pas"/>
         <DCCReference Include="..\Biblioteca\UCEP.pas"/>
-        <DCCReference Include="..\Biblioteca\UClaIni.pas"/>
+        <DCCReference Include="..\Biblioteca\Model\Classes\UClaIni.pas"/>
         <DCCReference Include="..\Biblioteca\ConstWK.pas"/>
+        <DCCReference Include="..\Biblioteca\Model\Classes\UClaPessoa.pas"/>
+        <DCCReference Include="..\Biblioteca\Model\DAO\UDAOPessoa.pas"/>
+        <DCCReference Include="..\Biblioteca\Controller\UControllerPessoa.pas"/>
         <None Include="js\base64.js"/>
         <None Include="js\ServerFunctionExecutor.js"/>
         <None Include="js\json2.js"/>

@@ -56,30 +56,19 @@ uses ConstWK, UControllerPessoa;
 { TFDadosPessoa }
 
 procedure TFDadosPessoa.BBGravarClick(Sender: TObject);
-var objControle: TControllerPessoa;
+var objControle: TControleUsuario;
 begin
   inherited;
 
-  objControle := TControllerPessoa.Create;
+  objControle := TControleUsuario.Create;
   try
-    ObjetoPessoa.dsdocumento := EDocumento.Text;
-    ObjetoPessoa.nmprimeiro  := E1Nome.Text;
-    ObjetoPessoa.nmsegundo   := E2Nome.Text;
-    if RGSexo.ItemIndex = Integer(TSexo.F) then
-      ObjetoPessoa.flnatureza := cSexoF
-    else
-      ObjetoPessoa.flnatureza := cSexoM;
+    if cxRGLogin.ItemIndex = 0 then cxTELocal.Text := 'X'+cxTELocal.Text;
 
-    ObjetoPessoa.CEP.dscep   := ECEP.Text;
-    ObjetoPessoa.CEP.dsnumero:= StrToIntDef(ENo.Text,0);
-
-    ObjetoPessoa.CEP.idendereco.nmlogradouro := ELogradouro.Text;
-    ObjetoPessoa.CEP.idendereco.nmbairro     := EBairro.Text;
-    ObjetoPessoa.CEP.idendereco.nmcidade     := ECidade.Text;
-    ObjetoPessoa.CEP.idendereco.dscomplemento:= EComplemento.Text;
-    ObjetoPessoa.CEP.idendereco.dsuf         := EUF.Text;
-
-    ObjControle.Salvar(ObjetoPessoa);
+    Objeto.Nome  := cxTENome.Text;
+    Objeto.Senha := cxTESenha.Text;
+    Objeto.Local := cxTELocal.Text;
+    Objeto.Nivel := IntToStr(cxRGNivel.ItemIndex);
+    ObjControle.Salvar(objeto);
   finally
     FreeAndNil(objControle);
   end;

@@ -1,0 +1,36 @@
+unit UControllerPessoa;
+
+interface
+
+uses UClaPessoa;
+
+type
+  TControleUsuario = class
+  private
+    function FValidacoes() : Boolean;
+  public
+    procedure Salvar(const objeto: TPessoa);
+    procedure Excluir(Nome : String);
+
+  end;
+
+implementation
+
+{ TControleUsuario }
+
+procedure TControleUsuario.Excluir(Nome: String);
+begin
+
+end;
+
+function TControleUsuario.FValidacoes: Boolean;
+begin
+
+end;
+
+procedure TControleUsuario.Salvar(const objeto: TPessoa);
+begin
+
+end;
+
+end.

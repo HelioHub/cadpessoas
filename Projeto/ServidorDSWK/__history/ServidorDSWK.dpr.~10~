@@ -14,11 +14,9 @@ uses
   UDMBanco in 'Model\UDMBanco.pas' {DataModuleWK: TDataModule},
   UBuscaCEP in '..\Biblioteca\UBuscaCEP.pas',
   UCEP in '..\Biblioteca\UCEP.pas',
-  UClaIni in '..\Biblioteca\Model\Classes\UClaIni.pas',
+  UClaIni in '..\Biblioteca\Model\UClaIni.pas',
   ConstWK in '..\Biblioteca\ConstWK.pas',
-  UClaPessoa in '..\Biblioteca\Model\Classes\UClaPessoa.pas',
-  UDAOPessoa in '..\Biblioteca\Model\DAO\UDAOPessoa.pas',
-  UControllerPessoa in '..\Biblioteca\Controller\UControllerPessoa.pas';
+  UClaPessoa in '..\Biblioteca\Model\UClaPessoa.pas';
 
 {$R *.res}
 

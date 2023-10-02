@@ -33,8 +33,6 @@ type
     EUF: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure BBSairClick(Sender: TObject);
-    procedure BBGravarClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -51,47 +49,9 @@ implementation
 
 {$R *.dfm}
 
-uses ConstWK, UControllerPessoa;
+uses ConstWK;
 
 { TFDadosPessoa }
-
-procedure TFDadosPessoa.BBGravarClick(Sender: TObject);
-var objControle: TControllerPessoa;
-begin
-  inherited;
-
-  objControle := TControllerPessoa.Create;
-  try
-    ObjetoPessoa.dsdocumento := EDocumento.Text;
-    ObjetoPessoa.nmprimeiro  := E1Nome.Text;
-    ObjetoPessoa.nmsegundo   := E2Nome.Text;
-    if RGSexo.ItemIndex = Integer(TSexo.F) then
-      ObjetoPessoa.flnatureza := cSexoF
-    else
-      ObjetoPessoa.flnatureza := cSexoM;
-
-    ObjetoPessoa.CEP.dscep   := ECEP.Text;
-    ObjetoPessoa.CEP.dsnumero:= StrToIntDef(ENo.Text,0);
-
-    ObjetoPessoa.CEP.idendereco.nmlogradouro := ELogradouro.Text;
-    ObjetoPessoa.CEP.idendereco.nmbairro     := EBairro.Text;
-    ObjetoPessoa.CEP.idendereco.nmcidade     := ECidade.Text;
-    ObjetoPessoa.CEP.idendereco.dscomplemento:= EComplemento.Text;
-    ObjetoPessoa.CEP.idendereco.dsuf         := EUF.Text;
-
-    ObjControle.Salvar(ObjetoPessoa);
-  finally
-    FreeAndNil(objControle);
-  end;
-
-  Close;
-end;
-
-procedure TFDadosPessoa.BBSairClick(Sender: TObject);
-begin
-  inherited;
-  Close;
-end;
 
 destructor TFDadosPessoa.Destroy;
 begin

@@ -16,9 +16,7 @@ uses
   UCEP in '..\Biblioteca\UCEP.pas',
   UClaIni in '..\Biblioteca\Model\Classes\UClaIni.pas',
   ConstWK in '..\Biblioteca\ConstWK.pas',
-  UClaPessoa in '..\Biblioteca\Model\Classes\UClaPessoa.pas',
-  UDAOPessoa in '..\Biblioteca\Model\DAO\UDAOPessoa.pas',
-  UControllerPessoa in '..\Biblioteca\Controller\UControllerPessoa.pas';
+  UClaPessoa in '..\Biblioteca\Model\UClaPessoa.pas';
 
 {$R *.res}
 

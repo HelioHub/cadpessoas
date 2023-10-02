@@ -1,0 +1,19 @@
+unit UControllerPessoa;
+
+interface
+
+uses UClaPessoa;
+
+type
+  TControleUsuario = class
+  private
+    function FValidacoes() : Boolean;
+  public
+    procedure Salvar(const objeto: TPessoa);
+    procedure Excluir(Nome : String);
+
+  end;
+
+implementation
+
+end.
