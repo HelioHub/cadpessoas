@@ -65,7 +65,7 @@ object ClientModuleWKX: TClientModuleWKX
       Size = 15
     end
     object PessoaMemTabledsnumeo: TIntegerField
-      FieldName = 'dsnumero'
+      FieldName = 'dsnumeo'
       Visible = False
     end
     object PessoaMemTabledsuf: TWideStringField

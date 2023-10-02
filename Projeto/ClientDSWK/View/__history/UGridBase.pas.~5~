@@ -21,7 +21,6 @@ type
     ENR: TEdit;
     DBGView: TDBGrid;
     DSBase: TDataSource;
-    BBImportacao: TBitBtn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBSairClick(Sender: TObject);
   private

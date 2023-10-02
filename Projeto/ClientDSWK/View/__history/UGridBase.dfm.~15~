@@ -82,7 +82,7 @@ object FGridBase: TFGridBase
       Top = 8
       Width = 75
       Height = 30
-      Caption = 'Atuali&zar'
+      Caption = 'A&tualizar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11

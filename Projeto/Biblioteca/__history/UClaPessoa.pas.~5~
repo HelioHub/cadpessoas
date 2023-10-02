@@ -1,0 +1,69 @@
+unit UClaPessoa;
+
+interface
+
+uses ConstWK;
+
+type
+  TPessoa = class
+  private
+    fidpessoa    : integer;
+    fdsdocumento : string;
+    fnmprimeiro  : string;
+    fnmsegundo   : string;
+    fdtregistro  : TDateTime;
+    fflnatureza  : string;
+    constructor Create;
+  protected
+  public
+  end;
+
+  TCEP = class
+  private
+    fidendereco : integer;
+    fidpessoa   : TPessoa;
+    fdscep      : String;
+    fdsnumero   : integer;
+    constructor Create;
+  protected
+  public
+  end;
+
+  TEndereco = class
+  private
+    fidendereco   : TCEP;
+    fnmlogradouro : String;
+    fnmbairro     : String;
+    fdscomplemento: String;
+    fnmcidade     : String;
+    fdsuf         : String;
+    constructor Create;
+  protected
+  public
+  end;
+
+implementation
+
+{ TEndereco }
+
+constructor TEndereco.Create;
+begin
+  fnmcidade := cCidadePadrao;
+  fdsuf := cUFPadrao;
+end;
+
+{ TCEP }
+
+constructor TCEP.Create;
+begin
+
+end;
+
+{ TPessoa }
+
+constructor TPessoa.Create;
+begin
+
+end;
+
+end.

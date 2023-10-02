@@ -21,7 +21,6 @@ object FGridBase: TFGridBase
     Height = 44
     Align = alTop
     TabOrder = 0
-    ExplicitTop = -5
     object LNR: TLabel
       Left = 761
       Top = 16
@@ -37,10 +36,10 @@ object FGridBase: TFGridBase
     end
     object BBIncluir: TBitBtn
       Left = 8
-      Top = 8
+      Top = 11
       Width = 75
-      Height = 30
-      Caption = '&Incluir'
+      Height = 25
+      Caption = 'Incluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -51,10 +50,10 @@ object FGridBase: TFGridBase
     end
     object BBAlterar: TBitBtn
       Left = 89
-      Top = 8
+      Top = 11
       Width = 75
-      Height = 30
-      Caption = '&Alterar'
+      Height = 25
+      Caption = 'Alterar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -65,10 +64,10 @@ object FGridBase: TFGridBase
     end
     object BBExcluir: TBitBtn
       Left = 170
-      Top = 8
+      Top = 11
       Width = 75
-      Height = 30
-      Caption = '&Excluir'
+      Height = 25
+      Caption = 'Excluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -79,39 +78,37 @@ object FGridBase: TFGridBase
     end
     object BBAtualizar: TBitBtn
       Left = 679
-      Top = 8
+      Top = 11
       Width = 75
-      Height = 30
-      Caption = 'Atuali&zar'
+      Height = 25
+      Caption = 'Atualizar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 3
     end
     object BBSair: TBitBtn
       Left = 251
-      Top = 8
+      Top = 11
       Width = 75
-      Height = 30
-      Caption = '&Fechar'
+      Height = 25
+      Caption = 'Sair'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
-      Kind = bkClose
-      NumGlyphs = 2
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 4
       OnClick = BBSairClick
     end
     object ENR: TEdit
-      Left = 836
+      Left = 835
       Top = 13
-      Width = 44
+      Width = 43
       Height = 21
       Hint = 'Limite de registros da Consulta. Colocando zero desconsidera.'
       Alignment = taRightJustify
@@ -122,25 +119,8 @@ object FGridBase: TFGridBase
       Font.Style = [fsBold]
       NumbersOnly = True
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 5
       Text = '100'
-    end
-    object BBImportacao: TBitBtn
-      Left = 598
-      Top = 8
-      Width = 75
-      Height = 30
-      Hint = 'Importa'#231#227'o em Lote'
-      Caption = 'I&mporta'#231#227'o'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 4
     end
   end
   object PRodape: TPanel

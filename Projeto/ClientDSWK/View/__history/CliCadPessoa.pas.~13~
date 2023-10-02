@@ -31,7 +31,7 @@ implementation
 
 {$R *.dfm}
 
-uses ConstWK, UGridPessoa, UClaIni, ClientModuleWK;
+uses ClientConstWK, UGridPessoa, UClaIni, ClientModuleWK;
 
 procedure TFCliCadPessoa.BBCadPessoasClick(Sender: TObject);
 var Formulario: TFGridPessoa;

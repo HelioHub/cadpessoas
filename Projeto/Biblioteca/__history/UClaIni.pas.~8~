@@ -19,7 +19,8 @@ implementation
 uses ConstWK;
 
 class function TClaIni.LerIni(StrArquivo, StrTabela, StrCampo : string) : string;
-var ServerIni: TIniFile;
+var
+  ServerIni: TIniFile;
 begin
   StrArquivo := gsAppPath + StrArquivo;
   if not FileExists(StrArquivo) then
@@ -34,7 +35,8 @@ begin
 end;
 
 class function TClaIni.GravaIni(StrArquivo, StrTabela, StrCampo, StrValor : string) : string;
-var ServerIni: TIniFile;
+var
+  ServerIni: TIniFile;
 begin
   ServerIni := TIniFile.Create(StrArquivo);
   try

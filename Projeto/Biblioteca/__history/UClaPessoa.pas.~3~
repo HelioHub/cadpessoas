@@ -1,0 +1,64 @@
+unit UClaPessoa;
+
+interface
+
+type
+  TEndereco = class
+  private
+    fidendereco   : integer;
+    fnmlogradouro : string;
+    fnmbairro     : string;
+    fdscomplemento: string;
+    fnmcidade     : string;
+    fdsuf         : string;
+    constructor Create;
+  protected
+  public
+  end;
+
+  TCEP = class
+  private
+    constructor Create;
+  protected
+  public
+  end;
+
+  TPessoa = class
+  private
+    constructor Create;
+  protected
+  public
+  end;
+
+implementation
+
+uses ConstWK;
+
+SELECT A.idpessoa, A.dsdocumento, A.nmprimeiro, A.nmsegundo, A.dtregistro, A.flnatureza,
+       B.idendereco, B.idpessoa,  B.dscep, B.dsnumero,
+	   C.idendereco, C.nmlogradouro, C.nmbairro, C.dscomplemento, C.nmcidade, C.dsuf
+
+
+{ TEndereco }
+
+constructor TEndereco.Create;
+begin
+  fnmcidade := cCidadePadrao;
+  fdsuf := cUFPadrao
+end;
+
+{ TCEP }
+
+constructor TCEP.Create;
+begin
+
+end;
+
+{ TPessoa }
+
+constructor TPessoa.Create;
+begin
+
+end;
+
+end.

@@ -32,14 +32,12 @@ object FDadosBase: TFDadosBase
       Width = 75
       Height = 25
       Anchors = [akRight]
-      Caption = '&Fechar'
+      Caption = 'Sair'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
-      Kind = bkClose
-      NumGlyphs = 2
       ParentFont = False
       TabOrder = 1
       OnClick = BBSairClick
@@ -50,14 +48,12 @@ object FDadosBase: TFDadosBase
       Width = 75
       Height = 25
       Anchors = [akRight]
-      Caption = '&Gravar'
+      Caption = 'Gravar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
-      Kind = bkOK
-      NumGlyphs = 2
       ParentFont = False
       TabOrder = 0
     end
@@ -69,7 +65,5 @@ object FDadosBase: TFDadosBase
     Height = 442
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = 8
-    ExplicitTop = -6
   end
 end

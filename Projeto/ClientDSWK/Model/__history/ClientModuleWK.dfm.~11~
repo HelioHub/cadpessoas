@@ -59,39 +59,5 @@ object ClientModuleWKX: TClientModuleWKX
       FieldName = 'flnatureza'
       Size = 1
     end
-    object PessoaMemTabledscep: TWideStringField
-      FieldName = 'dscep'
-      Visible = False
-      Size = 15
-    end
-    object PessoaMemTabledsnumeo: TIntegerField
-      FieldName = 'dsnumero'
-      Visible = False
-    end
-    object PessoaMemTabledsuf: TWideStringField
-      FieldName = 'dsuf'
-      Visible = False
-      Size = 50
-    end
-    object PessoaMemTablenmcidade: TWideStringField
-      FieldName = 'nmcidade'
-      Visible = False
-      Size = 100
-    end
-    object PessoaMemTablenmbairro: TWideStringField
-      FieldName = 'nmbairro'
-      Visible = False
-      Size = 50
-    end
-    object PessoaMemTablenmlogradouro: TWideStringField
-      FieldName = 'nmlogradouro'
-      Visible = False
-      Size = 100
-    end
-    object PessoaMemTabledscomplemento: TWideStringField
-      FieldName = 'dscomplemento'
-      Visible = False
-      Size = 100
-    end
   end
 end

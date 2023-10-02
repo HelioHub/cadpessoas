@@ -23,15 +23,15 @@ type
 {$METHODINFO OFF}
 
 Const
-  sSQLPessoaSelect = 'SELECT A.idpessoa, A.dsdocumento, A.nmprimeiro, A.nmsegundo, A.dtregistro, A.flnatureza, ' +
-                     'B.dscep, B.dsnumero, ' +
-                     'C.nmlogradouro, C.nmbairro, C.dscomplemento, C.nmcidade, C.dsuf ' +
-                     'FROM pessoa A ' +
-                     'LEFT JOIN endereco B            ON B.idpessoa = A.idpessoa ' +
-                     'LEFT JOIN endereco_integracao C ON C.idendereco = B.idendereco ';
+  sSQLPessoa = 'SELECT A.idpessoa, A.dsdocumento, A.nmprimeiro, A.nmsegundo, A.dtregistro, A.flnatureza,' +
+               'B.dscep, B.dsnumero, ' +
+        	     'C.nmlogradouro, C.nmbairro, C.dscomplemento, C.nmcidade, C.dsuf ' +
+               'FROM pessoa A ' +
+               'LEFT JOIN endereco B            ON B.idpessoa = A.idpessoa ' +
+               'LEFT JOIN endereco_integracao C ON C.idendereco = B.idendereco ';
 
-  sSQLPessoaWhere = 'WHERE A.idpessoa = ';
-  sSQLPessoaOrder = 'ORDER BY A.idpessoa ';
+  sSQLWhere = 'WHERE A.idpessoa = ';
+  sSQLOrder = 'ORDER BY A.idpessoa ';
   sSQLLimit = 'LIMIT ';
 
 implementation
@@ -54,14 +54,15 @@ begin
 end;
 
 procedure TServerMethods_WK.PreparePessoa(const IDPessoa : string = ''; const SLimit : String = '');
-var sSQL: string;
+var
+  sSQL: string;
 begin
-  sSQL := sSQLPessoaSelect;
+  sSQL := sSQLPessoa;
 
   if not IDPessoa.IsEmpty then
-    sSQL := sSQL + sSQLPessoaWhere + IDPessoa;
+    sSQL := sSQL + sSQLWhere + IDPessoa;
 
-  sSQL := sSQL + sSQLPessoaOrder + IDPessoa;
+  sSQL := sSQL + sSQLOrder + IDPessoa;
 
   if not SLimit.IsEmpty then
     sSQL := sSQL + sSQLLimit + SLimit;

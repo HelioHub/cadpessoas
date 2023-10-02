@@ -18,7 +18,6 @@ inherited FGridPessoa: TFGridPessoa
       OnClick = BBIncluirClick
     end
     inherited BBAtualizar: TBitBtn
-      Anchors = [akRight]
       OnClick = BBAtualizarClick
     end
     inherited ENR: TEdit
@@ -160,75 +159,6 @@ inherited FGridPessoa: TFGridPessoa
     ExplicitHeight = 397
     inherited DBGView: TDBGrid
       Height = 395
-      Columns = <
-        item
-          Expanded = False
-          FieldName = 'idpessoa'
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'dtregistro'
-          Width = 101
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'dsdocumento'
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'nmprimeiro'
-          Width = 280
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'nmsegundo'
-          Width = 214
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'flnatureza'
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'dscep'
-          Visible = False
-        end
-        item
-          Expanded = False
-          FieldName = 'dsnumero'
-          Visible = False
-        end
-        item
-          Expanded = False
-          FieldName = 'dsuf'
-          Visible = False
-        end
-        item
-          Expanded = False
-          FieldName = 'nmcidade'
-          Visible = False
-        end
-        item
-          Expanded = False
-          FieldName = 'nmbairro'
-          Visible = False
-        end
-        item
-          Expanded = False
-          FieldName = 'nmlogradouro'
-          Visible = False
-        end
-        item
-          Expanded = False
-          FieldName = 'dscomplemento'
-          Visible = False
-        end>
     end
   end
   inherited DSBase: TDataSource

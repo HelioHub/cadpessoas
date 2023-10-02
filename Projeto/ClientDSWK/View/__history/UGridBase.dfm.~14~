@@ -40,7 +40,7 @@ object FGridBase: TFGridBase
       Top = 8
       Width = 75
       Height = 30
-      Caption = '&Incluir'
+      Caption = 'Incluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -54,7 +54,7 @@ object FGridBase: TFGridBase
       Top = 8
       Width = 75
       Height = 30
-      Caption = '&Alterar'
+      Caption = 'Alterar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -68,7 +68,7 @@ object FGridBase: TFGridBase
       Top = 8
       Width = 75
       Height = 30
-      Caption = '&Excluir'
+      Caption = 'Excluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -82,7 +82,7 @@ object FGridBase: TFGridBase
       Top = 8
       Width = 75
       Height = 30
-      Caption = 'Atuali&zar'
+      Caption = 'Atualizar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -96,14 +96,12 @@ object FGridBase: TFGridBase
       Top = 8
       Width = 75
       Height = 30
-      Caption = '&Fechar'
+      Caption = 'Sair'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
-      Kind = bkClose
-      NumGlyphs = 2
       ParentFont = False
       TabOrder = 3
       OnClick = BBSairClick
@@ -131,7 +129,7 @@ object FGridBase: TFGridBase
       Width = 75
       Height = 30
       Hint = 'Importa'#231#227'o em Lote'
-      Caption = 'I&mporta'#231#227'o'
+      Caption = 'Importa'#231#227'o'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11

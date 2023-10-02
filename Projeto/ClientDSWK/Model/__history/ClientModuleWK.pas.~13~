@@ -21,13 +21,6 @@ type
     PessoaMemTablenmprimeiro: TWideStringField;
     PessoaMemTablenmsegundo: TWideStringField;
     PessoaMemTableflnatureza: TWideStringField;
-    PessoaMemTabledscep: TWideStringField;
-    PessoaMemTabledsnumeo: TIntegerField;
-    PessoaMemTabledsuf: TWideStringField;
-    PessoaMemTablenmcidade: TWideStringField;
-    PessoaMemTablenmbairro: TWideStringField;
-    PessoaMemTablenmlogradouro: TWideStringField;
-    PessoaMemTabledscomplemento: TWideStringField;
   private
     FInstanceOwner: Boolean;
     FServerMethods1Client: TServerMethods_WKClient;

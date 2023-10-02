@@ -12,8 +12,7 @@ uses
   UClaIni in '..\Biblioteca\UClaIni.pas',
   UCEP in '..\Biblioteca\UCEP.pas',
   UBuscaCEP in '..\Biblioteca\UBuscaCEP.pas',
-  UDadosPessoa in 'View\UDadosPessoa.pas' {FDadosPessoa},
-  UClaPessoa in '..\Biblioteca\UClaPessoa.pas';
+  UDadosPessoa in 'View\UDadosPessoa.pas' {FDadosPessoa};
 
 {$R *.res}
 

@@ -15,9 +15,6 @@ const
   cMensagemConexaoServer = 'Servidor DataSnap não disponível. '+ cEOL + 'Mensagem de Erro: ' + cEOL;
   cCidadePadrao = 'Fortaleza';
   cUFPadrao = 'CE';
-  cAcaoAlterar = 'Alterar';
-  cSexoM = 'M';
-  cSexoF = 'F';
 
 implementation
 

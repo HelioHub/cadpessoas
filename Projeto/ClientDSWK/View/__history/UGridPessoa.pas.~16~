@@ -59,17 +59,9 @@ begin
     Formulario.ObjetoPessoa.nmprimeiro   := DSBase.DataSet.FieldByName('nmprimeiro').AsString;
     Formulario.ObjetoPessoa.nmsegundo    := DSBase.DataSet.FieldByName('nmsegundo').AsString;
     Formulario.ObjetoPessoa.flnatureza   := cSexoF;
-    if DSBase.DataSet.FieldByName('flnatureza').AsString = cSexoM then
+    if DSBase.DataSet.FieldByName('nmsegundo').AsString = cSexoM then
       Formulario.ObjetoPessoa.flnatureza := cSexoM;
-
-    Formulario.ObjetoPessoa.CEP.dscep    := DSBase.DataSet.FieldByName('dscep').AsString;
-    Formulario.ObjetoPessoa.CEP.dsnumero := DSBase.DataSet.FieldByName('dsnumero').Asinteger;
-
-    Formulario.ObjetoPessoa.CEP.idendereco.nmlogradouro := DSBase.DataSet.FieldByName('nmlogradouro').AsString;
-    Formulario.ObjetoPessoa.CEP.idendereco.nmbairro     := DSBase.DataSet.FieldByName('nmbairro').AsString;
-    Formulario.ObjetoPessoa.CEP.idendereco.dscomplemento:= DSBase.DataSet.FieldByName('dscomplemento').AsString;
-    Formulario.ObjetoPessoa.CEP.idendereco.nmcidade     := DSBase.DataSet.FieldByName('nmcidade').AsString;
-    Formulario.ObjetoPessoa.CEP.idendereco.dsuf         := DSBase.DataSet.FieldByName('dsuf').AsString;
+    Formulario.ObjetoPessoa.   := cSexoF;
 
     Formulario.ObjetoPessoa.Acao  := tacAlterar;
   end
@@ -77,6 +69,7 @@ begin
     Formulario.ObjetoPessoa.Acao  := tacIncluir;
 
   Formulario.ShowModal;
+
   DSBase.DataSet.Refresh;
 end;
 

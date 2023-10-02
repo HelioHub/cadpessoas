@@ -18,7 +18,6 @@ inherited FGridPessoa: TFGridPessoa
       OnClick = BBIncluirClick
     end
     inherited BBAtualizar: TBitBtn
-      Anchors = [akRight]
       OnClick = BBAtualizarClick
     end
     inherited ENR: TEdit

@@ -1,0 +1,53 @@
+unit UClaPessoa;
+
+interface
+
+type
+  TEndereco = class
+  private
+
+    constructor Create;
+  protected
+  public
+  end;
+
+  TCEP = class
+  private
+    constructor Create;
+  protected
+  public
+  end;
+
+  TPessoa = class
+  private
+    constructor Create;
+  protected
+  public
+  end;
+
+implementation
+
+
+
+{ TEndereco }
+
+constructor TEndereco.Create;
+begin
+
+end;
+
+{ TCEP }
+
+constructor TCEP.Create;
+begin
+
+end;
+
+{ TPessoa }
+
+constructor TPessoa.Create;
+begin
+
+end;
+
+end.

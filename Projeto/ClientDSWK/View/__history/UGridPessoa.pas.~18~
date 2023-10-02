@@ -59,7 +59,7 @@ begin
     Formulario.ObjetoPessoa.nmprimeiro   := DSBase.DataSet.FieldByName('nmprimeiro').AsString;
     Formulario.ObjetoPessoa.nmsegundo    := DSBase.DataSet.FieldByName('nmsegundo').AsString;
     Formulario.ObjetoPessoa.flnatureza   := cSexoF;
-    if DSBase.DataSet.FieldByName('flnatureza').AsString = cSexoM then
+    if DSBase.DataSet.FieldByName('nmsegundo').AsString = cSexoM then
       Formulario.ObjetoPessoa.flnatureza := cSexoM;
 
     Formulario.ObjetoPessoa.CEP.dscep    := DSBase.DataSet.FieldByName('dscep').AsString;
@@ -77,6 +77,7 @@ begin
     Formulario.ObjetoPessoa.Acao  := tacIncluir;
 
   Formulario.ShowModal;
+
   DSBase.DataSet.Refresh;
 end;
 

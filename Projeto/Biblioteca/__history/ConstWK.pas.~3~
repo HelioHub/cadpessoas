@@ -16,8 +16,6 @@ const
   cCidadePadrao = 'Fortaleza';
   cUFPadrao = 'CE';
   cAcaoAlterar = 'Alterar';
-  cSexoM = 'M';
-  cSexoF = 'F';
 
 implementation
 
