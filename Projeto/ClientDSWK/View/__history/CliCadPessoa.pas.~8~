@@ -13,7 +13,7 @@ type
     BBCadPessoas: TBitBtn;
     BBFechar: TBitBtn;
     PHost: TPanel;
-    EHostName: TEdit;
+    edtHostName: TEdit;
     procedure BBFecharClick(Sender: TObject);
     procedure ImageWKClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -31,7 +31,7 @@ implementation
 
 {$R *.dfm}
 
-uses ClientConstWK, UGridPessoa, UClaIni, ClientModuleWK;
+uses ClientConstWK, UGridPessoa;
 
 procedure TFCliCadPessoa.BBCadPessoasClick(Sender: TObject);
 var Formulario: TFGridPessoa;
@@ -46,18 +46,9 @@ begin
 end;
 
 procedure TFCliCadPessoa.FormShow(Sender: TObject);
-var sHost : string;
 begin
-  try
-    sHost := TClaIni.LerIni(cArquivoConnection, cTabServerINI, cCamServerINI);
-    EHostName.Text := sHost;
-
-    ClientModuleWKX.DSRestConnectionWK.Host := sHost;
-    ClientModuleWKX.DSRestConnectionWK.TestConnection;
-  except
-    on E: Exception do
-       ShowMessage(cMensagemConexaoServer + E.Message);
-   end;
+  'Connection.Data'
+  edtHostName.Text := cHostServidorWK;
 end;
 
 procedure TFCliCadPessoa.ImageWKClick(Sender: TObject);

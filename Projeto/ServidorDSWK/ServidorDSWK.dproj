@@ -125,6 +125,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="ServerConstWK.pas"/>
+        <DCCReference Include="..\Biblioteca\UBuscaCEP.pas"/>
+        <DCCReference Include="..\Biblioteca\UCEP.pas"/>
+        <DCCReference Include="..\Biblioteca\UClaIni.pas"/>
         <None Include="js\base64.js"/>
         <None Include="js\ServerFunctionExecutor.js"/>
         <None Include="js\json2.js"/>

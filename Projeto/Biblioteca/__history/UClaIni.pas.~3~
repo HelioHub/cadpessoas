@@ -1,0 +1,49 @@
+unit UClaIni;
+
+interface
+
+uses
+  SysUtils, Classes, IniFiles, IWSystem;
+
+type
+
+  TClaIni = class
+    class function LerIni(StrArquivo, StrTabela, StrCampo : string) : string;
+    class function GravaIni(StrArquivo, StrTabela, StrCampo, StrValor : string) : string;
+  end;
+
+implementation
+
+{ TClaRede }
+
+uses ClientConstWK;
+
+class function TClaIni.LerIni(StrArquivo, StrTabela, StrCampo : string) : string;
+var
+  ServerIni : TIniFile;
+begin
+  if not FileExists(gsAppPath + StrArquivo) then
+    GravaIni(gsAppPath + StrArquivo, 'SERVIDOR', 'HOST');
+
+  ServerIni := TIniFile.Create(StrArquivo);
+  try
+    Result := ServerIni.ReadString(StrTabela,StrCampo,' ');
+  finally
+    ServerIni.Free;
+  end;
+end;
+
+class function TClaIni.GravaIni(StrArquivo, StrTabela, StrCampo, StrValor : string) : string;
+var
+  ServerIni : TIniFile;
+begin
+  ServerIni := TIniFile.Create(StrArquivo);
+  try
+    ServerIni.WriteString(StrTabela, StrCampo, StrValor);
+    ServerIni.UpdateFile;
+  finally
+    ServerIni.Free;
+  end;
+end;
+
+end.

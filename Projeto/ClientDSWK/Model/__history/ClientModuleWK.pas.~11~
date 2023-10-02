@@ -16,11 +16,11 @@ type
     FDStanStorageBinLink1: TFDStanStorageBinLink;
     PessoaMemTable: TFDMemTable;
     PessoaMemTabledtregistro: TDateTimeField;
+    PessoaMemTableflnatureza: TStringField;
     PessoaMemTableidPessoa: TLargeintField;
     PessoaMemTabledsdocumento: TWideStringField;
     PessoaMemTablenmprimeiro: TWideStringField;
     PessoaMemTablenmsegundo: TWideStringField;
-    PessoaMemTableflnatureza: TWideStringField;
   private
     FInstanceOwner: Boolean;
     FServerMethods1Client: TServerMethods_WKClient;

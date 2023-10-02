@@ -41,20 +41,17 @@ object ClientModuleWKX: TClientModuleWKX
       FieldName = 'dtregistro'
     end
     object PessoaMemTabledsdocumento: TWideStringField
-      DisplayLabel = 'Documento'
       FieldName = 'dsdocumento'
     end
     object PessoaMemTablenmprimeiro: TWideStringField
-      DisplayLabel = 'Primeiro Nome'
       FieldName = 'nmprimeiro'
       Size = 100
     end
     object PessoaMemTablenmsegundo: TWideStringField
-      DisplayLabel = 'Segundo Nome'
       FieldName = 'nmsegundo'
       Size = 100
     end
-    object PessoaMemTableflnatureza: TWideStringField
+    object PessoaMemTableflnatureza: TStringField
       DisplayLabel = 'Sexo'
       FieldName = 'flnatureza'
       Size = 1

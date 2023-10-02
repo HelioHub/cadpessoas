@@ -48,9 +48,9 @@ var
   sSQL: string;
 begin
   sSQL := 'SELECT * FROM PESSOA';
-  sSQL := sSQL + ' ORDER BY IDPESSOA';
   if not IDPessoa.IsEmpty then
-    sSQL := sSQL + ' LIMIT ' + IDPessoa;
+    sSQL := sSQL + ' WHERE IDPESSOA = ' + IDPessoa;
+  sSQL := sSQL + ' ORDER BY IDPESSOA';
 
   DataModuleWK.WKPessoa.Active   := False;
   DataModuleWK.WKPessoa.SQL.Text := sSQL;

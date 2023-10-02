@@ -8,17 +8,13 @@ uses
   UGridBase in 'View\UGridBase.pas' {FGridBase},
   UDadosBase in 'View\UDadosBase.pas' {FDadosBase},
   ClientConstWK in 'ClientConstWK.pas',
-  UGridPessoa in 'View\UGridPessoa.pas' {FGridPessoa},
-  UClaIni in '..\Biblioteca\UClaIni.pas',
-  UCEP in '..\Biblioteca\UCEP.pas',
-  UBuscaCEP in '..\Biblioteca\UBuscaCEP.pas';
+  UGridPessoa in 'View\UGridPessoa.pas' {FGridPessoa};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.Title := 'Cadastro de Pessoas';
   Application.CreateForm(TFCliCadPessoa, FCliCadPessoa);
   Application.CreateForm(TClientModuleWKX, ClientModuleWKX);
   Application.Run;

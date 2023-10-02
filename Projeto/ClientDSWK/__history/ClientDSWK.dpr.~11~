@@ -9,16 +9,14 @@ uses
   UDadosBase in 'View\UDadosBase.pas' {FDadosBase},
   ClientConstWK in 'ClientConstWK.pas',
   UGridPessoa in 'View\UGridPessoa.pas' {FGridPessoa},
-  UClaIni in '..\Biblioteca\UClaIni.pas',
-  UCEP in '..\Biblioteca\UCEP.pas',
-  UBuscaCEP in '..\Biblioteca\UBuscaCEP.pas';
+  UClaIni in 'Biblioteca\UClaIni.pas',
+  UCEP in 'Biblioteca\UCEP.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.Title := 'Cadastro de Pessoas';
   Application.CreateForm(TFCliCadPessoa, FCliCadPessoa);
   Application.CreateForm(TClientModuleWKX, ClientModuleWKX);
   Application.Run;

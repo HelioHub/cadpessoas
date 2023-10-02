@@ -13,7 +13,7 @@ type
     BBCadPessoas: TBitBtn;
     BBFechar: TBitBtn;
     PHost: TPanel;
-    EHostName: TEdit;
+    edtHostName: TEdit;
     procedure BBFecharClick(Sender: TObject);
     procedure ImageWKClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -50,7 +50,7 @@ var sHost : string;
 begin
   try
     sHost := TClaIni.LerIni(cArquivoConnection, cTabServerINI, cCamServerINI);
-    EHostName.Text := sHost;
+    edtHostName.Text := sHost;
 
     ClientModuleWKX.DSRestConnectionWK.Host := sHost;
     ClientModuleWKX.DSRestConnectionWK.TestConnection;

@@ -9041,6 +9041,7 @@ object FCliCadPessoa: TFCliCadPessoa
     ShowHint = True
     TabOrder = 0
     OnClick = BBCadPessoasClick
+    ExplicitTop = 131
   end
   object BBFechar: TBitBtn
     Left = 0
@@ -9070,7 +9071,7 @@ object FCliCadPessoa: TFCliCadPessoa
     Alignment = taLeftJustify
     Caption = '  Host:'
     TabOrder = 2
-    object EHostName: TEdit
+    object edtHostName: TEdit
       Left = 41
       Top = 2
       Width = 108
@@ -9080,14 +9081,12 @@ object FCliCadPessoa: TFCliCadPessoa
       Margins.Right = 5
       Margins.Bottom = 5
       Alignment = taCenter
-      Color = clRed
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      ReadOnly = True
       TabOrder = 0
       Text = '127.0.0.1'
       TextHint = 'Hostname or IP Address'

@@ -110,7 +110,7 @@ object FGridBase: TFGridBase
       Top = 13
       Width = 43
       Height = 21
-      Hint = 'Limite de registros da Consulta. Colocando zero desconsidera.'
+      Hint = 'Limite de registros da sele'#231#227'o. Colocando zero desconsidera.'
       Alignment = taRightJustify
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText

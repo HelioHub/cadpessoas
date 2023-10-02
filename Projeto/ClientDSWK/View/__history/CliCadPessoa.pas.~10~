@@ -13,7 +13,7 @@ type
     BBCadPessoas: TBitBtn;
     BBFechar: TBitBtn;
     PHost: TPanel;
-    EHostName: TEdit;
+    edtHostName: TEdit;
     procedure BBFecharClick(Sender: TObject);
     procedure ImageWKClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -49,14 +49,16 @@ procedure TFCliCadPessoa.FormShow(Sender: TObject);
 var sHost : string;
 begin
   try
-    sHost := TClaIni.LerIni(cArquivoConnection, cTabServerINI, cCamServerINI);
-    EHostName.Text := sHost;
+    sHost := TClaIni.LerIni('Connection.Data', 'SERVIDOR', 'HOST');
+    edtHostName.Text := sHost;
 
     ClientModuleWKX.DSRestConnectionWK.Host := sHost;
-    ClientModuleWKX.DSRestConnectionWK.TestConnection;
+    ClientModuleWKX.DSRestConnectionWK.Connection;
   except
     on E: Exception do
-       ShowMessage(cMensagemConexaoServer + E.Message);
+       ShowMessage('Servidor DataSnap não disponível. '+ cEOL +
+                   'Mensagem de Erro: ' + cEOL +
+                   E.Message);
    end;
 end;
 

@@ -23,6 +23,9 @@ object FDadosBase: TFDadosBase
     Height = 41
     Align = alBottom
     TabOrder = 0
+    ExplicitLeft = 176
+    ExplicitTop = 136
+    ExplicitWidth = 185
     DesignSize = (
       599
       41)
@@ -35,6 +38,7 @@ object FDadosBase: TFDadosBase
       Caption = 'Sair'
       TabOrder = 0
       OnClick = BBSairClick
+      ExplicitLeft = 541
     end
     object BBGravar: TBitBtn
       Left = 430
@@ -44,6 +48,7 @@ object FDadosBase: TFDadosBase
       Anchors = [akRight]
       Caption = 'Gravar'
       TabOrder = 1
+      ExplicitLeft = 458
     end
   end
   object PDados: TPanel
@@ -53,5 +58,8 @@ object FDadosBase: TFDadosBase
     Height = 442
     Align = alClient
     TabOrder = 1
+    ExplicitTop = -6
+    ExplicitWidth = 627
+    ExplicitHeight = 454
   end
 end

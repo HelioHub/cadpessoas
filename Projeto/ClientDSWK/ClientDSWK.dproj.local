@@ -27,5 +27,14 @@
     <Transaction>2023/10/02 04:47:15.065,=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.pas</Transaction>
     <Transaction>2023/10/02 04:47:43.648,D:\WK\CadPessoas\Projeto\ClientDSWK\View\UGridPessoa.pas=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.pas</Transaction>
     <Transaction>2023/10/02 04:47:43.648,D:\WK\CadPessoas\Projeto\ClientDSWK\View\UGridPessoa.dfm=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.dfm</Transaction>
+    <Transaction>2023/10/02 07:47:04.859,=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.pas</Transaction>
+    <Transaction>2023/10/02 07:49:14.835,D:\WK\CadPessoas\Projeto\ClientDSWK\Biblioteca\UClaIni.pas=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.pas</Transaction>
+    <Transaction>2023/10/02 07:52:51.372,=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.pas</Transaction>
+    <Transaction>2023/10/02 07:55:12.205,D:\WK\CadPessoas\Projeto\ClientDSWK\Biblioteca\UCEP.pas=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.pas</Transaction>
+    <Transaction>2023/10/02 07:56:01.734,=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.pas</Transaction>
+    <Transaction>2023/10/02 07:58:20.159,D:\WK\CadPessoas\Projeto\ClientDSWK\Biblioteca\UBuscaCEP.pas=D:\WK\CadPessoas\Projeto\ClientDSWK\Unit1.pas</Transaction>
+    <Transaction>2023/10/02 08:16:04.468,D:\WK\CadPessoas\Projeto\Biblioteca\UBuscaCEP.pas=D:\WK\CadPessoas\Projeto\ClientDSWK\Biblioteca\UBuscaCEP.pas</Transaction>
+    <Transaction>2023/10/02 08:16:29.452,D:\WK\CadPessoas\Projeto\Biblioteca\UCEP.pas=D:\WK\CadPessoas\Projeto\ClientDSWK\Biblioteca\UCEP.pas</Transaction>
+    <Transaction>2023/10/02 08:16:42.040,D:\WK\CadPessoas\Projeto\Biblioteca\UClaIni.pas=D:\WK\CadPessoas\Projeto\ClientDSWK\Biblioteca\UClaIni.pas</Transaction>
   </Transactions>
 </BorlandProject>

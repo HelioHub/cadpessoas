@@ -120,6 +120,9 @@
             <Form>FGridPessoa</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Biblioteca\UClaIni.pas"/>
+        <DCCReference Include="..\Biblioteca\UCEP.pas"/>
+        <DCCReference Include="..\Biblioteca\UBuscaCEP.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

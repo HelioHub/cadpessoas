@@ -32,29 +32,29 @@ object ClientModuleWKX: TClientModuleWKX
     StoreDefs = True
     Left = 48
     Top = 96
-    object PessoaMemTableidPessoa: TLargeintField
-      DisplayLabel = 'C'#243'digo'
+    object PessoaMemTableidpessoa: TIntegerField
+      DisplayLabel = 'Id'
       FieldName = 'idpessoa'
     end
     object PessoaMemTabledtregistro: TDateTimeField
       DisplayLabel = 'Registro'
       FieldName = 'dtregistro'
     end
-    object PessoaMemTabledsdocumento: TWideStringField
+    object PessoaMemTabledsdocumento: TStringField
       DisplayLabel = 'Documento'
       FieldName = 'dsdocumento'
     end
-    object PessoaMemTablenmprimeiro: TWideStringField
+    object PessoaMemTablenmprimeiro: TStringField
       DisplayLabel = 'Primeiro Nome'
       FieldName = 'nmprimeiro'
       Size = 100
     end
-    object PessoaMemTablenmsegundo: TWideStringField
+    object PessoaMemTablenmsegundo: TStringField
       DisplayLabel = 'Segundo Nome'
       FieldName = 'nmsegundo'
       Size = 100
     end
-    object PessoaMemTableflnatureza: TWideStringField
+    object PessoaMemTableflnatureza: TStringField
       DisplayLabel = 'Sexo'
       FieldName = 'flnatureza'
       Size = 1

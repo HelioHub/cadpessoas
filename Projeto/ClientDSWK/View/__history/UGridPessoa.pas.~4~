@@ -26,11 +26,9 @@ implementation
 uses ClientModuleWK;
 
 procedure TFGridPessoa.BBAtualizarClick(Sender: TObject);
-var sLimiteRegistros : String;
 begin
   inherited;
-  sLimiteRegistros := ENR.Text;
-  ClientModuleWKX.LoadPessoa(sLimiteRegistros);
+  ClientModuleWKX.LoadPessoa('');
 end;
 
 end.

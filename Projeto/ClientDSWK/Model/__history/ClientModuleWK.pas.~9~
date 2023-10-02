@@ -15,12 +15,12 @@ type
     FDStanStorageJSONLink1: TFDStanStorageJSONLink;
     FDStanStorageBinLink1: TFDStanStorageBinLink;
     PessoaMemTable: TFDMemTable;
+    PessoaMemTableidpessoa: TIntegerField;
+    PessoaMemTabledsdocumento: TStringField;
+    PessoaMemTablenmprimeiro: TStringField;
+    PessoaMemTablenmsegundo: TStringField;
     PessoaMemTabledtregistro: TDateTimeField;
-    PessoaMemTableidPessoa: TLargeintField;
-    PessoaMemTabledsdocumento: TWideStringField;
-    PessoaMemTablenmprimeiro: TWideStringField;
-    PessoaMemTablenmsegundo: TWideStringField;
-    PessoaMemTableflnatureza: TWideStringField;
+    PessoaMemTableflnatureza: TStringField;
   private
     FInstanceOwner: Boolean;
     FServerMethods1Client: TServerMethods_WKClient;

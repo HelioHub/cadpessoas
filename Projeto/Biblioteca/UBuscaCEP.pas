@@ -1,0 +1,139 @@
+unit UBuscaCEP;
+
+interface
+
+uses
+  Classes, SysUtils, Forms, XmlDoc, XmlIntf, XmlDom, Dialogs;
+
+type
+  TClaBuscaCep = class
+    Class function ConsultaCep(Cep : string) : TStringList;
+  private
+   { Private declarations }
+   Class function Split(const separator, str: string): TStringList;
+   Class function GeraXMLQuery(Cep: String): String;
+   Class function ProcessaRetornoQueryLogradouro(XMLRetorno: String) : TStringList;
+  end;
+
+implementation
+
+uses UCEP;
+
+{ TBuscaCep }
+
+class function TClaBuscaCep.ConsultaCep(Cep: string): TStringList;
+var
+  Qry: QueryProcessorSoap;
+  XMLQuery,
+  XMLRetorno: String;
+begin
+  Result := TStringList.Create;
+  if Length(Cep) < 8 then
+    Exit;
+  Qry      := GetQueryProcessorSoap();
+  XMLQuery := GeraXMLQuery(Cep);
+  try
+    XMLRetorno := Qry.Query(XMLQuery);
+    Result     := ProcessaRetornoQueryLogradouro(XMLRetorno);
+  except
+    MessageDlg('Não conectado ao site ou serviço indisponível.',mtInformation,[mbOk],0);
+  end;
+end;
+
+class function TClaBuscaCep.GeraXMLQuery(Cep: String): String;
+begin
+   Result :=
+     '<?xml version="1.0" encoding="utf-8"?>'+#13#10+
+     '<QueryPacket xmlns="urn:Microsoft.Search.Query">'+#13#10+
+     '  <Query>'+#13#10+
+     '    <Context>'+#13#10+
+     '      <Context>'+#13#10+
+     '        <QueryText>'+Cep+'</QueryText>'+#13#10+
+     '      </Context>'+#13#10+
+     '      <OfficeContext xmlns="urn:Microsoft.Search.Query.'+
+     'Office.Context">'+#13#10+
+     '        <ApplicationContext>'+#13#10+
+     '          <Name>Microsoft Office</Name>'+#13#10+
+     '          <Version>(11.0.6568)</Version>'+#13#10+
+     '        </ApplicationContext>'+#13#10+
+     '      </OfficeContext>'+#13#10+
+     '    </Context>'+#13#10+
+     '  </Query>'+#13#10+
+     '</QueryPacket>';
+end;
+
+class function TClaBuscaCep.ProcessaRetornoQueryLogradouro(XMLRetorno: String): TStringList;
+var
+  XmlDoc: IXMLDocument;
+  Node  : IXMLNode;
+  DOMDataNode: IDOMNode;
+  AuxStrings : TStringList;
+  AuxString  : String;
+begin
+   Result := TStringList.Create;
+   if Pos('não retornou nenhum resultado', XMLRetorno) > 0 then
+   begin
+     MessageDlg('Nenhum logradouro encontrado.',mtInformation,[mbOk],0);
+     Exit;
+   end;
+   if Pos('Falha ao acessar o sistema', XMLRetorno) > 0 then
+   begin
+     MessageDlg('O serviço está indisponível.',mtInformation,[mbOk],0);
+     Exit;
+   end;
+   XmlDoc := LoadXMLData(XMLRetorno);
+   try
+     XmlDoc.Active := True;
+     XmlDoc := LoadXMLData(FormatXMLData(XmlDoc.XML.Text));
+     XmlDoc.SaveToFile(ExtractFilePath(Application.ExeName) + 'XMLRETORNOLOGRADOURO.XML');
+     Try
+       Node := XmlDoc.DocumentElement.
+                      ChildNodes.FindNode('Response').
+                      ChildNodes.FindNode('Range').
+                      ChildNodes.FindNode('Results');
+       DomDataNode := Node.DOMNode.childNodes.item[0].childNodes[6];
+       AuxString := DomDataNode.childNodes[2].lastChild.nodeValue;
+       AuxString := StringReplace(AuxString , '<<COMPLEMENTO>>', '', []);
+       AuxStrings := Split(',', AuxString);
+       try
+         // Endereço
+         Result.Add(Trim(AuxStrings[0]));
+         // Numero
+         Result.Add(Trim(AuxStrings[1]));
+       finally
+         AuxStrings.Free;
+       end;
+       // Bairro
+       Result.Add(DomDataNode.childNodes[3].lastChild.nodeValue);
+       AuxString := DomDataNode.childNodes[4].lastChild.nodeValue;
+       AuxStrings := Split('-', AuxString);
+       try
+         // Cidade
+         Result.Add(Trim(AuxStrings[0]));
+         // UF
+         Result.Add(Trim(AuxStrings[1]));
+       finally
+         AuxStrings.Free;
+       end;
+     except
+       on E: Exception do
+       begin
+         MessageDlg('Não foi possível interpretar o resultado da consulta.' + #13#10 + E.Message,mtInformation,[mbOk],0);
+        end;
+     end;
+     XmlDoc.Active := False;
+   finally
+     XmlDoc := nil;
+   end;
+end;
+
+class function TClaBuscaCep.Split(const separator: string; const str: string): TStringList;
+begin
+   Result := TStringList.Create;
+   Result.Text := StringReplace(str,
+                                separator,
+                                #13#10,
+                                [rfReplaceAll]);
+end;
+
+end.

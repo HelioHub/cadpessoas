@@ -9070,7 +9070,7 @@ object FCliCadPessoa: TFCliCadPessoa
     Alignment = taLeftJustify
     Caption = '  Host:'
     TabOrder = 2
-    object EHostName: TEdit
+    object edtHostName: TEdit
       Left = 41
       Top = 2
       Width = 108

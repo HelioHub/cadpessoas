@@ -22,17 +22,11 @@ object FGridBase: TFGridBase
     Align = alTop
     TabOrder = 0
     object LNR: TLabel
-      Left = 761
+      Left = 768
       Top = 16
-      Width = 73
+      Width = 60
       Height = 13
-      Caption = 'N'#186' Registros:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
+      Caption = 'N'#186' Registros'
     end
     object BBIncluir: TBitBtn
       Left = 8
@@ -40,12 +34,6 @@ object FGridBase: TFGridBase
       Width = 75
       Height = 25
       Caption = 'Incluir'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
       TabOrder = 0
     end
     object BBAlterar: TBitBtn
@@ -54,12 +42,6 @@ object FGridBase: TFGridBase
       Width = 75
       Height = 25
       Caption = 'Alterar'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
       TabOrder = 1
     end
     object BBExcluir: TBitBtn
@@ -68,26 +50,14 @@ object FGridBase: TFGridBase
       Width = 75
       Height = 25
       Caption = 'Excluir'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
       TabOrder = 2
     end
     object BBAtualizar: TBitBtn
-      Left = 679
+      Left = 684
       Top = 11
       Width = 75
       Height = 25
       Caption = 'Atualizar'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
       TabOrder = 3
     end
     object BBSair: TBitBtn
@@ -96,29 +66,16 @@ object FGridBase: TFGridBase
       Width = 75
       Height = 25
       Caption = 'Sair'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
       TabOrder = 4
       OnClick = BBSairClick
     end
     object ENR: TEdit
-      Left = 835
+      Left = 834
       Top = 13
-      Width = 43
+      Width = 45
       Height = 21
-      Hint = 'Limite de registros da Consulta. Colocando zero desconsidera.'
       Alignment = taRightJustify
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
       NumbersOnly = True
-      ParentFont = False
       TabOrder = 5
       Text = '100'
     end
