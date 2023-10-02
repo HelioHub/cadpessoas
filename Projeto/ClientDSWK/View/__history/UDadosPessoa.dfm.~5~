@@ -2,8 +2,6 @@ inherited FDadosPessoa: TFDadosPessoa
   Caption = 'Dados da Pessoa'
   ClientHeight = 393
   ClientWidth = 766
-  OnCreate = FormCreate
-  OnShow = FormShow
   ExplicitWidth = 772
   ExplicitHeight = 422
   PixelsPerInch = 96
@@ -11,24 +9,22 @@ inherited FDadosPessoa: TFDadosPessoa
   inherited PRodape: TPanel
     Top = 352
     Width = 766
-    ExplicitTop = 352
-    ExplicitWidth = 766
     inherited BBSair: TBitBtn
       Left = 680
       Top = 7
-      ExplicitLeft = 680
       ExplicitTop = 7
     end
     inherited BBGravar: TBitBtn
       Left = 597
       Top = 7
-      ExplicitLeft = 597
       ExplicitTop = 7
     end
   end
   inherited PDados: TPanel
     Width = 766
     Height = 352
+    ExplicitLeft = 0
+    ExplicitTop = 0
     ExplicitWidth = 766
     ExplicitHeight = 352
     object LDocumento: TLabel

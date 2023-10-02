@@ -2,7 +2,7 @@ unit UClaPessoa;
 
 interface
 
-uses ConstWK, System.SysUtils;
+uses ConstWK;
 
 type
   TEndereco = class
@@ -33,7 +33,6 @@ type
     fdsnumero   : integer;
 
     constructor Create;
-    destructor Destroy; override;
   protected
   public
     property idendereco : TEndereco read fidendereco write fidendereco;
@@ -54,7 +53,6 @@ type
     fCEP         : TCEP;
 
     constructor Create;
-    destructor Destroy; override;
   protected
   public
     property acao        : TAcao     read facao        write facao;
@@ -73,30 +71,22 @@ implementation
 
 constructor TEndereco.Create;
 begin
-  nmcidade := cCidadePadrao;
-  dsuf := cUFPadrao;
+  fnmcidade := cCidadePadrao;
+  fdsuf := cUFPadrao;
 end;
 
 { TCEP }
 
 constructor TCEP.Create;
 begin
-end;
 
-destructor TCEP.Destroy;
-begin
-  inherited;
 end;
 
 { TPessoa }
 
 constructor TPessoa.Create;
 begin
-end;
 
-destructor TPessoa.Destroy;
-begin
-  inherited;
 end;
 
 end.

@@ -4,7 +4,6 @@ interface
 
 type
   TAcao = (tacIncluir, tacAlterar, tacExcluir, tacConsultar);
-  TSexo = (M, F);
 
 const
   curlWK = 'https://wktechnology.com.br/';
@@ -16,7 +15,7 @@ const
   cMensagemConexaoServer = 'Servidor DataSnap não disponível. '+ cEOL + 'Mensagem de Erro: ' + cEOL;
   cCidadePadrao = 'Fortaleza';
   cUFPadrao = 'CE';
-  cAcaoAlterar = '&Alterar';
+  cAcaoAlterar = 'Alterar';
   cAcaoIncluir = 'Incluir';
   cSexoM = 'M';
   cSexoF = 'F';

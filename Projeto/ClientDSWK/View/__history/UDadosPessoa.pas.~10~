@@ -55,6 +55,8 @@ uses ConstWK;
 
 destructor TFDadosPessoa.Destroy;
 begin
+  FreeAndNil(ObjetoPessoa.CEP.idendereco);
+  FreeAndNil(ObjetoPessoa.CEP);
   FreeAndNil(ObjetoPessoa);
   inherited;
 end;
@@ -90,8 +92,6 @@ begin
   end
   else
     Self.Caption := Self.Caption + ' - ' + cAcaoIncluir;
-
-  EDocumento.SetFocus;
 end;
 
 end.

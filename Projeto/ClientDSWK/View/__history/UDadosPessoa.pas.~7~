@@ -55,16 +55,14 @@ uses ConstWK;
 
 destructor TFDadosPessoa.Destroy;
 begin
-  FreeAndNil(ObjetoPessoa);
   inherited;
+  FreeAndNil(ObjetoPessoa);
 end;
 
 procedure TFDadosPessoa.FormCreate(Sender: TObject);
 begin
   inherited;
   ObjetoPessoa := TPessoa.Create;
-  ObjetoPessoa.CEP := TCEP.Create;
-  ObjetoPessoa.CEP.idendereco := TEndereco.Create;
 end;
 
 procedure TFDadosPessoa.FormShow(Sender: TObject);
@@ -75,23 +73,20 @@ begin
     EDocumento.Text  := ObjetoPessoa.dsdocumento;
     E1Nome.Text      := ObjetoPessoa.nmprimeiro;
     E2Nome.Text      := ObjetoPessoa.nmsegundo;
-    RGSexo.ItemIndex := Integer(TSexo.F);
+    RGSexo.ItemIndex := 1;
     if ObjetoPessoa.flnatureza = cSexoM then
-      RGSexo.ItemIndex := Integer(TSexo.F);
+      RGSexo.ItemIndex := 0;
     ECEP.Text        := ObjetoPessoa.CEP.dscep;
     ENo.Text         := IntToStr(ObjetoPessoa.CEP.dsnumero);
     ELogradouro.Text := ObjetoPessoa.CEP.idendereco.nmlogradouro;
-    EBairro.Text     := ObjetoPessoa.CEP.idendereco.nmbairro;
-    ECidade.Text     := ObjetoPessoa.CEP.idendereco.nmcidade;
-    EComplemento.Text:= ObjetoPessoa.CEP.idendereco.dscomplemento;
-    EUF.Text         := ObjetoPessoa.CEP.idendereco.dsuf;
+    ELogradouro.Text := ObjetoPessoa.CEP.idendereco.nmlogradouro;
+
+    RGSexo.ItemIndex := StrToInt(objeto.Nivel);
 
     Self.Caption := Self.Caption + ' - ' + cAcaoAlterar;
   end
   else
     Self.Caption := Self.Caption + ' - ' + cAcaoIncluir;
-
-  EDocumento.SetFocus;
 end;
 
 end.

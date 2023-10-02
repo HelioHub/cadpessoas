@@ -3,7 +3,6 @@ inherited FDadosPessoa: TFDadosPessoa
   ClientHeight = 393
   ClientWidth = 766
   OnCreate = FormCreate
-  OnShow = FormShow
   ExplicitWidth = 772
   ExplicitHeight = 422
   PixelsPerInch = 96

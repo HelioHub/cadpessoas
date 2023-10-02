@@ -73,18 +73,20 @@ implementation
 
 constructor TEndereco.Create;
 begin
-  nmcidade := cCidadePadrao;
-  dsuf := cUFPadrao;
+  fnmcidade := cCidadePadrao;
+  fdsuf := cUFPadrao;
 end;
 
 { TCEP }
 
 constructor TCEP.Create;
 begin
+  fidendereco := TEndereco.Create;
 end;
 
 destructor TCEP.Destroy;
 begin
+  FreeAndNil(fidendereco);
   inherited;
 end;
 
@@ -92,10 +94,12 @@ end;
 
 constructor TPessoa.Create;
 begin
+  fCEP := TCEP.Create;
 end;
 
 destructor TPessoa.Destroy;
 begin
+  FreeAndNil(fCEP);
   inherited;
 end;
 

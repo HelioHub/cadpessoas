@@ -55,16 +55,14 @@ uses ConstWK;
 
 destructor TFDadosPessoa.Destroy;
 begin
-  FreeAndNil(ObjetoPessoa);
   inherited;
+  FreeAndNil(ObjetoPessoa);
 end;
 
 procedure TFDadosPessoa.FormCreate(Sender: TObject);
 begin
   inherited;
   ObjetoPessoa := TPessoa.Create;
-  ObjetoPessoa.CEP := TCEP.Create;
-  ObjetoPessoa.CEP.idendereco := TEndereco.Create;
 end;
 
 procedure TFDadosPessoa.FormShow(Sender: TObject);
@@ -90,8 +88,6 @@ begin
   end
   else
     Self.Caption := Self.Caption + ' - ' + cAcaoIncluir;
-
-  EDocumento.SetFocus;
 end;
 
 end.
