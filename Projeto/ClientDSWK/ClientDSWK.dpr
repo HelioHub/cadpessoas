@@ -6,7 +6,9 @@ uses
   ClientClassesWK in 'Controller\ClientClassesWK.pas',
   ClientModuleWK in 'Model\ClientModuleWK.pas' {ClientModuleWKX: TDataModule},
   UGridBase in 'View\UGridBase.pas' {FGridBase},
-  UDadosBase in 'View\UDadosBase.pas' {FDadosBase};
+  UDadosBase in 'View\UDadosBase.pas' {FDadosBase},
+  ClientConstWK in 'ClientConstWK.pas',
+  UGridPessoa in 'View\UGridPessoa.pas' {FGridPessoa};
 
 {$R *.res}
 
@@ -15,6 +17,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFCliCadPessoa, FCliCadPessoa);
   Application.CreateForm(TClientModuleWKX, ClientModuleWKX);
-  Application.CreateForm(TFDadosBase, FDadosBase);
   Application.Run;
 end.

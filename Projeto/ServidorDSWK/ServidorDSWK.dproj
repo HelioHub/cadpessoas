@@ -39,6 +39,12 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+        <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <SanitizedProjectName>ServidorDSWK</SanitizedProjectName>
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
@@ -86,6 +92,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+    </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
@@ -95,25 +105,26 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Controller\ServerMethodsWK.pas">
-            <Form>ServerMethods1</Form>
+            <Form>ServerMethods_WK</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="View\ServerContainerWK.pas">
-            <Form>ServerContainer2</Form>
+            <Form>ServerContainer_WK</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="View\WebModuleWK.pas">
-            <Form>WebModule1</Form>
+            <Form>WebModule_WK</Form>
             <FormType>dfm</FormType>
             <DesignClass>TWebModule</DesignClass>
         </DCCReference>
         <DCCReference Include="Model\UDMBanco.pas">
-            <Form>DataModule1</Form>
+            <Form>DataModuleWK</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="ServerConstWK.pas"/>
         <None Include="js\base64.js"/>
         <None Include="js\ServerFunctionExecutor.js"/>
         <None Include="js\json2.js"/>
@@ -137,6 +148,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>PngImage_2</ResourceId>
         </RcItem>
+        <None Include="ModelSupport_ServidorDSWK\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -167,6 +179,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
+            <ModelSupport>True</ModelSupport>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>

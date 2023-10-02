@@ -12,8 +12,12 @@ type
     ImageWK: TImage;
     BBCadPessoas: TBitBtn;
     BBFechar: TBitBtn;
+    PHost: TPanel;
+    edtHostName: TEdit;
     procedure BBFecharClick(Sender: TObject);
     procedure ImageWKClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure BBCadPessoasClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -23,21 +27,33 @@ type
 var
   FCliCadPessoa: TFCliCadPessoa;
 
-const
-  urlWK = 'https://wktechnology.com.br/';
-
 implementation
 
 {$R *.dfm}
+
+uses ClientConstWK, UGridPessoa;
+
+procedure TFCliCadPessoa.BBCadPessoasClick(Sender: TObject);
+var Formulario: TFGridPessoa;
+begin
+  Formulario := TFGridPessoa.Create(Application);
+  Formulario.WindowState := wsMaximized;
+  Formulario.ShowModal;
+end;
 
 procedure TFCliCadPessoa.BBFecharClick(Sender: TObject);
 begin
   Application.Terminate;
 end;
 
+procedure TFCliCadPessoa.FormShow(Sender: TObject);
+begin
+  edtHostName.Text := cHostServidorWK;
+end;
+
 procedure TFCliCadPessoa.ImageWKClick(Sender: TObject);
 begin
-  ShellExecute(Handle, nil, PChar(urlWK), nil, nil, SW_SHOWNORMAL);
+  ShellExecute(Handle, nil, PChar(curlWK), nil, nil, SW_SHOWNORMAL);
 end;
 
 end.

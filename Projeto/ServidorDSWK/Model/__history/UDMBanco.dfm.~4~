@@ -1,0 +1,104 @@
+object DataModuleWK: TDataModuleWK
+  OldCreateOrder = False
+  Height = 463
+  Width = 817
+  object WKConnection: TFDConnection
+    Params.Strings = (
+      'Protocol=TCPIP'
+      
+        'Database=C:\Users\Public\Documents\Embarcadero\Studio\19.0\Sampl' +
+        'es\Data\EMPLOYEE.GDB'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'DriverID=PG')
+    LoginPrompt = False
+    Left = 49
+    Top = 24
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Console'
+    Left = 160
+    Top = 24
+  end
+  object FDPhysIBDriverLink1: TFDPhysIBDriverLink
+    Left = 264
+    Top = 24
+  end
+  object FDStanStorageJSONLink1: TFDStanStorageJSONLink
+    Left = 264
+    Top = 72
+  end
+  object FDStanStorageBinLink1: TFDStanStorageBinLink
+    Left = 264
+    Top = 128
+  end
+  object WKPessoa: TFDQuery
+    Connection = WKConnection
+    SQL.Strings = (
+      'SELECT * FROM CUSTOMER ORDER BY CUST_NO')
+    Left = 49
+    Top = 76
+    object WKPessoaCUST_NO: TFDAutoIncField
+      FieldName = 'CUST_NO'
+      Origin = 'CUST_NO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object WKPessoaCUSTOMER: TStringField
+      FieldName = 'CUSTOMER'
+      Origin = 'CUSTOMER'
+      Required = True
+      Size = 25
+    end
+    object WKPessoaCONTACT_FIRST: TStringField
+      FieldName = 'CONTACT_FIRST'
+      Origin = 'CONTACT_FIRST'
+      Size = 15
+    end
+    object WKPessoaCONTACT_LAST: TStringField
+      FieldName = 'CONTACT_LAST'
+      Origin = 'CONTACT_LAST'
+    end
+    object WKPessoaPHONE_NO: TStringField
+      FieldName = 'PHONE_NO'
+      Origin = 'PHONE_NO'
+    end
+    object WKPessoaADDRESS_LINE1: TStringField
+      FieldName = 'ADDRESS_LINE1'
+      Origin = 'ADDRESS_LINE1'
+      Size = 30
+    end
+    object WKPessoaADDRESS_LINE2: TStringField
+      FieldName = 'ADDRESS_LINE2'
+      Origin = 'ADDRESS_LINE2'
+      Size = 30
+    end
+    object WKPessoaCITY: TStringField
+      FieldName = 'CITY'
+      Origin = 'CITY'
+      Size = 25
+    end
+    object WKPessoaSTATE_PROVINCE: TStringField
+      FieldName = 'STATE_PROVINCE'
+      Origin = 'STATE_PROVINCE'
+      Size = 15
+    end
+    object WKPessoaCOUNTRY: TStringField
+      FieldName = 'COUNTRY'
+      Origin = 'COUNTRY'
+      Size = 15
+    end
+    object WKPessoaPOSTAL_CODE: TStringField
+      FieldName = 'POSTAL_CODE'
+      Origin = 'POSTAL_CODE'
+      Size = 12
+    end
+    object WKPessoaON_HOLD: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'ON_HOLD'
+      Origin = 'ON_HOLD'
+      FixedChar = True
+      Size = 1
+    end
+  end
+end

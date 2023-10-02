@@ -12,7 +12,7 @@ uses
   Datasnap.DSHTTP;
 
 type
-  TWebModule1 = class(TWebModule)
+  TWebModule_WK = class(TWebModule)
     DSRESTWebDispatcher1: TDSRESTWebDispatcher;
     ServerFunctionInvoker: TPageProducer;
     ReverseString: TPageProducer;
@@ -38,7 +38,7 @@ type
   end;
 
 var
-  WebModuleClass: TComponentClass = TWebModule1;
+  WebModuleClass: TComponentClass = TWebModule_WK;
 
 implementation
 
@@ -47,7 +47,7 @@ implementation
 
 uses ServerMethodsWK, ServerContainerWK, Web.WebReq;
 
-procedure TWebModule1.ServerFunctionInvokerHTMLTag(Sender: TObject; Tag: TTag;
+procedure TWebModule_WK.ServerFunctionInvokerHTMLTag(Sender: TObject; Tag: TTag;
   const TagString: string; TagParams: TStrings; var ReplaceText: string);
 begin
   if SameText(TagString, 'urlpath') then
@@ -57,7 +57,7 @@ begin
   else if SameText(TagString, 'host') then
     ReplaceText := string(Request.Host)
   else if SameText(TagString, 'classname') then
-    ReplaceText := ServerMethodsWK.TServerMethods1.ClassName
+    ReplaceText := ServerMethodsWK.TServerMethods_WK.ClassName
   else if SameText(TagString, 'loginrequired') then
     if DSRESTWebDispatcher1.AuthenticationManager <> nil then
       ReplaceText := 'true'
@@ -76,7 +76,7 @@ begin
       ReplaceText := '';
 end;
 
-procedure TWebModule1.WebModuleDefaultAction(Sender: TObject;
+procedure TWebModule_WK.WebModuleDefaultAction(Sender: TObject;
   Request: TWebRequest; Response: TWebResponse; var Handled: Boolean);
 begin
   if (Request.InternalPathInfo = '') or (Request.InternalPathInfo = '/')then
@@ -85,20 +85,20 @@ begin
     Response.SendRedirect(Request.InternalScriptName + '/');
 end;
 
-procedure TWebModule1.WebModuleBeforeDispatch(Sender: TObject;
+procedure TWebModule_WK.WebModuleBeforeDispatch(Sender: TObject;
   Request: TWebRequest; Response: TWebResponse; var Handled: Boolean);
 begin
   if FServerFunctionInvokerAction <> nil then
     FServerFunctionInvokerAction.Enabled := AllowServerFunctionInvoker;
 end;
 
-function TWebModule1.AllowServerFunctionInvoker: Boolean;
+function TWebModule_WK.AllowServerFunctionInvoker: Boolean;
 begin
   Result := (Request.RemoteAddr = '127.0.0.1') or
     (Request.RemoteAddr = '0:0:0:0:0:0:0:1') or (Request.RemoteAddr = '::1');
 end;
 
-procedure TWebModule1.WebFileDispatcher1BeforeDispatch(Sender: TObject;
+procedure TWebModule_WK.WebFileDispatcher1BeforeDispatch(Sender: TObject;
   const AFileName: string; Request: TWebRequest; Response: TWebResponse;
   var Handled: Boolean);
 var
@@ -114,7 +114,7 @@ begin
     end;
 end;
 
-procedure TWebModule1.WebModuleCreate(Sender: TObject);
+procedure TWebModule_WK.WebModuleCreate(Sender: TObject);
 begin
   FServerFunctionInvokerAction := ActionByName('ServerFunctionInvokerAction');
   DSRESTWebDispatcher1.Server := DSServer;

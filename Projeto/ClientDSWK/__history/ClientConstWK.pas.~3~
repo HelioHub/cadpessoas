@@ -1,0 +1,11 @@
+unit ClientConstWK;
+
+interface
+
+const
+  urlWK = 'https://wktechnology.com.br/';
+  ServidorWK = '127.0.0.1';
+
+implementation
+
+end.

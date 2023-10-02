@@ -1,35 +1,60 @@
 //
 // Created by the DataSnap proxy generator.
-// 29/09/2023 14:24:20
-// 
+// 02/10/2023 04:24:06
+//
 
 unit ClientClassesWK;
 
 interface
 
-uses System.JSON, Datasnap.DSProxyRest, Datasnap.DSClientRest, Data.DBXCommon, Data.DBXClient, Data.DBXDataSnap, Data.DBXJSON, Datasnap.DSProxy, System.Classes, System.SysUtils, Data.DB, Data.SqlExpr, Data.DBXDBReaders, Data.DBXCDSReaders, Data.DBXJSONReflect;
+uses System.JSON, Datasnap.DSProxyRest, Datasnap.DSClientRest, Data.DBXCommon, Data.DBXClient, Data.DBXDataSnap, Data.DBXJSON, Datasnap.DSProxy, System.Classes, System.SysUtils, Data.DB, Data.SqlExpr, Data.DBXDBReaders, Data.DBXCDSReaders, Data.FireDACJSONReflect, Data.DBXJSONReflect;
 
 type
-  TServerMethods1Client = class(TDSAdminRestClient)
+
+  IDSRestCachedTFDJSONDataSets = interface;
+
+  TServerMethods_WKClient = class(TDSAdminRestClient)
   private
+    FGetPessoaCommand: TDSRestCommand;
+    FGetPessoaCommand_Cache: TDSRestCommand;
     FEchoStringCommand: TDSRestCommand;
     FReverseStringCommand: TDSRestCommand;
   public
     constructor Create(ARestConnection: TDSRestConnection); overload;
     constructor Create(ARestConnection: TDSRestConnection; AInstanceOwner: Boolean); overload;
     destructor Destroy; override;
+    function GetPessoa(IDPessoa: string; const ARequestFilter: string = ''): TFDJSONDataSets;
+    function GetPessoa_Cache(IDPessoa: string; const ARequestFilter: string = ''): IDSRestCachedTFDJSONDataSets;
     function EchoString(Value: string; const ARequestFilter: string = ''): string;
     function ReverseString(Value: string; const ARequestFilter: string = ''): string;
   end;
 
+  IDSRestCachedTFDJSONDataSets = interface(IDSRestCachedObject<TFDJSONDataSets>)
+  end;
+
+  TDSRestCachedTFDJSONDataSets = class(TDSRestCachedObject<TFDJSONDataSets>, IDSRestCachedTFDJSONDataSets, IDSRestCachedCommand)
+  end;
+
 const
-  TServerMethods1_EchoString: array [0..1] of TDSRestParameterMetaData =
+  TServerMethods_WK_GetPessoa: array [0..1] of TDSRestParameterMetaData =
+  (
+    (Name: 'IDPessoa'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: ''; Direction: 4; DBXType: 37; TypeName: 'TFDJSONDataSets')
+  );
+
+  TServerMethods_WK_GetPessoa_Cache: array [0..1] of TDSRestParameterMetaData =
+  (
+    (Name: 'IDPessoa'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'String')
+  );
+
+  TServerMethods_WK_EchoString: array [0..1] of TDSRestParameterMetaData =
   (
     (Name: 'Value'; Direction: 1; DBXType: 26; TypeName: 'string'),
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
   );
 
-  TServerMethods1_ReverseString: array [0..1] of TDSRestParameterMetaData =
+  TServerMethods_WK_ReverseString: array [0..1] of TDSRestParameterMetaData =
   (
     (Name: 'Value'; Direction: 1; DBXType: 26; TypeName: 'string'),
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
@@ -37,49 +62,92 @@ const
 
 implementation
 
-function TServerMethods1Client.EchoString(Value: string; const ARequestFilter: string): string;
+function TServerMethods_WKClient.GetPessoa(IDPessoa: string; const ARequestFilter: string): TFDJSONDataSets;
+begin
+  if FGetPessoaCommand = nil then
+  begin
+    FGetPessoaCommand := FConnection.CreateCommand;
+    FGetPessoaCommand.RequestType := 'GET';
+    FGetPessoaCommand.Text := 'TServerMethods_WK.GetPessoa';
+    FGetPessoaCommand.Prepare(TServerMethods_WK_GetPessoa);
+  end;
+  FGetPessoaCommand.Parameters[0].Value.SetWideString(IDPessoa);
+  FGetPessoaCommand.Execute(ARequestFilter);
+  if not FGetPessoaCommand.Parameters[1].Value.IsNull then
+  begin
+    FUnMarshal := TDSRestCommand(FGetPessoaCommand.Parameters[1].ConnectionHandler).GetJSONUnMarshaler;
+    try
+      Result := TFDJSONDataSets(FUnMarshal.UnMarshal(FGetPessoaCommand.Parameters[1].Value.GetJSONValue(True)));
+      if FInstanceOwner then
+        FGetPessoaCommand.FreeOnExecute(Result);
+    finally
+      FreeAndNil(FUnMarshal)
+    end
+  end
+  else
+    Result := nil;
+end;
+
+function TServerMethods_WKClient.GetPessoa_Cache(IDPessoa: string; const ARequestFilter: string): IDSRestCachedTFDJSONDataSets;
+begin
+  if FGetPessoaCommand_Cache = nil then
+  begin
+    FGetPessoaCommand_Cache := FConnection.CreateCommand;
+    FGetPessoaCommand_Cache.RequestType := 'GET';
+    FGetPessoaCommand_Cache.Text := 'TServerMethods_WK.GetPessoa';
+    FGetPessoaCommand_Cache.Prepare(TServerMethods_WK_GetPessoa_Cache);
+  end;
+  FGetPessoaCommand_Cache.Parameters[0].Value.SetWideString(IDPessoa);
+  FGetPessoaCommand_Cache.ExecuteCache(ARequestFilter);
+  Result := TDSRestCachedTFDJSONDataSets.Create(FGetPessoaCommand_Cache.Parameters[1].Value.GetString);
+end;
+
+function TServerMethods_WKClient.EchoString(Value: string; const ARequestFilter: string): string;
 begin
   if FEchoStringCommand = nil then
   begin
     FEchoStringCommand := FConnection.CreateCommand;
     FEchoStringCommand.RequestType := 'GET';
-    FEchoStringCommand.Text := 'TServerMethods1.EchoString';
-    FEchoStringCommand.Prepare(TServerMethods1_EchoString);
+    FEchoStringCommand.Text := 'TServerMethods_WK.EchoString';
+    FEchoStringCommand.Prepare(TServerMethods_WK_EchoString);
   end;
   FEchoStringCommand.Parameters[0].Value.SetWideString(Value);
   FEchoStringCommand.Execute(ARequestFilter);
   Result := FEchoStringCommand.Parameters[1].Value.GetWideString;
 end;
 
-function TServerMethods1Client.ReverseString(Value: string; const ARequestFilter: string): string;
+function TServerMethods_WKClient.ReverseString(Value: string; const ARequestFilter: string): string;
 begin
   if FReverseStringCommand = nil then
   begin
     FReverseStringCommand := FConnection.CreateCommand;
     FReverseStringCommand.RequestType := 'GET';
-    FReverseStringCommand.Text := 'TServerMethods1.ReverseString';
-    FReverseStringCommand.Prepare(TServerMethods1_ReverseString);
+    FReverseStringCommand.Text := 'TServerMethods_WK.ReverseString';
+    FReverseStringCommand.Prepare(TServerMethods_WK_ReverseString);
   end;
   FReverseStringCommand.Parameters[0].Value.SetWideString(Value);
   FReverseStringCommand.Execute(ARequestFilter);
   Result := FReverseStringCommand.Parameters[1].Value.GetWideString;
 end;
 
-constructor TServerMethods1Client.Create(ARestConnection: TDSRestConnection);
+constructor TServerMethods_WKClient.Create(ARestConnection: TDSRestConnection);
 begin
   inherited Create(ARestConnection);
 end;
 
-constructor TServerMethods1Client.Create(ARestConnection: TDSRestConnection; AInstanceOwner: Boolean);
+constructor TServerMethods_WKClient.Create(ARestConnection: TDSRestConnection; AInstanceOwner: Boolean);
 begin
   inherited Create(ARestConnection, AInstanceOwner);
 end;
 
-destructor TServerMethods1Client.Destroy;
+destructor TServerMethods_WKClient.Destroy;
 begin
+  FGetPessoaCommand.DisposeOf;
+  FGetPessoaCommand_Cache.DisposeOf;
   FEchoStringCommand.DisposeOf;
   FReverseStringCommand.DisposeOf;
   inherited;
 end;
 
 end.
+

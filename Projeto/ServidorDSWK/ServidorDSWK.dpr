@@ -8,10 +8,11 @@ uses
   Web.WebReq,
   IdHTTPWebBrokerBridge,
   FUServidorDataSnapRest in 'View\FUServidorDataSnapRest.pas' {FServidorDataSnapRest},
-  ServerMethodsWK in 'Controller\ServerMethodsWK.pas' {ServerMethods1: TDataModule},
-  ServerContainerWK in 'View\ServerContainerWK.pas' {ServerContainer2: TDataModule},
-  WebModuleWK in 'View\WebModuleWK.pas' {WebModule1: TWebModule},
-  UDMBanco in 'Model\UDMBanco.pas' {DataModule1: TDataModule};
+  ServerMethodsWK in 'Controller\ServerMethodsWK.pas' {ServerMethods_WK: TDataModule},
+  ServerContainerWK in 'View\ServerContainerWK.pas' {ServerContainer_WK: TDataModule},
+  WebModuleWK in 'View\WebModuleWK.pas' {WebModule_WK: TWebModule},
+  UDMBanco in 'Model\UDMBanco.pas' {DataModuleWK: TDataModule},
+  ServerConstWK in 'ServerConstWK.pas';
 
 {$R *.res}
 
@@ -20,6 +21,6 @@ begin
     WebRequestHandler.WebModuleClass := WebModuleClass;
   Application.Initialize;
   Application.CreateForm(TFServidorDataSnapRest, FServidorDataSnapRest);
-  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TDataModuleWK, DataModuleWK);
   Application.Run;
 end.

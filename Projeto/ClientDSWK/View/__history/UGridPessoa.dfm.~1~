@@ -1,0 +1,5 @@
+inherited FGridBase1: TFGridBase1
+  Caption = 'FGridBase1'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

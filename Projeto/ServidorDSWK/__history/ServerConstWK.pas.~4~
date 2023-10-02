@@ -1,0 +1,10 @@
+unit ServerConstWK;
+
+interface
+
+const
+  urlWK = 'https://wktechnology.com.br/';
+
+implementation
+
+end.

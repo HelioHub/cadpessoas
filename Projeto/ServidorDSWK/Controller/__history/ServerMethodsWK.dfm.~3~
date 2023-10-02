@@ -1,0 +1,5 @@
+object ServerMethods_WK: TServerMethods_WK
+  OldCreateOrder = False
+  Height = 337
+  Width = 562
+end

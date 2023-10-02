@@ -4,7 +4,7 @@ object FCliCadPessoa: TFCliCadPessoa
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'WK Teste T'#233'cnico Delphi MultiTier'
-  ClientHeight = 468
+  ClientHeight = 441
   ClientWidth = 662
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,6 +13,7 @@ object FCliCadPessoa: TFCliCadPessoa
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object ImageWK: TImage
@@ -2695,7 +2696,7 @@ object FCliCadPessoa: TFCliCadPessoa
     Left = 0
     Top = 137
     Width = 662
-    Height = 280
+    Height = 243
     Hint = 'Acessa Cadastro de Pessoas'
     Align = alTop
     Caption = 'Cadastro de Pessoas'
@@ -9039,12 +9040,14 @@ object FCliCadPessoa: TFCliCadPessoa
     ParentShowHint = False
     ShowHint = True
     TabOrder = 0
+    OnClick = BBCadPessoasClick
+    ExplicitTop = 131
   end
   object BBFechar: TBitBtn
     Left = 0
-    Top = 417
+    Top = 380
     Width = 662
-    Height = 51
+    Height = 36
     Hint = 'Fecha aplica'#231#227'o'
     Align = alClient
     Caption = 'Fechar'
@@ -9058,5 +9061,35 @@ object FCliCadPessoa: TFCliCadPessoa
     ShowHint = True
     TabOrder = 1
     OnClick = BBFecharClick
+  end
+  object PHost: TPanel
+    Left = 0
+    Top = 416
+    Width = 662
+    Height = 25
+    Align = alBottom
+    Alignment = taLeftJustify
+    Caption = '  Host:'
+    TabOrder = 2
+    object edtHostName: TEdit
+      Left = 41
+      Top = 2
+      Width = 108
+      Height = 21
+      Margins.Left = 5
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      Text = '127.0.0.1'
+      TextHint = 'Hostname or IP Address'
+    end
   end
 end

@@ -1,0 +1,25 @@
+unit UGridPessoa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UGridBase, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TFGridBase1 = class(TFGridBase)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FGridBase1: TFGridBase1;
+
+implementation
+
+{$R *.dfm}
+
+end.

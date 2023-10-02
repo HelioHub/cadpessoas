@@ -1,0 +1,5 @@
+object DataModuleWK: TDataModuleWK
+  OldCreateOrder = False
+  Height = 463
+  Width = 817
+end

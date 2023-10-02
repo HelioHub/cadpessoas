@@ -59,7 +59,6 @@ object FGridBase: TFGridBase
       Height = 25
       Caption = 'Atualizar'
       TabOrder = 3
-      OnClick = BBAtualizarClick
     end
     object BBSair: TBitBtn
       Left = 251
@@ -88,7 +87,6 @@ object FGridBase: TFGridBase
     Height = 22
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 411
   end
   object PView: TPanel
     Left = 0
@@ -97,8 +95,6 @@ object FGridBase: TFGridBase
     Height = 368
     Align = alClient
     TabOrder = 2
-    ExplicitTop = 49
-    ExplicitHeight = 376
     object DBGView: TDBGrid
       Left = 1
       Top = 1

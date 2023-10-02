@@ -23,7 +23,6 @@ type
     DSBase: TDataSource;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBSairClick(Sender: TObject);
-    procedure BBAtualizarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,11 +35,6 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TFGridBase.BBAtualizarClick(Sender: TObject);
-begin
-  DSBase.DataSet.Refresh;
-end;
 
 procedure TFGridBase.BBSairClick(Sender: TObject);
 begin

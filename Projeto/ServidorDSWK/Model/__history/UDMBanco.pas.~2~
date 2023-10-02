@@ -1,0 +1,25 @@
+unit UDMBanco;
+
+interface
+
+uses
+  System.SysUtils, System.Classes;
+
+type
+  TDataModuleWK = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModuleWK: TDataModuleWK;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.
