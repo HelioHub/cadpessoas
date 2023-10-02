@@ -1,7 +1,7 @@
 # Projeto CadPessoas - Cadastro de Pessoas - WK Teste Técnico Delphi MultiTier
 
 Projeto Teste Técnico Delphi MultiTier aplicando técnicas de POO, MVC e Clean Code. 
-Utilizando DELPHI XE3 (somente componentes nativos) e Banco de dados PostGreSQL.
+Utilizando DELPHI XE6 (somente componentes nativos) e Banco de dados PostGreSQL.
 Hélio Marques
 
 ## Documento de Requisitos CadPessoas
@@ -25,7 +25,7 @@ Hélio Marques
 
     Database: wkcadpessoas
 	pw: wk@2023
-	Dlls para conectar PostGreSQL no DELPHI XE3: https://www.postgresql.org/ftp/odbc/versions/dll/
+	Dlls para conectar PostGreSQL no DELPHI XE6: https://www.postgresql.org/ftp/odbc/versions/dll/
 
 ## Clean Code
 
