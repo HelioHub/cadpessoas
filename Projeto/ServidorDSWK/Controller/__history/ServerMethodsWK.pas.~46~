@@ -172,7 +172,7 @@ end;
 procedure TServerMethods_WK.UpdatePessoa(const oPessoa: TPessoa);
 var sSQL: string;
 begin
-  sSQL := 'UPDATE PESSOA SET '+
+  sSQL := 'UPDATE SET PESSOA (idpessoa, dsdocumento, nmprimeiro, nmsegundo, dtregistro, flnatureza) '+
           ' dsdocumento = '+ QuotedStr(oPessoa.dsdocumento)+', '+
           ' nmprimeiro  = '+ QuotedStr(oPessoa.nmprimeiro) +', '+
           ' nmsegundo   = '+ QuotedStr(oPessoa.nmsegundo)  +', '+

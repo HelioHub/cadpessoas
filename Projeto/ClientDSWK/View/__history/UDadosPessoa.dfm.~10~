@@ -22,7 +22,6 @@ inherited FDadosPessoa: TFDadosPessoa
     inherited BBGravar: TBitBtn
       Left = 597
       Top = 7
-      Caption = '&OK'
       OnClick = BBGravarClick
       ExplicitLeft = 597
       ExplicitTop = 7

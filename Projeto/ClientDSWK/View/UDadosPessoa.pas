@@ -37,7 +37,7 @@ type
   private
     { Private declarations }
     procedure HabilitarControls;
-    procedure DesabilitarControls;
+    procedure DesabilitarControls(pCEP: Boolean = True);
 
     destructor Destroy; override;
   public
@@ -130,7 +130,16 @@ begin
       Self.Caption := Self.Caption + ' - ' + cAcaoAlterar
     end
     else
+    begin
+      DesabilitarControls(False);
       Self.Caption := Self.Caption + ' - ' + cAcaoAlterar;
+      //Em Desenvolvimento:
+      Beep;
+      ShowMessage('Atenção! Nesta versão não é possível alterar o CEP.'+cEOL+
+                  'Está em desenvolvimento tal funcionalidade com as devidas regras definidas.')
+
+      //
+    end;
   end;
 
   EDocumento.SetFocus;
@@ -139,31 +148,34 @@ end;
 procedure TFDadosPessoa.HabilitarControls;
 begin
   //Pessoa
-  EDocumento.ReadOnly  := True;
-  E1Nome.ReadOnly      := True;
-  E2Nome.ReadOnly      := True;
-  RGSexo.Enabled       := True;
-  //CEP
-  ECEP.ReadOnly        := True;
-  BBCEP.Enabled        := True;
-  ENo.ReadOnly         := True;
-  //Endereço
-  EComplemento.ReadOnly:= True;
-end;
-
-procedure TFDadosPessoa.DesabilitarControls;
-begin
-  //Pessoa
   EDocumento.ReadOnly  := False;
   E1Nome.ReadOnly      := False;
   E2Nome.ReadOnly      := False;
-  RGSexo.Enabled       := False;
+  RGSexo.Enabled       := True;
   //CEP
   ECEP.ReadOnly        := False;
-  BBCEP.Enabled        := False;
+  BBCEP.Enabled        := True;
   ENo.ReadOnly         := False;
   //Endereço
   EComplemento.ReadOnly:= False;
+end;
+
+procedure TFDadosPessoa.DesabilitarControls(pCEP: Boolean = True);
+begin
+  //Pessoa
+  if pCEP then
+  begin
+    EDocumento.ReadOnly  := True;
+    E1Nome.ReadOnly      := True;
+    E2Nome.ReadOnly      := True;
+    RGSexo.Enabled       := False;
+  end;
+  //CEP
+  ECEP.ReadOnly        := True;
+  BBCEP.Enabled        := False;
+  ENo.ReadOnly         := True;
+  //Endereço
+  EComplemento.ReadOnly:= True;
 end;
 
 end.

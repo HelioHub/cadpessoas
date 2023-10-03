@@ -172,11 +172,7 @@ end;
 procedure TServerMethods_WK.UpdatePessoa(const oPessoa: TPessoa);
 var sSQL: string;
 begin
-  sSQL := 'UPDATE PESSOA SET '+
-          ' dsdocumento = '+ QuotedStr(oPessoa.dsdocumento)+', '+
-          ' nmprimeiro  = '+ QuotedStr(oPessoa.nmprimeiro) +', '+
-          ' nmsegundo   = '+ QuotedStr(oPessoa.nmsegundo)  +', '+
-          ' flnatureza  = '+ QuotedStr(oPessoa.flnatureza) +'  '+
+  sSQL := 'DELETE FROM PESSOA '+
           'WHERE idpessoa = '+IntToStr(oPessoa.idpessoa);
   DataModuleWK.WKConnection.ExecSQL(sSQL);
 end;

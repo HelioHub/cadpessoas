@@ -83,7 +83,7 @@ begin
   if (DSBase.DataSet.FieldByName('idpessoa').IsNull) and (pAcao <> acIncluir) then
   begin
     Beep;
-    ShowMessage('Selecione cadastro para efetuar operação!');
+    ShowMessage('Selecione um registro válido '+cEOL+'para efetuar operação desejada!');
     Exit;
   end;
 
