@@ -4,7 +4,7 @@ interface
 
 uses System.SysUtils, System.Classes, System.Json,
     Datasnap.DSServer, Datasnap.DSAuth, DataSnap.DSProviderDataModuleAdapter,
-  FireDAC.Stan.StorageBin, FireDAC.Stan.StorageJSON, Data.FireDACJSONReflect, UClaPessoa;
+  FireDAC.Stan.StorageBin, FireDAC.Stan.StorageJSON, Data.FireDACJSONReflect;
 
 type
 {$METHODINFO ON}
@@ -14,14 +14,11 @@ type
   private
     { Private declarations }
     procedure PreparePessoa(const IDPessoa : string = ''; const SLimit : String = '');
-    function GetProximoCodigoPessoal: String;
   public
     { Public declarations }
     function GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
-
-    procedure InsertPessoa(const oPessoa : TPessoa);
   end;
 {$METHODINFO OFF}
 
@@ -77,46 +74,6 @@ function TServerMethods_WK.ReverseString(Value: string): string;
 begin
   Result := System.StrUtils.ReverseString(Value);
 end;
-
-procedure TServerMethods_WK.InsertPessoa(const oPessoa: TPessoa);
-var sSQL, sSequencial: string;
-begin
-  DataModuleWK.WKConnection.StartTransaction;
-  try
-     sSequencial := GetProximoCodigoPessoal;
-     sSQL := 'INSERT INTO PESSOA (idpessoa, dsdocumento, nmprimeiro, nmsegundo, dtregistro, flnatureza) '+
-             ' VALUES ('+sSequencial+', '+
-                         QuotedStr(oPessoa.dsdocumento)+', '+
-                         QuotedStr(oPessoa.nmprimeiro) +', '+
-                         QuotedStr(oPessoa.nmsegundo)  +', '+
-	                      '(SELECT CURRENT_DATE), '+
-                         QuotedStr(oPessoa.flnatureza) +') ';
-
-    DataModuleWK.WKConnection.ExecSQL(sSQL);
-    DataModuleWK.WKConnection.Commit;
-  except
-    on E: Exception do
-    begin
-      DataModuleWK.WKConnection.Rollback;
-      raise Exception.Create('Error Message: ' + E.Message);
-    end;
-  end;
-end;
-
-
-function TServerMethods_WK.GetProximoCodigoPessoal: String;
-begin
-  {Recupera o próximo código sequencial para o cadastro de pessoas}
-  try
-    DataModuleWK.WKSequencial.Close;
-    DataModuleWK.WKSequencial.SQL.Text := 'SELECT (COALESCE(MAX(idpessoa),0)+1) AS SEQUENCIAL FROM PESSOA';
-    DataModuleWK.WKSequencial.Open;
-    Result := DataModuleWK.WKSequencial.FieldByName('SEQUENCIAL').AsString;
-  finally
-    DataModuleWK.WKSequencial.Close;
-  end;
-end;
-
 
 end.
 

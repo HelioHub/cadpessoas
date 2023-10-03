@@ -7,7 +7,7 @@ uses
   Datasnap.DSClientRest, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.StorageBin, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, FireDAC.Stan.StorageJSON, Data.FireDACJSONReflect, ConstWK, UClaPessoa;
+  FireDAC.Comp.Client, FireDAC.Stan.StorageJSON, Data.FireDACJSONReflect;
 
 type
   TClientModuleWKX = class(TDataModule)
@@ -35,7 +35,6 @@ type
     { Private declarations }
   public
     procedure LoadPessoa(const IDPessoa: string; const SLimit: string);
-    procedure InsertPessoa(oObjectPessoa: TPessoa);
 
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -70,11 +69,6 @@ begin
   if FServerMethods1Client = nil then
     FServerMethods1Client:= TServerMethods_WKClient.Create(DSRestConnectionWK, FInstanceOwner);
   Result := FServerMethods1Client;
-end;
-
-procedure TClientModuleWKX.InsertPessoa(oObjectPessoa: TPessoa);
-begin
-  ServerMethods1Client.InsertPessoa(oObjectPessoa);
 end;
 
 procedure TClientModuleWKX.LoadPessoa(const IDPessoa: string; const SLimit: string);

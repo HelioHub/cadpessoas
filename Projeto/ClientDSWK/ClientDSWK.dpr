@@ -14,7 +14,8 @@ uses
   UBuscaCEP in '..\Biblioteca\UBuscaCEP.pas',
   UDadosPessoa in 'View\UDadosPessoa.pas' {FDadosPessoa},
   UClaPessoa in '..\Biblioteca\Model\Classes\UClaPessoa.pas',
-  UControllerPessoa in '..\Biblioteca\Controller\UControllerPessoa.pas';
+  UControllerPessoa in '..\Biblioteca\Controller\UControllerPessoa.pas',
+  UDAOPessoa in '..\Biblioteca\Model\DAO\UDAOPessoa.pas';
 
 {$R *.res}
 

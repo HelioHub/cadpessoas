@@ -51,7 +51,7 @@ implementation
 
 {$R *.dfm}
 
-uses ConstWK, UControllerPessoa, ClientModuleWK;
+uses ConstWK, UControllerPessoa;
 
 { TFDadosPessoa }
 
@@ -79,7 +79,6 @@ begin
     ObjetoPessoa.CEP.idendereco.dscomplemento:= EComplemento.Text;
     ObjetoPessoa.CEP.idendereco.dsuf         := EUF.Text;
 
-    ClientModuleWKX.InsertPessoa(ObjetoPessoa);
     ObjControle.Salvar(ObjetoPessoa);
   finally
     FreeAndNil(objControle);
@@ -96,7 +95,7 @@ end;
 
 destructor TFDadosPessoa.Destroy;
 begin
-  //FreeAndNil(ObjetoPessoa);
+  FreeAndNil(ObjetoPessoa);
   inherited;
 end;
 
@@ -111,24 +110,21 @@ end;
 procedure TFDadosPessoa.FormShow(Sender: TObject);
 begin
   inherited;
-  if ObjetoPessoa.acao = acAlterar then
+  if ObjetoPessoa.acao = tacAlterar then
   begin
-    EDocumento.Text    := ObjetoPessoa.dsdocumento;
-    E1Nome.Text        := ObjetoPessoa.nmprimeiro;
-    E2Nome.Text        := ObjetoPessoa.nmsegundo;
+    EDocumento.Text  := ObjetoPessoa.dsdocumento;
+    E1Nome.Text      := ObjetoPessoa.nmprimeiro;
+    E2Nome.Text      := ObjetoPessoa.nmsegundo;
+    RGSexo.ItemIndex := Integer(TSexo.F);
     if ObjetoPessoa.flnatureza = cSexoM then
-      RGSexo.ItemIndex := Integer(TSexo.M)
-    else
       RGSexo.ItemIndex := Integer(TSexo.F);
-
-    ECEP.Text          := ObjetoPessoa.CEP.dscep;
-    ENo.Text           := IntToStr(ObjetoPessoa.CEP.dsnumero);
-
-    ELogradouro.Text   := ObjetoPessoa.CEP.idendereco.nmlogradouro;
-    EBairro.Text       := ObjetoPessoa.CEP.idendereco.nmbairro;
-    ECidade.Text       := ObjetoPessoa.CEP.idendereco.nmcidade;
-    EComplemento.Text  := ObjetoPessoa.CEP.idendereco.dscomplemento;
-    EUF.Text           := ObjetoPessoa.CEP.idendereco.dsuf;
+    ECEP.Text        := ObjetoPessoa.CEP.dscep;
+    ENo.Text         := IntToStr(ObjetoPessoa.CEP.dsnumero);
+    ELogradouro.Text := ObjetoPessoa.CEP.idendereco.nmlogradouro;
+    EBairro.Text     := ObjetoPessoa.CEP.idendereco.nmbairro;
+    ECidade.Text     := ObjetoPessoa.CEP.idendereco.nmcidade;
+    EComplemento.Text:= ObjetoPessoa.CEP.idendereco.dscomplemento;
+    EUF.Text         := ObjetoPessoa.CEP.idendereco.dsuf;
 
     Self.Caption := Self.Caption + ' - ' + cAcaoAlterar;
   end

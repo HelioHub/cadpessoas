@@ -36,7 +36,7 @@ object ClientModuleWKX: TClientModuleWKX
       DisplayLabel = 'C'#243'digo'
       FieldName = 'idpessoa'
     end
-    object PessoaMemTabledtregistro: TDateField
+    object PessoaMemTabledtregistro: TSQLTimeStampField
       DisplayLabel = 'Registro'
       FieldName = 'dtregistro'
     end

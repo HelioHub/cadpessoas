@@ -8,6 +8,9 @@ inherited FGridPessoa: TFGridPessoa
     Color = 13565951
     ParentBackground = False
     ExplicitTop = 0
+    inherited LNR: TLabel
+      Anchors = [akRight]
+    end
     inherited BBIncluir: TBitBtn
       OnClick = BBIncluirClick
     end
@@ -15,7 +18,14 @@ inherited FGridPessoa: TFGridPessoa
       OnClick = BBIncluirClick
     end
     inherited BBAtualizar: TBitBtn
+      Anchors = [akRight]
       OnClick = BBAtualizarClick
+    end
+    inherited ENR: TEdit
+      Anchors = [akRight]
+    end
+    inherited BBImportacao: TBitBtn
+      Anchors = [akRight]
     end
   end
   inherited PRodape: TPanel
@@ -79,7 +89,7 @@ inherited FGridPessoa: TFGridPessoa
       Top = 3
       Width = 110
       Height = 21
-      DataField = 'dsdocumento'
+      DataField = 'dscep'
       DataSource = DSBase
       ReadOnly = True
       TabOrder = 0
@@ -89,7 +99,7 @@ inherited FGridPessoa: TFGridPessoa
       Top = 28
       Width = 452
       Height = 21
-      DataField = 'dsdocumento'
+      DataField = 'nmlogradouro'
       DataSource = DSBase
       ReadOnly = True
       TabOrder = 1
@@ -99,7 +109,7 @@ inherited FGridPessoa: TFGridPessoa
       Top = 28
       Width = 57
       Height = 21
-      DataField = 'dsdocumento'
+      DataField = 'dsnumero'
       DataSource = DSBase
       ReadOnly = True
       TabOrder = 2
@@ -109,7 +119,7 @@ inherited FGridPessoa: TFGridPessoa
       Top = 54
       Width = 404
       Height = 21
-      DataField = 'dsdocumento'
+      DataField = 'nmbairro'
       DataSource = DSBase
       ReadOnly = True
       TabOrder = 3
@@ -119,7 +129,7 @@ inherited FGridPessoa: TFGridPessoa
       Top = 54
       Width = 193
       Height = 21
-      DataField = 'dsdocumento'
+      DataField = 'dscomplemento'
       DataSource = DSBase
       ReadOnly = True
       TabOrder = 4
@@ -129,17 +139,17 @@ inherited FGridPessoa: TFGridPessoa
       Top = 80
       Width = 452
       Height = 21
-      DataField = 'dsdocumento'
+      DataField = 'nmcidade'
       DataSource = DSBase
       ReadOnly = True
       TabOrder = 5
     end
     object DBEUF: TDBEdit
       Left = 584
-      Top = 80
-      Width = 27
+      Top = 81
+      Width = 193
       Height = 21
-      DataField = 'dsdocumento'
+      DataField = 'dsuf'
       DataSource = DSBase
       ReadOnly = True
       TabOrder = 6
@@ -150,6 +160,75 @@ inherited FGridPessoa: TFGridPessoa
     ExplicitHeight = 397
     inherited DBGView: TDBGrid
       Height = 395
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'idpessoa'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'dtregistro'
+          Width = 101
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'dsdocumento'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'nmprimeiro'
+          Width = 280
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'nmsegundo'
+          Width = 214
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'flnatureza'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'dscep'
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'dsnumero'
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'dsuf'
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'nmcidade'
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'nmbairro'
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'nmlogradouro'
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'dscomplemento'
+          Visible = False
+        end>
     end
   end
   inherited DSBase: TDataSource

@@ -19,7 +19,6 @@ type
     FDStanStorageJSONLink1: TFDStanStorageJSONLink;
     FDStanStorageBinLink1: TFDStanStorageBinLink;
     WKPessoa: TFDQuery;
-    WKSequencial: TFDQuery;
   private
     { Private declarations }
   public

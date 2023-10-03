@@ -16,6 +16,9 @@ type
 
 implementation
 
+{ TControleUsuario }
+
+
 { TControllerPessoa }
 
 procedure TControllerPessoa.Excluir(Nome: String);

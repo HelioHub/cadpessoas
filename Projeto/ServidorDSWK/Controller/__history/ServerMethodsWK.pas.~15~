@@ -14,7 +14,6 @@ type
   private
     { Private declarations }
     procedure PreparePessoa(const IDPessoa : string = ''; const SLimit : String = '');
-    function GetProximoCodigoPessoal: String;
   public
     { Public declarations }
     function GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
@@ -79,20 +78,21 @@ begin
 end;
 
 procedure TServerMethods_WK.InsertPessoa(const oPessoa: TPessoa);
-var sSQL, sSequencial: string;
+var
+  sSQL: string;
 begin
+
   DataModuleWK.WKConnection.StartTransaction;
   try
-     sSequencial := GetProximoCodigoPessoal;
-     sSQL := 'INSERT INTO PESSOA (idpessoa, dsdocumento, nmprimeiro, nmsegundo, dtregistro, flnatureza) '+
-             ' VALUES ('+sSequencial+', '+
-                         QuotedStr(oPessoa.dsdocumento)+', '+
-                         QuotedStr(oPessoa.nmprimeiro) +', '+
-                         QuotedStr(oPessoa.nmsegundo)  +', '+
-	                      '(SELECT CURRENT_DATE), '+
-                         QuotedStr(oPessoa.flnatureza) +') ';
 
+
+
+
+    sSQL := 'INSERT INTO PESSOA VALUES UPDATE CUSTOMER SET CONTACT_FIRST = ' +
+          QuotedSTR(tabC.FieldByName('CONTACT_FIRST').AsString) +
+          ' WHERE CUST_NO = ' + tabC.FieldByName('CUST_NO').AsString;
     DataModuleWK.WKConnection.ExecSQL(sSQL);
+
     DataModuleWK.WKConnection.Commit;
   except
     on E: Exception do
@@ -101,19 +101,27 @@ begin
       raise Exception.Create('Error Message: ' + E.Message);
     end;
   end;
+
+
+    sSQL := 'UPDATE CUSTOMER SET CONTACT_FIRST = ' +
+          QuotedSTR(tabC.FieldByName('CONTACT_FIRST').AsString) +
+          ' WHERE CUST_NO = ' + tabC.FieldByName('CUST_NO').AsString;
+
 end;
 
 
 function TServerMethods_WK.GetProximoCodigoPessoal: String;
 begin
   {Recupera o próximo código sequencial para o cadastro de pessoas}
+  SqlQryReg := TSQLQuery.Create(nil);
   try
-    DataModuleWK.WKSequencial.Close;
-    DataModuleWK.WKSequencial.SQL.Text := 'SELECT (COALESCE(MAX(idpessoa),0)+1) AS SEQUENCIAL FROM PESSOA';
-    DataModuleWK.WKSequencial.Open;
-    Result := DataModuleWK.WKSequencial.FieldByName('SEQUENCIAL').AsString;
+    SqlQryReg.SQLConnection := DSConect;
+    SqlQryReg.SQL.Add('SELECT NVL(MAX(PESSOAL) + 1,1) AS PESSOAL FROM SCGED0036');
+    SqlQryReg.Open;
+    Result := SqlQryReg.FieldByName('PESSOAL').AsString;
+    SqlQryReg.Close;
   finally
-    DataModuleWK.WKSequencial.Close;
+    FreeAndNil(SqlQryReg);
   end;
 end;
 

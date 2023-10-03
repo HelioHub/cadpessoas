@@ -15,7 +15,7 @@ inherited FGridPessoa: TFGridPessoa
       OnClick = BBIncluirClick
     end
     inherited BBAlterar: TBitBtn
-      OnClick = BBIncluirClick
+      OnClick = BBAlterarClick
     end
     inherited BBAtualizar: TBitBtn
       Anchors = [akRight]
@@ -160,6 +160,7 @@ inherited FGridPessoa: TFGridPessoa
     ExplicitHeight = 397
     inherited DBGView: TDBGrid
       Height = 395
+      OnDblClick = DBGViewDblClick
       Columns = <
         item
           Expanded = False

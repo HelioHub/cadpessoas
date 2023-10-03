@@ -96,7 +96,7 @@ end;
 
 destructor TFDadosPessoa.Destroy;
 begin
-  //FreeAndNil(ObjetoPessoa);
+  FreeAndNil(ObjetoPessoa);
   inherited;
 end;
 

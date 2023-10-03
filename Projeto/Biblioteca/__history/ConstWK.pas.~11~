@@ -4,6 +4,8 @@ interface
 
 type
   TAcao = (tacIncluir, tacAlterar, tacExcluir, tacConsultar);
+  TSexo = (M, F);
+  TCRUD = (Alterar, Consulta, Incluir, Excluir);
 
 const
   curlWK = 'https://wktechnology.com.br/';
@@ -16,6 +18,8 @@ const
   cCidadePadrao = 'Fortaleza';
   cUFPadrao = 'CE';
   cAcaoAlterar = 'Alterar';
+  cSexoM = 'M';
+  cSexoF = 'F';
 
 implementation
 

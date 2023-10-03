@@ -37,11 +37,4 @@ object DataModuleWK: TDataModuleWK
     Left = 49
     Top = 76
   end
-  object WKSequencial: TFDQuery
-    Connection = WKConnection
-    SQL.Strings = (
-      '')
-    Left = 49
-    Top = 136
-  end
 end

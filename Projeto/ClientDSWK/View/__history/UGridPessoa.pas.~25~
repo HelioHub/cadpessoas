@@ -46,7 +46,7 @@ uses ClientModuleWK, UDadosPessoa;
 procedure TFGridPessoa.BBAlterarClick(Sender: TObject);
 begin
   inherited;
-  pCRUD(acAlterar);
+  pCRUD(TAcao.Alterar);
 end;
 
 procedure TFGridPessoa.BBAtualizarClick(Sender: TObject);
@@ -60,13 +60,13 @@ end;
 procedure TFGridPessoa.BBIncluirClick(Sender: TObject);
 begin
   inherited;
-  pCRUD(acIncluir);
+  pCRUD(TAcao.Incluir);
 end;
 
 procedure TFGridPessoa.DBGViewDblClick(Sender: TObject);
 begin
   inherited;
-  pCRUD(acAlterar);
+  pCRUD(TAcao.Alterar);
 end;
 
 procedure TFGridPessoa.pCRUD(pAcao: TAcao);
@@ -74,7 +74,7 @@ var Formulario: TFDadosPessoa;
 begin
   inherited;
   Formulario := TFDadosPessoa.Create(Application);
-  if pAcao = acAlterar then
+  if Integer(pAcao) = TAcao.Alterar then
   begin
     Formulario.ObjetoPessoa.dsdocumento  := DSBase.DataSet.FieldByName('dsdocumento').AsString;
     Formulario.ObjetoPessoa.nmprimeiro   := DSBase.DataSet.FieldByName('nmprimeiro').AsString;
@@ -92,10 +92,10 @@ begin
     Formulario.ObjetoPessoa.CEP.idendereco.nmcidade     := DSBase.DataSet.FieldByName('nmcidade').AsString;
     Formulario.ObjetoPessoa.CEP.idendereco.dsuf         := DSBase.DataSet.FieldByName('dsuf').AsString;
 
-    Formulario.ObjetoPessoa.Acao  := acAlterar;
+    Formulario.ObjetoPessoa.Acao  := tacAlterar;
   end
   else
-    Formulario.ObjetoPessoa.Acao  := acIncluir;
+    Formulario.ObjetoPessoa.Acao  := tacIncluir;
 
   Formulario.ShowModal;
 end;

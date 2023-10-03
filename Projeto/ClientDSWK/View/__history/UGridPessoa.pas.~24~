@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UGridBase, Data.DB, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls, ConstWK;
 
 type
   TFGridPessoa = class(TFGridBase)
@@ -25,7 +25,10 @@ type
     DBEUF: TDBEdit;
     procedure BBAtualizarClick(Sender: TObject);
     procedure BBIncluirClick(Sender: TObject);
+    procedure BBAlterarClick(Sender: TObject);
+    procedure DBGViewDblClick(Sender: TObject);
   private
+    procedure pCRUD(pAcao: TCRUD);
     { Private declarations }
   public
     { Public declarations }
@@ -38,7 +41,13 @@ implementation
 
 {$R *.dfm}
 
-uses ClientModuleWK, UDadosPessoa, ConstWK;
+uses ClientModuleWK, UDadosPessoa;
+
+procedure TFGridPessoa.BBAlterarClick(Sender: TObject);
+begin
+  inherited;
+  pCRUD(TCRUD.Alterar);
+end;
 
 procedure TFGridPessoa.BBAtualizarClick(Sender: TObject);
 var sLimiteRegistros : String;
@@ -49,19 +58,39 @@ begin
 end;
 
 procedure TFGridPessoa.BBIncluirClick(Sender: TObject);
+begin
+  inherited;
+  pCRUD(TCRUD.Incluir);
+end;
+
+procedure TFGridPessoa.DBGViewDblClick(Sender: TObject);
+begin
+  inherited;
+  pCRUD(TCRUD.Alterar);
+end;
+
+procedure TFGridPessoa.pCRUD(pAcao: TCRUD);
 var Formulario: TFDadosPessoa;
 begin
   inherited;
   Formulario := TFDadosPessoa.Create(Application);
-  if (Sender As TBitBtn).Caption = cAcaoAlterar then
+  if Integer(pAcao) =  then
   begin
     Formulario.ObjetoPessoa.dsdocumento  := DSBase.DataSet.FieldByName('dsdocumento').AsString;
     Formulario.ObjetoPessoa.nmprimeiro   := DSBase.DataSet.FieldByName('nmprimeiro').AsString;
     Formulario.ObjetoPessoa.nmsegundo    := DSBase.DataSet.FieldByName('nmsegundo').AsString;
     Formulario.ObjetoPessoa.flnatureza   := cSexoF;
-    if DSBase.DataSet.FieldByName('nmsegundo').AsString = cSexoM then
+    if DSBase.DataSet.FieldByName('flnatureza').AsString = cSexoM then
       Formulario.ObjetoPessoa.flnatureza := cSexoM;
-    Formulario.ObjetoPessoa.   := cSexoF;
+
+    Formulario.ObjetoPessoa.CEP.dscep    := DSBase.DataSet.FieldByName('dscep').AsString;
+    Formulario.ObjetoPessoa.CEP.dsnumero := DSBase.DataSet.FieldByName('dsnumero').Asinteger;
+
+    Formulario.ObjetoPessoa.CEP.idendereco.nmlogradouro := DSBase.DataSet.FieldByName('nmlogradouro').AsString;
+    Formulario.ObjetoPessoa.CEP.idendereco.nmbairro     := DSBase.DataSet.FieldByName('nmbairro').AsString;
+    Formulario.ObjetoPessoa.CEP.idendereco.dscomplemento:= DSBase.DataSet.FieldByName('dscomplemento').AsString;
+    Formulario.ObjetoPessoa.CEP.idendereco.nmcidade     := DSBase.DataSet.FieldByName('nmcidade').AsString;
+    Formulario.ObjetoPessoa.CEP.idendereco.dsuf         := DSBase.DataSet.FieldByName('dsuf').AsString;
 
     Formulario.ObjetoPessoa.Acao  := tacAlterar;
   end
@@ -69,8 +98,6 @@ begin
     Formulario.ObjetoPessoa.Acao  := tacIncluir;
 
   Formulario.ShowModal;
-
-  DSBase.DataSet.Refresh;
 end;
 
 end.

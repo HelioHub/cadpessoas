@@ -86,11 +86,11 @@ begin
      sSequencial := GetProximoCodigoPessoal;
      sSQL := 'INSERT INTO PESSOA (idpessoa, dsdocumento, nmprimeiro, nmsegundo, dtregistro, flnatureza) '+
              ' VALUES ('+sSequencial+', '+
-                         QuotedStr(oPessoa.dsdocumento)+', '+
-                         QuotedStr(oPessoa.nmprimeiro) +', '+
-                         QuotedStr(oPessoa.nmsegundo)  +', '+
+                         oPessoa.dsdocumento+', '+
+                         oPessoa.nmprimeiro +', '+
+                         oPessoa.nmsegundo  +', '+
 	                      '(SELECT CURRENT_DATE), '+
-                         QuotedStr(oPessoa.flnatureza) +') ';
+                         oPessoa.flnatureza +') ';
 
     DataModuleWK.WKConnection.ExecSQL(sSQL);
     DataModuleWK.WKConnection.Commit;

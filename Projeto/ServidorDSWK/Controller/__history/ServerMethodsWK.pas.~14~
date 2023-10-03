@@ -14,10 +14,10 @@ type
   private
     { Private declarations }
     procedure PreparePessoa(const IDPessoa : string = ''; const SLimit : String = '');
-    function GetProximoCodigoPessoal: String;
   public
     { Public declarations }
     function GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
+    function InsertPessoa(const oPessoa : TPessoa): TFDJSONDataSets;
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
 
@@ -56,6 +56,12 @@ begin
   TFDJSONDataSetsWriter.ListAdd(Result, DataModuleWK.WKPessoa);
 end;
 
+function TServerMethods_WK.InsertPessoa(
+  const oPessoa: TPessoa): TFDJSONDataSets;
+begin
+
+end;
+
 procedure TServerMethods_WK.PreparePessoa(const IDPessoa : string = ''; const SLimit : String = '');
 var sSQL: string;
 begin
@@ -79,20 +85,17 @@ begin
 end;
 
 procedure TServerMethods_WK.InsertPessoa(const oPessoa: TPessoa);
-var sSQL, sSequencial: string;
+var
+  sSQL: string;
 begin
+
   DataModuleWK.WKConnection.StartTransaction;
   try
-     sSequencial := GetProximoCodigoPessoal;
-     sSQL := 'INSERT INTO PESSOA (idpessoa, dsdocumento, nmprimeiro, nmsegundo, dtregistro, flnatureza) '+
-             ' VALUES ('+sSequencial+', '+
-                         QuotedStr(oPessoa.dsdocumento)+', '+
-                         QuotedStr(oPessoa.nmprimeiro) +', '+
-                         QuotedStr(oPessoa.nmsegundo)  +', '+
-	                      '(SELECT CURRENT_DATE), '+
-                         QuotedStr(oPessoa.flnatureza) +') ';
-
+    sSQL := 'INSERT INTO PESSOA VALUES UPDATE CUSTOMER SET CONTACT_FIRST = ' +
+          QuotedSTR(tabC.FieldByName('CONTACT_FIRST').AsString) +
+          ' WHERE CUST_NO = ' + tabC.FieldByName('CUST_NO').AsString;
     DataModuleWK.WKConnection.ExecSQL(sSQL);
+
     DataModuleWK.WKConnection.Commit;
   except
     on E: Exception do
@@ -101,22 +104,13 @@ begin
       raise Exception.Create('Error Message: ' + E.Message);
     end;
   end;
+
+
+    sSQL := 'UPDATE CUSTOMER SET CONTACT_FIRST = ' +
+          QuotedSTR(tabC.FieldByName('CONTACT_FIRST').AsString) +
+          ' WHERE CUST_NO = ' + tabC.FieldByName('CUST_NO').AsString;
+
 end;
-
-
-function TServerMethods_WK.GetProximoCodigoPessoal: String;
-begin
-  {Recupera o próximo código sequencial para o cadastro de pessoas}
-  try
-    DataModuleWK.WKSequencial.Close;
-    DataModuleWK.WKSequencial.SQL.Text := 'SELECT (COALESCE(MAX(idpessoa),0)+1) AS SEQUENCIAL FROM PESSOA';
-    DataModuleWK.WKSequencial.Open;
-    Result := DataModuleWK.WKSequencial.FieldByName('SEQUENCIAL').AsString;
-  finally
-    DataModuleWK.WKSequencial.Close;
-  end;
-end;
-
 
 end.
 

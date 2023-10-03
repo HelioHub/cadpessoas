@@ -79,7 +79,6 @@ begin
     ObjetoPessoa.CEP.idendereco.dscomplemento:= EComplemento.Text;
     ObjetoPessoa.CEP.idendereco.dsuf         := EUF.Text;
 
-    ClientModuleWKX.InsertPessoa(ObjetoPessoa);
     ObjControle.Salvar(ObjetoPessoa);
   finally
     FreeAndNil(objControle);
@@ -96,7 +95,7 @@ end;
 
 destructor TFDadosPessoa.Destroy;
 begin
-  //FreeAndNil(ObjetoPessoa);
+  FreeAndNil(ObjetoPessoa);
   inherited;
 end;
 
