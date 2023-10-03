@@ -12,6 +12,10 @@ Hélio Marques
 
 ![## Diagrama de Entidade e Relacionamento CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/BD/Modelo.png)
 
+## Telas Principais Desenvolvidas 
+
+![## Diagrama de Entidade e Relacionamento CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/BD/CaraDoSistema.png)
+
 ## Arquitetura do sistema em três camadas
 
 	• Comunicação Rest com JSON entre aplicação Cliente / Servidor
@@ -143,4 +147,5 @@ COMMENT ON DATABASE wkcadpessoas
 		CREATE DOMAIN sexo_full AS char(1) DEFAULT 'M' NOT NULL CHECK ( VALUE IN ('M', 'F'));
         ALTER TABLE pessoa ADD COLUMN flnatureza sexo_full;
 		
-		
+
+
