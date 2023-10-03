@@ -18,7 +18,8 @@ uses
   ClientClassesWK in 'Controller\ClientClassesWK.pas',
   URotinaAPICEP in 'View\URotinaAPICEP.pas' {FRotinaAPICEP},
   UClaCEPAPI in '..\Biblioteca\Model\Classes\UClaCEPAPI.pas',
-  UClaThread in '..\Biblioteca\UClaThread.pas';
+  UClaThread in '..\Biblioteca\UClaThread.pas',
+  URotImpLote in 'View\URotImpLote.pas' {FRotImpLote};
 
 {$R *.res}
 

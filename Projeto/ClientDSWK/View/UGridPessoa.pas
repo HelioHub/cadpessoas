@@ -28,6 +28,7 @@ type
     procedure BBAlterarClick(Sender: TObject);
     procedure DBGViewDblClick(Sender: TObject);
     procedure BBExcluirClick(Sender: TObject);
+    procedure BBImportacaoClick(Sender: TObject);
   private
     procedure pCRUD(pAcao: TAcao);
     { Private declarations }
@@ -42,7 +43,7 @@ implementation
 
 {$R *.dfm}
 
-uses ClientModuleWK, UDadosPessoa;
+uses ClientModuleWK, UDadosPessoa, URotImpLote;
 
 procedure TFGridPessoa.BBAlterarClick(Sender: TObject);
 begin
@@ -62,6 +63,14 @@ procedure TFGridPessoa.BBExcluirClick(Sender: TObject);
 begin
   inherited;
   pCRUD(acExcluir);
+end;
+
+procedure TFGridPessoa.BBImportacaoClick(Sender: TObject);
+var Formulario: TFRotImpLote;
+begin
+  inherited;
+  Formulario := TFRotImpLote.Create(Application);
+  Formulario.ShowModal;
 end;
 
 procedure TFGridPessoa.BBIncluirClick(Sender: TObject);

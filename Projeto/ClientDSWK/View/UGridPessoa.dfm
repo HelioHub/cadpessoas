@@ -30,6 +30,7 @@ inherited FGridPessoa: TFGridPessoa
     end
     inherited BBImportacao: TBitBtn
       Anchors = [akRight]
+      OnClick = BBImportacaoClick
     end
   end
   inherited PRodape: TPanel

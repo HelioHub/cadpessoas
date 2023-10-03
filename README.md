@@ -14,7 +14,7 @@ Hélio Marques
 
 ## Telas Principais Desenvolvidas 
 
-![## Diagrama de Entidade e Relacionamento CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/BD/CaraDoSistema.png)
+![## Documento de Requisitos CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/Requisitos/Sistema.png)
 
 ## Arquitetura do sistema em três camadas
 
