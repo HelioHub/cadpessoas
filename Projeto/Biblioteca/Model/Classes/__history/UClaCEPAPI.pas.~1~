@@ -1,0 +1,27 @@
+unit UClaCEPAPI;
+
+interface
+
+type
+  TCEPAPI = class
+  private
+    fnmlogradouro : String;
+    fnmbairro     : String;
+    fdscomplemento: String;
+    fnmcidade     : String;
+    fdsuf         : String;
+
+    constructor Create;
+    destructor Destroy; override;
+  protected
+  public
+    property nmlogradouro : String  read fnmlogradouro  write fnmlogradouro;
+    property nmbairro     : String  read fnmbairro      write fnmbairro;
+    property dscomplemento: String  read fdscomplemento write fdscomplemento;
+    property nmcidade     : String  read fnmcidade      write fnmcidade;
+    property dsuf         : String  read fdsuf          write fdsuf;
+  end;
+
+implementation
+
+end.

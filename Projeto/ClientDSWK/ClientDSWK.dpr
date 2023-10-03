@@ -15,7 +15,9 @@ uses
   UClaPessoa in '..\Biblioteca\Model\Classes\UClaPessoa.pas',
   UControllerPessoa in '..\Biblioteca\Controller\UControllerPessoa.pas',
   UDAOPessoa in '..\Biblioteca\Model\DAO\UDAOPessoa.pas',
-  ClientClassesWK in 'Controller\ClientClassesWK.pas';
+  ClientClassesWK in 'Controller\ClientClassesWK.pas',
+  URotinaAPICEP in 'View\URotinaAPICEP.pas' {FRotinaAPICEP},
+  UClaCEPAPI in '..\Biblioteca\Model\Classes\UClaCEPAPI.pas';
 
 {$R *.res}
 

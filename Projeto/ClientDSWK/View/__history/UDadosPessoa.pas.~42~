@@ -148,16 +148,16 @@ end;
 procedure TFDadosPessoa.HabilitarControls;
 begin
   //Pessoa
-  EDocumento.ReadOnly  := True;
-  E1Nome.ReadOnly      := True;
-  E2Nome.ReadOnly      := True;
+  EDocumento.ReadOnly  := False;
+  E1Nome.ReadOnly      := False;
+  E2Nome.ReadOnly      := False;
   RGSexo.Enabled       := True;
   //CEP
-  ECEP.ReadOnly        := True;
+  ECEP.ReadOnly        := False;
   BBCEP.Enabled        := True;
-  ENo.ReadOnly         := True;
+  ENo.ReadOnly         := False;
   //Endereço
-  EComplemento.ReadOnly:= True;
+  EComplemento.ReadOnly:= False;
 end;
 
 procedure TFDadosPessoa.DesabilitarControls(pCEP: Boolean = True);
@@ -165,17 +165,17 @@ begin
   //Pessoa
   if pCEP then
   begin
-    EDocumento.ReadOnly  := False;
-    E1Nome.ReadOnly      := False;
-    E2Nome.ReadOnly      := False;
+    EDocumento.ReadOnly  := True;
+    E1Nome.ReadOnly      := True;
+    E2Nome.ReadOnly      := True;
     RGSexo.Enabled       := False;
   end;
   //CEP
-  ECEP.ReadOnly        := False;
+  ECEP.ReadOnly        := True;
   BBCEP.Enabled        := False;
-  ENo.ReadOnly         := False;
+  ENo.ReadOnly         := True;
   //Endereço
-  EComplemento.ReadOnly:= False;
+  EComplemento.ReadOnly:= True;
 end;
 
 end.

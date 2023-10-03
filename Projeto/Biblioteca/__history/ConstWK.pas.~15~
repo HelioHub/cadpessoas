@@ -3,7 +3,8 @@ unit ConstWK;
 interface
 
 type
-  TAcao = (tacIncluir, tacAlterar, tacExcluir, tacConsultar);
+  TAcao = (acIncluir, acAlterar, acExcluir, acConsultar);
+  TSexo = (M, F);
 
 const
   curlWK = 'https://wktechnology.com.br/';
@@ -17,6 +18,7 @@ const
   cUFPadrao = 'CE';
   cAcaoAlterar = 'Alterar';
   cAcaoIncluir = 'Incluir';
+  cAcaoExcluir = 'Excluir';
   cSexoM = 'M';
   cSexoF = 'F';
 

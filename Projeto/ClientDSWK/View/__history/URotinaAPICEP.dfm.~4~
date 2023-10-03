@@ -1,0 +1,82 @@
+object FRotinaAPICEP: TFRotinaAPICEP
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'API via CEP'
+  ClientHeight = 525
+  ClientWidth = 645
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 16
+  object LCEP: TLabel
+    Left = 16
+    Top = 3
+    Width = 27
+    Height = 16
+    Caption = 'CEP:'
+  end
+  object LJSON: TLabel
+    Left = 168
+    Top = 3
+    Width = 81
+    Height = 16
+    Caption = 'JSON retorno:'
+  end
+  object ECEP: TEdit
+    Left = 16
+    Top = 22
+    Width = 121
+    Height = 24
+    TabOrder = 0
+  end
+  object BBPesquisar: TBitBtn
+    Left = 16
+    Top = 52
+    Width = 121
+    Height = 25
+    Caption = 'Pesquisar'
+    TabOrder = 1
+    OnClick = BBPesquisarClick
+  end
+  object BBOK: TBitBtn
+    Left = 16
+    Top = 82
+    Width = 121
+    Height = 25
+    Caption = 'Levar p/ Cadastro'
+    TabOrder = 2
+  end
+  object MJSON: TMemo
+    Left = 168
+    Top = 22
+    Width = 469
+    Height = 483
+    TabOrder = 3
+  end
+  object RESTClient1: TRESTClient
+    Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Params = <>
+    HandleRedirects = True
+    Left = 40
+    Top = 160
+  end
+  object RESTRequest1: TRESTRequest
+    Client = RESTClient1
+    Params = <>
+    Response = RESTResponse1
+    SynchronizedEvents = False
+    Left = 40
+    Top = 208
+  end
+  object RESTResponse1: TRESTResponse
+    Left = 40
+    Top = 264
+  end
+end

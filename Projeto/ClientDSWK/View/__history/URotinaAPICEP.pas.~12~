@@ -1,0 +1,103 @@
+unit URotinaAPICEP;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, IPPeerClient,
+  REST.Client, Data.Bind.Components, Data.Bind.ObjectScope, JSON, Rest.JSON;
+
+type
+  TFRotinaAPICEP = class(TForm)
+    ECEP: TEdit;
+    BBPesquisar: TBitBtn;
+    BBLevar: TBitBtn;
+    MJSON: TMemo;
+    LCEP: TLabel;
+    LJSON: TLabel;
+    RESTClient1: TRESTClient;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
+    LLogradouro: TLabel;
+    LComplemento: TLabel;
+    LBairro: TLabel;
+    LCidade: TLabel;
+    LUF: TLabel;
+    ELogradouro: TEdit;
+    EComplemento: TEdit;
+    EBairro: TEdit;
+    ECidade: TEdit;
+    EUF: TEdit;
+    procedure BBPesquisarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+Const cURL1  = 'viacep.com.br/ws/_numero_CEP/json/';
+      cURLP1 = 'viacep.com.br/ws/';
+      cURLP2 = '/json/';
+var
+  FRotinaAPICEP: TFRotinaAPICEP;
+
+implementation
+
+{$R *.dfm}
+
+uses ConstWK, UClaCEPAPI;
+
+procedure TFRotinaAPICEP.BBPesquisarClick(Sender: TObject);
+var JSON : String;
+    ArrayJson : TJSONArray;
+    i : Integer;
+    CEPApi : TCEPAPI;
+begin
+  RESTClient1.BaseURL := cURLP1+ECEP.Text+cURLP2;
+  RESTRequest1.Execute;
+
+  MJSON.Lines.Clear;
+  MJSON.Lines.Add(RESTRequest1.Response.JSONValue.ToString);
+  JSON := MJSON.Text;
+
+  ELogradouro.Clear;
+  EComplemento.Clear;
+  EBairro.Clear;
+  ECidade.Clear;
+  EUF.Clear;
+
+  CEPApi := TJson.TJSonToObject<TCEPAPI>(Trim(JSON));
+  Try
+    ELogradouro.Text  := CEPApi.logradouro;
+    EComplemento.Text := CEPApi.complemento;
+    EBairro.Text      := CEPApi.bairro;
+    ECidade.Text      := CEPApi.cidade;
+    EUF.Text          := CEPApi.uf;
+  Finally
+    CEPApi.Free;
+  End;
+
+  {
+  //Implementação para pegar vários elementos, refatorar depois e colocar no Classe POO...
+  ArrayJson := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(JSON), 0) as TJSONArray;
+  for i := 0 to ArrayJson.Size - 1 do
+  begin
+    ELogradouro.Text := ArrayJson.Get(i).GetValue<string>('logradouro'), '').ToString;
+    {
+    EComplemento.Clear;
+    EBairro.Clear;
+    ECidade.Clear;
+    EUF.Clear;
+  end;
+
+  ArrayJson.DisposeOf;
+  }
+end;
+
+procedure TFRotinaAPICEP.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := CaFree;
+end;
+
+end.

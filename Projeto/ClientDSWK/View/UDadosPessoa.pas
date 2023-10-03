@@ -34,6 +34,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BBGravarClick(Sender: TObject);
+    procedure BBCEPClick(Sender: TObject);
   private
     { Private declarations }
     procedure HabilitarControls;
@@ -52,9 +53,27 @@ implementation
 
 {$R *.dfm}
 
-uses ConstWK, UControllerPessoa, ClientModuleWK;
+uses ConstWK, UControllerPessoa, ClientModuleWK, URotinaAPICEP;
 
 { TFDadosPessoa }
+
+procedure TFDadosPessoa.BBCEPClick(Sender: TObject);
+var Formulario: TFRotinaAPICEP;
+begin
+  inherited;
+  Formulario := TFRotinaAPICEP.Create(Application);
+  Formulario.ECEP.Text := ECEP.Text;
+  Formulario.BBPesquisar.Click;
+  Formulario.ShowModal;
+  begin
+     ELogradouro.Text := Formulario.ELogradouro.Text;
+     ECidade.Text     := Formulario.ECidade.Text;
+     EBairro.Text     := Formulario.EBairro.Text;
+     EComplemento.Text:= Formulario.EComplemento.Text;
+     EUF.Text         := Formulario.EUF.Text;
+  end;
+  Formulario.Destroy;
+end;
 
 procedure TFDadosPessoa.BBGravarClick(Sender: TObject);
 begin
@@ -127,7 +146,7 @@ begin
     if ObjetoPessoa.acao = acExcluir then
     begin
       DesabilitarControls;
-      Self.Caption := Self.Caption + ' - ' + cAcaoAlterar
+      Self.Caption := Self.Caption + ' - ' + cAcaoExcluir;
     end
     else
     begin

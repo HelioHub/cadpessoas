@@ -37,7 +37,7 @@ type
   private
     { Private declarations }
     procedure HabilitarControls;
-    procedure DesabilitarControls(pCEP: Boolean = False);
+    procedure DesabilitarControls(pCEP: Boolean = True);
 
     destructor Destroy; override;
   public
@@ -127,11 +127,11 @@ begin
     if ObjetoPessoa.acao = acExcluir then
     begin
       DesabilitarControls;
-      Self.Caption := Self.Caption + ' - ' + cAcaoAlterar
+      Self.Caption := Self.Caption + ' - ' + cAcaoExcluir;
     end
     else
     begin
-      DesabilitarControls(True);
+      DesabilitarControls(False);
       Self.Caption := Self.Caption + ' - ' + cAcaoAlterar;
       //Em Desenvolvimento:
       Beep;
@@ -148,34 +148,34 @@ end;
 procedure TFDadosPessoa.HabilitarControls;
 begin
   //Pessoa
-  EDocumento.ReadOnly  := True;
-  E1Nome.ReadOnly      := True;
-  E2Nome.ReadOnly      := True;
-  RGSexo.Enabled       := True;
-  //CEP
-  ECEP.ReadOnly        := True;
-  BBCEP.Enabled        := True;
-  ENo.ReadOnly         := True;
-  //Endereço
-  EComplemento.ReadOnly:= True;
-end;
-
-procedure TFDadosPessoa.DesabilitarControls(pCEP: Boolean = False);
-begin
-  //Pessoa
   EDocumento.ReadOnly  := False;
   E1Nome.ReadOnly      := False;
   E2Nome.ReadOnly      := False;
-  RGSexo.Enabled       := False;
+  RGSexo.Enabled       := True;
+  //CEP
+  ECEP.ReadOnly        := False;
+  BBCEP.Enabled        := True;
+  ENo.ReadOnly         := False;
+  //Endereço
+  EComplemento.ReadOnly:= False;
+end;
+
+procedure TFDadosPessoa.DesabilitarControls(pCEP: Boolean = True);
+begin
+  //Pessoa
   if pCEP then
   begin
-    //CEP
-    ECEP.ReadOnly        := False;
-    BBCEP.Enabled        := False;
-    ENo.ReadOnly         := False;
-    //Endereço
-    EComplemento.ReadOnly:= False;
+    EDocumento.ReadOnly  := True;
+    E1Nome.ReadOnly      := True;
+    E2Nome.ReadOnly      := True;
+    RGSexo.Enabled       := False;
   end;
+  //CEP
+  ECEP.ReadOnly        := True;
+  BBCEP.Enabled        := False;
+  ENo.ReadOnly         := True;
+  //Endereço
+  EComplemento.ReadOnly:= True;
 end;
 
 end.

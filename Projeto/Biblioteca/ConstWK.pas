@@ -21,6 +21,7 @@ const
   cAcaoExcluir = 'Excluir';
   cSexoM = 'M';
   cSexoF = 'F';
+  Empty = '';
 
 implementation
 

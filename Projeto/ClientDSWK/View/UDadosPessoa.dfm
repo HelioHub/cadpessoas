@@ -31,8 +31,6 @@ inherited FDadosPessoa: TFDadosPessoa
   inherited PDados: TPanel
     Width = 766
     Height = 352
-    ExplicitLeft = 0
-    ExplicitTop = 0
     ExplicitWidth = 766
     ExplicitHeight = 352
     object LDocumento: TLabel
@@ -228,6 +226,7 @@ inherited FDadosPessoa: TFDadosPessoa
       Font.Style = []
       ParentFont = False
       TabOrder = 5
+      OnClick = BBCEPClick
     end
     object ELogradouro: TEdit
       Left = 82
