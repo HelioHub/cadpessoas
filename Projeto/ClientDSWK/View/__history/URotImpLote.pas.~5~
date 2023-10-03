@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtDlgs;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons;
 
 type
   TFRotImpLote = class(TForm)
@@ -12,11 +12,7 @@ type
     BBImportar: TBitBtn;
     LCaption: TLabel;
     LLayout: TLabel;
-    OTFDLer: TOpenTextFileDialog;
-    BBLer: TBitBtn;
-    EArquivo: TEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure BBLerClick(Sender: TObject);
   private
     { Private declarations }
     procedure ImportaCSV(pNomeArquivo : String);
@@ -30,13 +26,6 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TFRotImpLote.BBLerClick(Sender: TObject);
-begin
-  OTFDLer.Execute;
-  EArquivo.Text := OTFDLer.FileName;
-  ImportaCSV(EArquivo.Text);
-end;
 
 procedure TFRotImpLote.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -67,8 +56,7 @@ var
   end;
 
 begin
-  AssignFile(ArquivoCSV, pNomeArquivo);
-  MArquivo.Lines.Clear;
+  AssignFile(ArquivoCSV, 'c:\Nome_do_Arquivo');
 
   try
     Reset(ArquivoCSV);
@@ -79,16 +67,14 @@ begin
     begin
       i := 0;
 
-      {  A Idéia é importar todas as linhas do Arquivo CSV para um ClientDataSet e
-         mandar para o SERVIDOR DATASNAP e lá de controle de transação e em uma Thread operar com performance.
-      cds.Append;
-      cds.AsString   := MontaValor;
-      cds.AsString   := AnsiUpperCase(MontaValor);
-      cds.AsFloat    := StrToFloat(MontaValor);
-      cds.AsCurrency := StrToCurr(MontaValor);
-      cds.Post;
+      {
+      cdsItensDoPedido.Append;
+      cdsItensDoPedidoCodigoProduto.AsString := MontaValor;
+      cdsItensDoPedidoNomeDoProduto.AsString := AnsiUpperCase(MontaValor);
+      cdsItensDoPedidoQuantidade.AsFloat := StrToFloat(MontaValor);
+      cdsItensDoPedidoPreco.AsCurrency := StrToCurr(MontaValor);
+      cdsItensDoPedido.Post;
       }
-      MArquivo.Lines.Add(Linha);
 
       Readln(ArquivoCSV, Linha);
       Contador := Contador + 1;

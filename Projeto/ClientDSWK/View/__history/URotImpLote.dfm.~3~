@@ -31,11 +31,11 @@ object FRotImpLote: TFRotImpLote
     ParentFont = False
   end
   object LLayout: TLabel
-    Left = 139
-    Top = 8
-    Width = 408
+    Left = 24
+    Top = 37
+    Width = 354
     Height = 16
-    Caption = 'Documento;PrimeiroNome;SegundoNome;Natureza;CEP;Numero'
+    Caption = 'Documento;PrimeiroNome;SegundoNome;Natureza;CEP'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
     Font.Height = -13
@@ -64,33 +64,5 @@ object FRotImpLote: TFRotImpLote
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
-  end
-  object BBLer: TBitBtn
-    Left = 8
-    Top = 30
-    Width = 153
-    Height = 35
-    Caption = 'Ler arquivo CSV'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 2
-    OnClick = BBLerClick
-  end
-  object EArquivo: TEdit
-    Left = 167
-    Top = 36
-    Width = 639
-    Height = 24
-    ReadOnly = True
-    TabOrder = 3
-  end
-  object OTFDLer: TOpenTextFileDialog
-    Filter = '*.csv'
-    Left = 568
-    Top = 32
   end
 end

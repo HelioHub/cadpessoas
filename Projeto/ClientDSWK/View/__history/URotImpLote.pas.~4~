@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtDlgs;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons;
 
 type
   TFRotImpLote = class(TForm)
@@ -12,11 +12,7 @@ type
     BBImportar: TBitBtn;
     LCaption: TLabel;
     LLayout: TLabel;
-    OTFDLer: TOpenTextFileDialog;
-    BBLer: TBitBtn;
-    EArquivo: TEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure BBLerClick(Sender: TObject);
   private
     { Private declarations }
     procedure ImportaCSV(pNomeArquivo : String);
@@ -31,13 +27,6 @@ implementation
 
 {$R *.dfm}
 
-procedure TFRotImpLote.BBLerClick(Sender: TObject);
-begin
-  OTFDLer.Execute;
-  EArquivo.Text := OTFDLer.FileName;
-  ImportaCSV(EArquivo.Text);
-end;
-
 procedure TFRotImpLote.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := CaFree;
@@ -46,7 +35,7 @@ end;
 procedure TFRotImpLote.ImportaCSV(pNomeArquivo : String);
 var
   ArquivoCSV: TextFile;
-  Contador, i: Integer;
+  Contador, I: Integer;
   Linha: String;
 
   // Lê Linha e Monta os valores
@@ -56,19 +45,19 @@ var
   begin
     ValorMontado := '';
     inc(I);
-    While Linha[i] >= ' ' do
+    While Linha[I] >= ' ' do
     begin
-      If Linha[i] = ';' then
+      If Linha[I] = ';' then
         break;
       ValorMontado := ValorMontado + Linha[I];
-      inc(i);
+      inc(I);
     end;
     result := ValorMontado;
   end;
 
 begin
-  AssignFile(ArquivoCSV, pNomeArquivo);
-  MArquivo.Lines.Clear;
+  // Carregando o arquivo ...
+  AssignFile(ArquivoCSV, 'c:\Nome_do_Arquivo');
 
   try
     Reset(ArquivoCSV);
@@ -77,18 +66,26 @@ begin
 
     while not Eoln(ArquivoCSV) do
     begin
-      i := 0;
+      if Contador = 1 then // Primeira Linha do arquivo (Pedido);
+      begin
+        I := 0;
+        cdsPedido.Append;
+        cdsPedidoCodigoCliente.AsString := MontaValor;
+        cdsPedidoNomeDoCliente.AsString := MontaValor;
+        cdsPedido.Post;
+      end
+      else
+      begin
+        // Demais Linhas (Itens do Pedido )
+        I := 0;
 
-      {  A Idéia é importar todas as linhas do Arquivo CSV para um ClientDataSet e
-         mandar para o SERVIDOR DATASNAP e lá de controle de transação e em uma Thread operar com performance.
-      cds.Append;
-      cds.AsString   := MontaValor;
-      cds.AsString   := AnsiUpperCase(MontaValor);
-      cds.AsFloat    := StrToFloat(MontaValor);
-      cds.AsCurrency := StrToCurr(MontaValor);
-      cds.Post;
-      }
-      MArquivo.Lines.Add(Linha);
+        cdsItensDoPedido.Append;
+        cdsItensDoPedidoCodigoProduto.AsString := MontaValor;
+        cdsItensDoPedidoNomeDoProduto.AsString := AnsiUpperCase(MontaValor);
+        cdsItensDoPedidoQuantidade.AsFloat := StrToFloat(MontaValor);
+        cdsItensDoPedidoPreco.AsCurrency := StrToCurr(MontaValor);
+        cdsItensDoPedido.Post;
+      end;
 
       Readln(ArquivoCSV, Linha);
       Contador := Contador + 1;

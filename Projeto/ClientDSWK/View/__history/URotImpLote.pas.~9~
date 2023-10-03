@@ -33,8 +33,7 @@ implementation
 
 procedure TFRotImpLote.BBLerClick(Sender: TObject);
 begin
-  OTFDLer.Execute;
-  EArquivo.Text := OTFDLer.FileName;
+  EArquivo.Text := OTFDLer.Execute();
   ImportaCSV(EArquivo.Text);
 end;
 

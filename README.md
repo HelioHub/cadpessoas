@@ -147,5 +147,7 @@ COMMENT ON DATABASE wkcadpessoas
 		CREATE DOMAIN sexo_full AS char(1) DEFAULT 'M' NOT NULL CHECK ( VALUE IN ('M', 'F'));
         ALTER TABLE pessoa ADD COLUMN flnatureza sexo_full;
 		
+## Insert em Lote
 
+![## Documento de Requisitos CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/Requisitos/InsertLote.png)
 

@@ -33,8 +33,7 @@ implementation
 
 procedure TFRotImpLote.BBLerClick(Sender: TObject);
 begin
-  OTFDLer.Execute;
-  EArquivo.Text := OTFDLer.FileName;
+  EArquivo.Text := OTFDLer.Execute();
   ImportaCSV(EArquivo.Text);
 end;
 
@@ -82,9 +81,9 @@ begin
       {  A Idéia é importar todas as linhas do Arquivo CSV para um ClientDataSet e
          mandar para o SERVIDOR DATASNAP e lá de controle de transação e em uma Thread operar com performance.
       cds.Append;
-      cds.AsString   := MontaValor;
-      cds.AsString   := AnsiUpperCase(MontaValor);
-      cds.AsFloat    := StrToFloat(MontaValor);
+      cds.AsString := MontaValor;
+      cds.AsString := AnsiUpperCase(MontaValor);
+      cds.AsFloat := StrToFloat(MontaValor);
       cds.AsCurrency := StrToCurr(MontaValor);
       cds.Post;
       }
