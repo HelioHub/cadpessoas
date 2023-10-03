@@ -1,0 +1,39 @@
+unit UClaThread;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UDadosBase, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.ExtCtrls, UClaPessoa;
+
+type
+  TProcesso = class(TThread)
+  private
+    FMemo : TMemo;
+    FAux : String;
+  public
+    procedure Execute; override;
+    procedure Sincronizar;
+end;
+
+implementation
+
+procedure TProcesso.Execute;
+var I : Integer;
+begin
+  inherited;
+  for I := 0 to 1000 do
+  begin
+    FAux := 'Valor = ' + I.ToString;
+    Self.Queue(Self.Sincronizar);
+  end;
+end;
+
+procedure TProcesso.Sincronizar;
+begin
+  FMemo.Lines.Add(FAux);
+end;
+
+end.
+

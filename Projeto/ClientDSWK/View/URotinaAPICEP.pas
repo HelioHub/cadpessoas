@@ -31,6 +31,7 @@ type
     procedure BBPesquisarClick(Sender: TObject);
     procedure BBLevarClick(Sender: TObject);
   private
+    procedure BBPesquisaCEP;
     { Private declarations }
   public
     { Public declarations }
@@ -54,6 +55,11 @@ begin
 end;
 
 procedure TFRotinaAPICEP.BBPesquisarClick(Sender: TObject);
+begin
+  TThread.CreateAnonymousThread(BBPesquisaCEP).Start;
+end;
+
+procedure TFRotinaAPICEP.BBPesquisaCEP;
 var JSON : String;
     CEPApi : TCEPAPI;
 begin

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, IPPeerClient,
-  REST.Client, Data.Bind.Components, Data.Bind.ObjectScope, JSON;
+  REST.Client, Data.Bind.Components, Data.Bind.ObjectScope, Rest.JSON, System.Json;
 
 type
   TFRotinaAPICEP = class(TForm)
@@ -29,7 +29,7 @@ type
     ECidade: TEdit;
     EUF: TEdit;
     procedure BBPesquisarClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure BBLevarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -46,45 +46,56 @@ implementation
 
 {$R *.dfm}
 
-uses ConstWK;
+uses ConstWK, UClaCEPAPI;
+
+procedure TFRotinaAPICEP.BBLevarClick(Sender: TObject);
+begin
+  Close;
+end;
 
 procedure TFRotinaAPICEP.BBPesquisarClick(Sender: TObject);
 var JSON : String;
-    ArrayJson : TJSONArray;
-    i : Integer;
+    CEPApi : TCEPAPI;
 begin
+  if Trim(ECEP.Text) = Empty then
+  begin
+    beep;
+    ShowMessage('Atenção!!'+cEOL+'Necessário informar o CEP.');
+    ECEP.SetFocus;
+    Exit;
+  end;
+
   RESTClient1.BaseURL := cURLP1+ECEP.Text+cURLP2;
   RESTRequest1.Execute;
 
   MJSON.Lines.Clear;
-  MJSON.Lines.Add(RESTRequest1.Response.JSONValue.ToString);
-
-  JSON := MJSON.Lines.Text;
-
   ELogradouro.Clear;
   EComplemento.Clear;
   EBairro.Clear;
   ECidade.Clear;
   EUF.Clear;
 
-  //Implementação para pegar vários elementos, refatorar depois e colocar no Classe POO...
-  ArrayJson := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(JSON), 0) as TJSONArray;
-  for i := 0 to ArrayJson.Size - 1 do
-  begin
-    ELogradouro.Text := ArrayJson.Get(i).GetValue<string>('logradouro'), '').ToString;
-    {
-    EComplemento.Clear;
-    EBairro.Clear;
-    ECidade.Clear;
-    EUF.Clear;}
+  try
+    MJSON.Lines.Add(RESTRequest1.Response.JSONValue.ToString);
+    JSON := MJSON.Text;
+    CEPApi := TJson.JsonToObject<TCEPAPI>(Trim(JSON));
+    Try
+      ELogradouro.Text  := CEPApi.logradouro;
+      EComplemento.Text := CEPApi.complemento;
+      EBairro.Text      := CEPApi.bairro;
+      ECidade.Text      := CEPApi.localidade;
+      EUF.Text          := CEPApi.uf;
+    Finally
+      CEPApi.Free;
+    End;
+  except
+    begin
+      Beep;
+      ShowMessage('Não foi possível conexão com a API! '+cEOL+
+                  '1.Verifique a conexão da internet;'+cEOL+
+                  '2.Verifique o código do CEP.');
+    end;
   end;
-
-  ArrayJson.DisposeOf;
-end;
-
-procedure TFRotinaAPICEP.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  Action := CaFree;
 end;
 
 end.
