@@ -33,6 +33,7 @@ type
     EUF: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure BBSairClick(Sender: TObject);
     procedure BBGravarClick(Sender: TObject);
   private
     { Private declarations }
@@ -55,11 +56,12 @@ uses ConstWK, UControllerPessoa, ClientModuleWK;
 { TFDadosPessoa }
 
 procedure TFDadosPessoa.BBGravarClick(Sender: TObject);
+var objControle: TControllerPessoa;
 begin
   inherited;
 
+  objControle := TControllerPessoa.Create;
   try
-    //Pessoa
     ObjetoPessoa.dsdocumento := EDocumento.Text;
     ObjetoPessoa.nmprimeiro  := E1Nome.Text;
     ObjetoPessoa.nmsegundo   := E2Nome.Text;
@@ -68,10 +70,10 @@ begin
       ObjetoPessoa.flnatureza := cSexoF
     else
       ObjetoPessoa.flnatureza := cSexoM;
-    //CEP
+
     ObjetoPessoa.CEP.dscep   := ECEP.Text;
     ObjetoPessoa.CEP.dsnumero:= StrToIntDef(ENo.Text,0);
-    //Endereço
+
     ObjetoPessoa.CEP.idendereco.nmlogradouro := ELogradouro.Text;
     ObjetoPessoa.CEP.idendereco.nmbairro     := EBairro.Text;
     ObjetoPessoa.CEP.idendereco.nmcidade     := ECidade.Text;
@@ -79,9 +81,18 @@ begin
     ObjetoPessoa.CEP.idendereco.dsuf         := EUF.Text;
 
     ClientModuleWKX.InsertPessoa(ObjetoPessoa);
+    ObjControle.Salvar(ObjetoPessoa);
   finally
-    Close;
+    FreeAndNil(objControle);
   end;
+
+  Close;
+end;
+
+procedure TFDadosPessoa.BBSairClick(Sender: TObject);
+begin
+  inherited;
+  Close;
 end;
 
 destructor TFDadosPessoa.Destroy;
@@ -101,7 +112,6 @@ begin
   inherited;
   if ObjetoPessoa.acao = acAlterar then
   begin
-    //Pessoa
     EDocumento.Text    := ObjetoPessoa.dsdocumento;
     E1Nome.Text        := ObjetoPessoa.nmprimeiro;
     E2Nome.Text        := ObjetoPessoa.nmsegundo;
@@ -109,10 +119,10 @@ begin
       RGSexo.ItemIndex := Integer(TSexo.M)
     else
       RGSexo.ItemIndex := Integer(TSexo.F);
-    //CEP
+
     ECEP.Text          := ObjetoPessoa.CEP.dscep;
     ENo.Text           := IntToStr(ObjetoPessoa.CEP.dsnumero);
-    //Endereço
+
     ELogradouro.Text   := ObjetoPessoa.CEP.idendereco.nmlogradouro;
     EBairro.Text       := ObjetoPessoa.CEP.idendereco.nmbairro;
     ECidade.Text       := ObjetoPessoa.CEP.idendereco.nmcidade;

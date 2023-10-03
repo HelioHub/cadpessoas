@@ -54,10 +54,10 @@ type
     fflnatureza  : string;
     fCEP         : TCEP;
 
+    destructor Destroy; override;
   protected
   public
     constructor Create;
-    destructor Destroy; override;
 
     property acao        : TAcao     read facao        write facao;
     property idpessoa    : integer   read fidpessoa    write fidpessoa;
@@ -93,6 +93,7 @@ end;
 
 destructor TCEP.Destroy;
 begin
+  idendereco.Free;
   inherited;
 end;
 
@@ -105,7 +106,6 @@ end;
 
 destructor TPessoa.Destroy;
 begin
-  CEP.idendereco.Free;
   CEP.Free;
   inherited;
 end;

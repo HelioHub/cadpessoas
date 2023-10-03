@@ -7,8 +7,7 @@ uses
   Datasnap.DSClientRest, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.StorageBin, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, FireDAC.Stan.StorageJSON, Data.FireDACJSONReflect, Rest.JSON, System.JSON,
-  ConstWK, UClaPessoa;
+  FireDAC.Comp.Client, FireDAC.Stan.StorageJSON, Data.FireDACJSONReflect, ConstWK, UClaPessoa;
 
 type
   TClientModuleWKX = class(TDataModule)
@@ -29,7 +28,6 @@ type
     PessoaMemTablenmlogradouro: TWideStringField;
     PessoaMemTabledscomplemento: TWideStringField;
     PessoaMemTabledtregistro: TDateField;
-    PessoaMemTableidendereco: TLargeintField;
   private
     FInstanceOwner: Boolean;
     FServerMethods1Client: TServerMethods_WKClient;
@@ -75,12 +73,19 @@ begin
 end;
 
 procedure TClientModuleWKX.InsertPessoa(oObjectPessoa: TPessoa);
-var jObjectPessoa : TJSONObject;
+var Delta: TFDJSONDeltas;
 begin
-  jObjectPessoa := TJson.ObjectToJsonObject(oObjectPessoa);
-  ServerMethods1Client.PersistenciaPessoa(jObjectPessoa);
-end;
+  Delta := TFDJSONDeltas.Create;
+  TFDJSONDeltasWriter.ListAdd(Delta, oObjectPessoa);
 
+  ServerMethods1Client.InsertPessoa(Delta);
+end;
+{
+procedure TClientModuleWKX.InsertPessoa(oObjectPessoa: TPessoa);
+begin
+  ServerMethods1Client.InsertPessoa(oObjectPessoa);
+end;
+}
 procedure TClientModuleWKX.LoadPessoa(const IDPessoa: string; const SLimit: string);
 var LDataSetList: TFDJSONDataSets;
 begin

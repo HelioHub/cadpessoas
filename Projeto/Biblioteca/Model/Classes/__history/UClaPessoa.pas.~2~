@@ -15,7 +15,6 @@ type
     fdsuf         : String;
 
     constructor Create;
-    destructor Destroy; override;
   protected
   public
     property idendereco   : integer read fidendereco    write fidendereco;
@@ -54,11 +53,10 @@ type
     fflnatureza  : string;
     fCEP         : TCEP;
 
-  protected
-  public
     constructor Create;
     destructor Destroy; override;
-
+  protected
+  public
     property acao        : TAcao     read facao        write facao;
     property idpessoa    : integer   read fidpessoa    write fidpessoa;
     property dsdocumento : string    read fdsdocumento write fdsdocumento;
@@ -79,16 +77,10 @@ begin
   dsuf := cUFPadrao;
 end;
 
-destructor TEndereco.Destroy;
-begin
-  inherited;
-end;
-
 { TCEP }
 
 constructor TCEP.Create;
 begin
-  idendereco := TEndereco.Create;
 end;
 
 destructor TCEP.Destroy;
@@ -100,13 +92,10 @@ end;
 
 constructor TPessoa.Create;
 begin
-  CEP := TCEP.Create;
 end;
 
 destructor TPessoa.Destroy;
 begin
-  CEP.idendereco.Free;
-  CEP.Free;
   inherited;
 end;
 

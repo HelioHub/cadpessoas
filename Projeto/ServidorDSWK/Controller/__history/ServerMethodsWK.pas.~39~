@@ -24,11 +24,10 @@ type
     procedure DeletePessoa(const jObjectPessoa: TJSONObject);
   public
     { Public declarations }
-    function GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
+    function GetPessoaX(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
-
-    procedure PersistenciaPessoa(const jObjectPessoa: TJSONObject);
+    procedure PersistenciaPessoa(const jObjectPessoa: TJSONObject; pAcao: TAcao);
   end;
 {$METHODINFO OFF}
 
@@ -55,7 +54,7 @@ begin
   Result := Value;
 end;
 
-function TServerMethods_WK.GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
+function TServerMethods_WK.GetPessoaX(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
 begin
   PreparePessoa(IDPessoa, SLimit);
 
@@ -111,17 +110,13 @@ begin
   end;
 end;
 
-procedure TServerMethods_WK.PersistenciaPessoa(const jObjectPessoa: TJSONObject);
+procedure TServerMethods_WK.PersistenciaPessoa(const jObjectPessoa: TJSONObject; pAcao: TAcao);
 begin
-  InsertPessoa(jObjectPessoa);
-{
-  pAcao := TAcao.acIncluir;
   case pAcao of
      acIncluir: InsertPessoa(jObjectPessoa);
      acAlterar: UpdatePessoa(jObjectPessoa);
      acExcluir: DeletePessoa(jObjectPessoa);
   end;
-}
 end;
 
 procedure TServerMethods_WK.InsertPessoa(const jObjectPessoa: TJSONObject);

@@ -27,8 +27,7 @@ type
     function GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
-
-    procedure PersistenciaPessoa(const jObjectPessoa: TJSONObject);
+    procedure PersistenciaPessoa(const jObjectPessoa: TJSONObject; pAcao: TAcao);
   end;
 {$METHODINFO OFF}
 
@@ -111,17 +110,13 @@ begin
   end;
 end;
 
-procedure TServerMethods_WK.PersistenciaPessoa(const jObjectPessoa: TJSONObject);
+procedure TServerMethods_WK.PersistenciaPessoa(const jObjectPessoa: TJSONObject; pAcao: TAcao);
 begin
-  InsertPessoa(jObjectPessoa);
-{
-  pAcao := TAcao.acIncluir;
   case pAcao of
      acIncluir: InsertPessoa(jObjectPessoa);
      acAlterar: UpdatePessoa(jObjectPessoa);
      acExcluir: DeletePessoa(jObjectPessoa);
   end;
-}
 end;
 
 procedure TServerMethods_WK.InsertPessoa(const jObjectPessoa: TJSONObject);

@@ -101,7 +101,6 @@ begin
   inherited;
   if ObjetoPessoa.acao = acAlterar then
   begin
-    //Pessoa
     EDocumento.Text    := ObjetoPessoa.dsdocumento;
     E1Nome.Text        := ObjetoPessoa.nmprimeiro;
     E2Nome.Text        := ObjetoPessoa.nmsegundo;
@@ -109,10 +108,10 @@ begin
       RGSexo.ItemIndex := Integer(TSexo.M)
     else
       RGSexo.ItemIndex := Integer(TSexo.F);
-    //CEP
+
     ECEP.Text          := ObjetoPessoa.CEP.dscep;
     ENo.Text           := IntToStr(ObjetoPessoa.CEP.dsnumero);
-    //Endereço
+
     ELogradouro.Text   := ObjetoPessoa.CEP.idendereco.nmlogradouro;
     EBairro.Text       := ObjetoPessoa.CEP.idendereco.nmbairro;
     ECidade.Text       := ObjetoPessoa.CEP.idendereco.nmcidade;

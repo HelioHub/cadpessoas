@@ -1,6 +1,6 @@
 //
 // Created by the DataSnap proxy generator.
-// 03/10/2023 12:31:34
+// 03/10/2023 09:27:58
 //
 
 unit ClientClassesWK;
@@ -19,7 +19,7 @@ type
     FGetPessoaCommand_Cache: TDSRestCommand;
     FEchoStringCommand: TDSRestCommand;
     FReverseStringCommand: TDSRestCommand;
-    FPersistenciaPessoaCommand: TDSRestCommand;
+    FInsertPessoaCommand: TDSRestCommand;
   public
     constructor Create(ARestConnection: TDSRestConnection); overload;
     constructor Create(ARestConnection: TDSRestConnection; AInstanceOwner: Boolean); overload;
@@ -28,7 +28,7 @@ type
     function GetPessoa_Cache(IDPessoa: string; SLimit: string; const ARequestFilter: string = ''): IDSRestCachedTFDJSONDataSets;
     function EchoString(Value: string; const ARequestFilter: string = ''): string;
     function ReverseString(Value: string; const ARequestFilter: string = ''): string;
-    procedure PersistenciaPessoa(jObjectPessoa: TJSONObject);
+    procedure InsertPessoa(jObjectPessoa: TJSONObject);
   end;
 
   IDSRestCachedTFDJSONDataSets = interface(IDSRestCachedObject<TFDJSONDataSets>)
@@ -64,7 +64,7 @@ const
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
   );
 
-  TServerMethods_WK_PersistenciaPessoa: array [0..0] of TDSRestParameterMetaData =
+  TServerMethods_WK_InsertPessoa: array [0..0] of TDSRestParameterMetaData =
   (
     (Name: 'jObjectPessoa'; Direction: 1; DBXType: 37; TypeName: 'TJSONObject')
   );
@@ -141,17 +141,17 @@ begin
   Result := FReverseStringCommand.Parameters[1].Value.GetWideString;
 end;
 
-procedure TServerMethods_WKClient.PersistenciaPessoa(jObjectPessoa: TJSONObject);
+procedure TServerMethods_WKClient.InsertPessoa(jObjectPessoa: TJSONObject);
 begin
-  if FPersistenciaPessoaCommand = nil then
+  if FInsertPessoaCommand = nil then
   begin
-    FPersistenciaPessoaCommand := FConnection.CreateCommand;
-    FPersistenciaPessoaCommand.RequestType := 'POST';
-    FPersistenciaPessoaCommand.Text := 'TServerMethods_WK."PersistenciaPessoa"';
-    FPersistenciaPessoaCommand.Prepare(TServerMethods_WK_PersistenciaPessoa);
+    FInsertPessoaCommand := FConnection.CreateCommand;
+    FInsertPessoaCommand.RequestType := 'POST';
+    FInsertPessoaCommand.Text := 'TServerMethods_WK."InsertPessoa"';
+    FInsertPessoaCommand.Prepare(TServerMethods_WK_InsertPessoa);
   end;
-  FPersistenciaPessoaCommand.Parameters[0].Value.SetJSONValue(jObjectPessoa, FInstanceOwner);
-  FPersistenciaPessoaCommand.Execute;
+  FInsertPessoaCommand.Parameters[0].Value.SetJSONValue(jObjectPessoa, FInstanceOwner);
+  FInsertPessoaCommand.Execute;
 end;
 
 constructor TServerMethods_WKClient.Create(ARestConnection: TDSRestConnection);
@@ -170,7 +170,7 @@ begin
   FGetPessoaCommand_Cache.DisposeOf;
   FEchoStringCommand.DisposeOf;
   FReverseStringCommand.DisposeOf;
-  FPersistenciaPessoaCommand.DisposeOf;
+  FInsertPessoaCommand.DisposeOf;
   inherited;
 end;
 

@@ -29,7 +29,6 @@ type
     PessoaMemTablenmlogradouro: TWideStringField;
     PessoaMemTabledscomplemento: TWideStringField;
     PessoaMemTabledtregistro: TDateField;
-    PessoaMemTableidendereco: TLargeintField;
   private
     FInstanceOwner: Boolean;
     FServerMethods1Client: TServerMethods_WKClient;
@@ -78,7 +77,7 @@ procedure TClientModuleWKX.InsertPessoa(oObjectPessoa: TPessoa);
 var jObjectPessoa : TJSONObject;
 begin
   jObjectPessoa := TJson.ObjectToJsonObject(oObjectPessoa);
-  ServerMethods1Client.PersistenciaPessoa(jObjectPessoa);
+  ServerMethods1Client.InsertPessoa(jObjectPessoa);
 end;
 
 procedure TClientModuleWKX.LoadPessoa(const IDPessoa: string; const SLimit: string);

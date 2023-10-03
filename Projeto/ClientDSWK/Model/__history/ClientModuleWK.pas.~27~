@@ -78,7 +78,7 @@ procedure TClientModuleWKX.InsertPessoa(oObjectPessoa: TPessoa);
 var jObjectPessoa : TJSONObject;
 begin
   jObjectPessoa := TJson.ObjectToJsonObject(oObjectPessoa);
-  ServerMethods1Client.PersistenciaPessoa(jObjectPessoa);
+  ServerMethods1Client.InsertPessoa(jObjectPessoa);
 end;
 
 procedure TClientModuleWKX.LoadPessoa(const IDPessoa: string; const SLimit: string);

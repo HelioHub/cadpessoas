@@ -1,7 +1,6 @@
 inherited FGridPessoa: TFGridPessoa
   Caption = 'Cadastro de Pessoas'
   ClientHeight = 547
-  ExplicitWidth = 906
   ExplicitHeight = 586
   PixelsPerInch = 96
   TextHeight = 13
@@ -166,7 +165,6 @@ inherited FGridPessoa: TFGridPessoa
         item
           Expanded = False
           FieldName = 'idpessoa'
-          Width = 70
           Visible = True
         end
         item
@@ -178,7 +176,6 @@ inherited FGridPessoa: TFGridPessoa
         item
           Expanded = False
           FieldName = 'dsdocumento'
-          Width = 149
           Visible = True
         end
         item
@@ -197,11 +194,6 @@ inherited FGridPessoa: TFGridPessoa
           Expanded = False
           FieldName = 'flnatureza'
           Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'idendereco'
-          Visible = False
         end
         item
           Expanded = False

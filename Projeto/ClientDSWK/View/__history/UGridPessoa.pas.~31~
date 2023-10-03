@@ -91,7 +91,7 @@ begin
     Formulario.ObjetoPessoa.CEP.dsnumero := DSBase.DataSet.FieldByName('dsnumero').Asinteger;
 
     //Endereco
-    Formulario.ObjetoPessoa.CEP.idendereco.idendereco   := DSBase.DataSet.FieldByName('idendereco').Asinteger;
+    Formulario.ObjetoPessoa.CEP.idendereco.idendereco   := DSBase.DataSet.FieldByName('idendereco').AsString;
     Formulario.ObjetoPessoa.CEP.idendereco.nmlogradouro := DSBase.DataSet.FieldByName('nmlogradouro').AsString;
     Formulario.ObjetoPessoa.CEP.idendereco.nmbairro     := DSBase.DataSet.FieldByName('nmbairro').AsString;
     Formulario.ObjetoPessoa.CEP.idendereco.dscomplemento:= DSBase.DataSet.FieldByName('dscomplemento').AsString;

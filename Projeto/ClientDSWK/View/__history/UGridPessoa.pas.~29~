@@ -76,7 +76,6 @@ begin
   Formulario := TFDadosPessoa.Create(Application);
   if pAcao = acAlterar then
   begin
-    //Pessoa
     Formulario.ObjetoPessoa.idpessoa     := DSBase.DataSet.FieldByName('idpessoa').Asinteger;
     Formulario.ObjetoPessoa.dsdocumento  := DSBase.DataSet.FieldByName('dsdocumento').AsString;
     Formulario.ObjetoPessoa.nmprimeiro   := DSBase.DataSet.FieldByName('nmprimeiro').AsString;
@@ -84,14 +83,11 @@ begin
     if DSBase.DataSet.FieldByName('flnatureza').AsString = cSexoM then
       Formulario.ObjetoPessoa.flnatureza := cSexoM
     else
-      Formulario.ObjetoPessoa.flnatureza := cSexoF;
+      Formulario.ObjetoPessoa.flnatureza   := cSexoF;
 
-    //CEP
     Formulario.ObjetoPessoa.CEP.dscep    := DSBase.DataSet.FieldByName('dscep').AsString;
     Formulario.ObjetoPessoa.CEP.dsnumero := DSBase.DataSet.FieldByName('dsnumero').Asinteger;
 
-    //Endereco
-    Formulario.ObjetoPessoa.CEP.idendereco.idendereco   := DSBase.DataSet.FieldByName('idendereco').Asinteger;
     Formulario.ObjetoPessoa.CEP.idendereco.nmlogradouro := DSBase.DataSet.FieldByName('nmlogradouro').AsString;
     Formulario.ObjetoPessoa.CEP.idendereco.nmbairro     := DSBase.DataSet.FieldByName('nmbairro').AsString;
     Formulario.ObjetoPessoa.CEP.idendereco.dscomplemento:= DSBase.DataSet.FieldByName('dscomplemento').AsString;

@@ -24,7 +24,7 @@ type
     procedure DeletePessoa(const jObjectPessoa: TJSONObject);
   public
     { Public declarations }
-    function GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
+    function GetPessoaX(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
 
@@ -55,7 +55,7 @@ begin
   Result := Value;
 end;
 
-function TServerMethods_WK.GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
+function TServerMethods_WK.GetPessoaX(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
 begin
   PreparePessoa(IDPessoa, SLimit);
 

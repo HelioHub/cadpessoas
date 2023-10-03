@@ -59,7 +59,6 @@ begin
   inherited;
 
   try
-    //Pessoa
     ObjetoPessoa.dsdocumento := EDocumento.Text;
     ObjetoPessoa.nmprimeiro  := E1Nome.Text;
     ObjetoPessoa.nmsegundo   := E2Nome.Text;
@@ -68,10 +67,10 @@ begin
       ObjetoPessoa.flnatureza := cSexoF
     else
       ObjetoPessoa.flnatureza := cSexoM;
-    //CEP
+
     ObjetoPessoa.CEP.dscep   := ECEP.Text;
     ObjetoPessoa.CEP.dsnumero:= StrToIntDef(ENo.Text,0);
-    //Endereço
+
     ObjetoPessoa.CEP.idendereco.nmlogradouro := ELogradouro.Text;
     ObjetoPessoa.CEP.idendereco.nmbairro     := EBairro.Text;
     ObjetoPessoa.CEP.idendereco.nmcidade     := ECidade.Text;
@@ -86,7 +85,7 @@ end;
 
 destructor TFDadosPessoa.Destroy;
 begin
-  FreeAndNil(ObjetoPessoa);
+  //FreeAndNil(ObjetoPessoa);
   inherited;
 end;
 
@@ -101,7 +100,6 @@ begin
   inherited;
   if ObjetoPessoa.acao = acAlterar then
   begin
-    //Pessoa
     EDocumento.Text    := ObjetoPessoa.dsdocumento;
     E1Nome.Text        := ObjetoPessoa.nmprimeiro;
     E2Nome.Text        := ObjetoPessoa.nmsegundo;
@@ -109,10 +107,10 @@ begin
       RGSexo.ItemIndex := Integer(TSexo.M)
     else
       RGSexo.ItemIndex := Integer(TSexo.F);
-    //CEP
+
     ECEP.Text          := ObjetoPessoa.CEP.dscep;
     ENo.Text           := IntToStr(ObjetoPessoa.CEP.dsnumero);
-    //Endereço
+
     ELogradouro.Text   := ObjetoPessoa.CEP.idendereco.nmlogradouro;
     EBairro.Text       := ObjetoPessoa.CEP.idendereco.nmbairro;
     ECidade.Text       := ObjetoPessoa.CEP.idendereco.nmcidade;

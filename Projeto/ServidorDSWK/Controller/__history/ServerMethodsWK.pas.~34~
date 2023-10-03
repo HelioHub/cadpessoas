@@ -28,7 +28,9 @@ type
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
 
-    procedure PersistenciaPessoa(const jObjectPessoa: TJSONObject);
+    //procedure InsertPessoa(const oPessoa : TPessoa);
+    //Pessoa
+    procedure PersistenciaPessoa(const jObjectPessoa: TJSONObject; pAcao: TAcao);
   end;
 {$METHODINFO OFF}
 
@@ -85,6 +87,33 @@ begin
   Result := System.StrUtils.ReverseString(Value);
 end;
 
+{
+procedure TServerMethods_WK.InsertPessoa(const oPessoa: TPessoa);
+var sSQL, sSequencial: string;
+begin
+  DataModuleWK.WKConnection.StartTransaction;
+  try
+     sSequencial := GetProximoCodigoPessoal;
+     sSQL := 'INSERT INTO PESSOA (idpessoa, dsdocumento, nmprimeiro, nmsegundo, dtregistro, flnatureza) '+
+             ' VALUES ('+sSequencial+', '+
+                         QuotedStr(oPessoa.dsdocumento)+', '+
+                         QuotedStr(oPessoa.nmprimeiro) +', '+
+                         QuotedStr(oPessoa.nmsegundo)  +', '+
+	                      '(SELECT CURRENT_DATE), '+
+                         QuotedStr(oPessoa.flnatureza) +') ';
+
+    DataModuleWK.WKConnection.ExecSQL(sSQL);
+    DataModuleWK.WKConnection.Commit;
+  except
+    on E: Exception do
+    begin
+      DataModuleWK.WKConnection.Rollback;
+      raise Exception.Create('Error Message: ' + E.Message);
+    end;
+  end;
+end;
+}
+
 function TServerMethods_WK.GetProximoCodigoPessoa: String;
 begin
   {Recupera o próximo código sequencial da entity pessoa}
@@ -111,17 +140,13 @@ begin
   end;
 end;
 
-procedure TServerMethods_WK.PersistenciaPessoa(const jObjectPessoa: TJSONObject);
+procedure TServerMethods_WK.PersistenciaPessoa(const jObjectPessoa: TJSONObject; pAcao: TAcao);
 begin
-  InsertPessoa(jObjectPessoa);
-{
-  pAcao := TAcao.acIncluir;
   case pAcao of
      acIncluir: InsertPessoa(jObjectPessoa);
      acAlterar: UpdatePessoa(jObjectPessoa);
      acExcluir: DeletePessoa(jObjectPessoa);
   end;
-}
 end;
 
 procedure TServerMethods_WK.InsertPessoa(const jObjectPessoa: TJSONObject);
@@ -133,31 +158,31 @@ begin
 
     DataModuleWK.WKConnection.StartTransaction;
     try
-      sSequencialPessoa := GetProximoCodigoPessoa;
-      sSQL := 'INSERT INTO PESSOA (idpessoa, dsdocumento, nmprimeiro, nmsegundo, dtregistro, flnatureza) '+
-              ' VALUES ('+sSequencialPessoa             +', '+
-                          QuotedStr(oPessoa.dsdocumento)+', '+
-                          QuotedStr(oPessoa.nmprimeiro) +', '+
-                          QuotedStr(oPessoa.nmsegundo)  +', '+
-                         '(SELECT CURRENT_DATE), '+
-                          QuotedStr(oPessoa.flnatureza) +') ';
+       sSequencialPessoa := GetProximoCodigoPessoa;
+       sSQL := 'INSERT INTO PESSOA (idpessoa, dsdocumento, nmprimeiro, nmsegundo, dtregistro, flnatureza) '+
+               ' VALUES ('+sSequencialPessoa             +', '+
+                           QuotedStr(oPessoa.dsdocumento)+', '+
+                           QuotedStr(oPessoa.nmprimeiro) +', '+
+                           QuotedStr(oPessoa.nmsegundo)  +', '+
+                          '(SELECT CURRENT_DATE), '+
+                           QuotedStr(oPessoa.flnatureza) +') ';
       DataModuleWK.WKConnection.ExecSQL(sSQL);
 
-      sSequencialEndereco := GetProximoCodigoEndereco;
-      sSQL := 'INSERT INTO ENDERECO (idendereco, idpessoa, dscep, dsnumero) '+
-              ' VALUES ('+sSequencialEndereco           +', '+
-                          sSequencialPessoa             +', '+
-                          QuotedStr(oPessoa.CEP.dscep)  +', '+
-                          IntToStr(oPessoa.CEP.dsnumero)+') ';
+       sSequencialEndereco := GetProximoCodigoEndereco;
+       sSQL := 'INSERT INTO ENDERECO (idendereco, idpessoa, dscep, dsnumero) '+
+               ' VALUES ('+sSequencialEndereco           +', '+
+                           sSequencialPessoa             +', '+
+                           QuotedStr(oPessoa.CEP.dscep)  +', '+
+                           IntToStr(oPessoa.CEP.dsnumero)+') ';
       DataModuleWK.WKConnection.ExecSQL(sSQL);
 
-      sSQL := 'INSERT INTO ENDERECO_INTEGRACAO (idendereco, dsuf, nmcidade, nmbairro, nmlogradouro, dscomplemento) '+
-              ' VALUES ('+sSequencialEndereco                             +', '+
-                          QuotedStr(oPessoa.CEP.idendereco.dsuf)          +', '+
-                          QuotedStr(oPessoa.CEP.idendereco.nmcidade)      +', '+
-                          QuotedStr(oPessoa.CEP.idendereco.nmbairro)      +', '+
-                          QuotedStr(oPessoa.CEP.idendereco.nmlogradouro)  +', '+
-                          QuotedStr(oPessoa.CEP.idendereco.dscomplemento) +')';
+       sSQL := 'INSERT INTO ENDERECO_INTEGRACAO (idendereco, dsuf, nmcidade, nmbairro, nmlogradouro, dscomplemento) '+
+               ' VALUES ('+sSequencialEndereco                             +', '+
+                           QuotedStr(oPessoa.CEP.idendereco.dsuf)          +', '+
+                           QuotedStr(oPessoa.CEP.idendereco.nmcidade)      +', '+
+                           QuotedStr(oPessoa.CEP.idendereco.nmbairro)      +', '+
+                           QuotedStr(oPessoa.CEP.idendereco.nmlogradouro)  +', '+
+                           QuotedStr(oPessoa.CEP.idendereco.dscomplemento) +')';
       DataModuleWK.WKConnection.ExecSQL(sSQL);
 
       DataModuleWK.WKConnection.Commit;
@@ -182,19 +207,30 @@ begin
 
     DataModuleWK.WKConnection.StartTransaction;
     try
-      sSQL := 'UPDATE PESSOA SET '+
-              ' dsdocumento   = '+QuotedStr(oPessoa.dsdocumento)+', '+
-              ' nmprimeiro    = '+QuotedStr(oPessoa.nmprimeiro) +', '+
-              ' nmsegundo     = '+QuotedStr(oPessoa.nmsegundo)  +', '+
-              ' flnatureza    = '+QuotedStr(oPessoa.flnatureza) +
-              'WHERE idpessoa = '+IntToStr(oPessoa.idpessoa);
+       sSequencialPessoa := GetProximoCodigoPessoa;
+       sSQL := 'UPDATE PESSOA SET '+
+               ' dsdocumento   = '+QuotedStr(oPessoa.dsdocumento)+', '+
+               ' nmprimeiro    = '+QuotedStr(oPessoa.nmprimeiro) +', '+
+               ' nmsegundo     = '+QuotedStr(oPessoa.nmsegundo)  +', '+
+               ' flnatureza    = '+QuotedStr(oPessoa.flnatureza) +
+               'WHERE idpessoa = '+oPessoa.idpessoa;
       DataModuleWK.WKConnection.ExecSQL(sSQL);
 
-      sSQL := 'UPDATE ENDERECO SET '+
-              ' dscep      = '+QuotedStr(oPessoa.CEP.dscep)  +', '+
-              ' dsnumero   = '+IntToStr(oPessoa.CEP.dsnumero)+
-              'WHERE idendereco = '+IntToStr(oPessoa.CEP.idendereco.idendereco)+
-              '  AND idpessoa   = '+IntToStr(oPessoa.idpessoa);
+       sSequencialEndereco := GetProximoCodigoEndereco;
+       sSQL := 'UPDATE ENDERECO SET (idendereco, idpessoa, dscep, dsnumero) '+
+               ' VALUES ('+sSequencialEndereco           +', '+
+                           sSequencialPessoa             +', '+
+                           QuotedStr(oPessoa.CEP.dscep)  +', '+
+                           IntToStr(oPessoa.CEP.dsnumero)+') ';
+      DataModuleWK.WKConnection.ExecSQL(sSQL);
+
+       sSQL := 'INSERT INTO ENDERECO_INTEGRACAO (idendereco, dsuf, nmcidade, nmbairro, nmlogradouro, dscomplemento) '+
+               ' VALUES ('+sSequencialEndereco                             +', '+
+                           QuotedStr(oPessoa.CEP.idendereco.dsuf)          +', '+
+                           QuotedStr(oPessoa.CEP.idendereco.nmcidade)      +', '+
+                           QuotedStr(oPessoa.CEP.idendereco.nmbairro)      +', '+
+                           QuotedStr(oPessoa.CEP.idendereco.nmlogradouro)  +', '+
+                           QuotedStr(oPessoa.CEP.idendereco.dscomplemento) +')';
       DataModuleWK.WKConnection.ExecSQL(sSQL);
 
       DataModuleWK.WKConnection.Commit;
