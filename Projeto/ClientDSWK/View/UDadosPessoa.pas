@@ -36,6 +36,8 @@ type
     procedure BBGravarClick(Sender: TObject);
   private
     { Private declarations }
+    procedure HabilitarControls;
+    procedure DesabilitarControls;
 
     destructor Destroy; override;
   public
@@ -99,7 +101,10 @@ end;
 procedure TFDadosPessoa.FormShow(Sender: TObject);
 begin
   inherited;
-  if ObjetoPessoa.acao = acAlterar then
+  HabilitarControls;
+  if ObjetoPessoa.acao = acIncluir then
+    Self.Caption := Self.Caption + ' - ' + cAcaoIncluir
+  else
   begin
     //Pessoa
     EDocumento.Text    := ObjetoPessoa.dsdocumento;
@@ -119,12 +124,46 @@ begin
     EComplemento.Text  := ObjetoPessoa.CEP.idendereco.dscomplemento;
     EUF.Text           := ObjetoPessoa.CEP.idendereco.dsuf;
 
-    Self.Caption := Self.Caption + ' - ' + cAcaoAlterar;
-  end
-  else
-    Self.Caption := Self.Caption + ' - ' + cAcaoIncluir;
+    if ObjetoPessoa.acao = acExcluir then
+    begin
+      DesabilitarControls;
+      Self.Caption := Self.Caption + ' - ' + cAcaoAlterar
+    end
+    else
+      Self.Caption := Self.Caption + ' - ' + cAcaoAlterar;
+  end;
 
   EDocumento.SetFocus;
+end;
+
+procedure TFDadosPessoa.HabilitarControls;
+begin
+  //Pessoa
+  EDocumento.ReadOnly  := True;
+  E1Nome.ReadOnly      := True;
+  E2Nome.ReadOnly      := True;
+  RGSexo.Enabled       := True;
+  //CEP
+  ECEP.ReadOnly        := True;
+  BBCEP.Enabled        := True;
+  ENo.ReadOnly         := True;
+  //Endereço
+  EComplemento.ReadOnly:= True;
+end;
+
+procedure TFDadosPessoa.DesabilitarControls;
+begin
+  //Pessoa
+  EDocumento.ReadOnly  := False;
+  E1Nome.ReadOnly      := False;
+  E2Nome.ReadOnly      := False;
+  RGSexo.Enabled       := False;
+  //CEP
+  ECEP.ReadOnly        := False;
+  BBCEP.Enabled        := False;
+  ENo.ReadOnly         := False;
+  //Endereço
+  EComplemento.ReadOnly:= False;
 end;
 
 end.

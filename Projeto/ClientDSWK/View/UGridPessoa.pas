@@ -27,6 +27,7 @@ type
     procedure BBIncluirClick(Sender: TObject);
     procedure BBAlterarClick(Sender: TObject);
     procedure DBGViewDblClick(Sender: TObject);
+    procedure BBExcluirClick(Sender: TObject);
   private
     procedure pCRUD(pAcao: TAcao);
     { Private declarations }
@@ -57,6 +58,12 @@ begin
   ClientModuleWKX.LoadPessoa('', sLimiteRegistros);
 end;
 
+procedure TFGridPessoa.BBExcluirClick(Sender: TObject);
+begin
+  inherited;
+  pCRUD(acExcluir);
+end;
+
 procedure TFGridPessoa.BBIncluirClick(Sender: TObject);
 begin
   inherited;
@@ -73,8 +80,15 @@ procedure TFGridPessoa.pCRUD(pAcao: TAcao);
 var Formulario: TFDadosPessoa;
 begin
   inherited;
+  if (DSBase.DataSet.FieldByName('idpessoa').IsNull) and (pAcao <> acIncluir) then
+  begin
+    Beep;
+    ShowMessage('Selecione cadastro para efetuar operação!');
+    Exit;
+  end;
+
   Formulario := TFDadosPessoa.Create(Application);
-  if pAcao = acAlterar then
+  if (pAcao <> acIncluir) then
   begin
     //Pessoa
     Formulario.ObjetoPessoa.idpessoa     := DSBase.DataSet.FieldByName('idpessoa').Asinteger;
@@ -97,12 +111,9 @@ begin
     Formulario.ObjetoPessoa.CEP.idendereco.dscomplemento:= DSBase.DataSet.FieldByName('dscomplemento').AsString;
     Formulario.ObjetoPessoa.CEP.idendereco.nmcidade     := DSBase.DataSet.FieldByName('nmcidade').AsString;
     Formulario.ObjetoPessoa.CEP.idendereco.dsuf         := DSBase.DataSet.FieldByName('dsuf').AsString;
+  end;
 
-    Formulario.ObjetoPessoa.Acao  := acAlterar;
-  end
-  else
-    Formulario.ObjetoPessoa.Acao  := acIncluir;
-
+  Formulario.ObjetoPessoa.Acao := pAcao;
   Formulario.ShowModal;
 end;
 

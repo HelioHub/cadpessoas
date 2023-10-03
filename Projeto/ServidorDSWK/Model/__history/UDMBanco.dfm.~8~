@@ -8,6 +8,7 @@ object DataModuleWK: TDataModuleWK
       'User_Name=postgres'
       'Password=wk@2023'
       'DriverID=PG')
+    Connected = True
     LoginPrompt = False
     Left = 49
     Top = 24

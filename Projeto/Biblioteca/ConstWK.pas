@@ -18,6 +18,7 @@ const
   cUFPadrao = 'CE';
   cAcaoAlterar = 'Alterar';
   cAcaoIncluir = 'Incluir';
+  cAcaoExcluir = 'Excluir';
   cSexoM = 'M';
   cSexoF = 'F';
 
