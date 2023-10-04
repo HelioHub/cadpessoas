@@ -15,9 +15,6 @@ type
     MJSON: TMemo;
     LCEP: TLabel;
     LJSON: TLabel;
-    RESTClient1: TRESTClient;
-    RESTRequest1: TRESTRequest;
-    RESTResponse1: TRESTResponse;
     LLogradouro: TLabel;
     LComplemento: TLabel;
     LBairro: TLabel;
@@ -28,6 +25,9 @@ type
     EBairro: TEdit;
     ECidade: TEdit;
     EUF: TEdit;
+    RESTClient1: TRESTClient;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
     procedure BBPesquisarClick(Sender: TObject);
     procedure BBLevarClick(Sender: TObject);
   private
@@ -37,9 +37,6 @@ type
     { Public declarations }
   end;
 
-Const cURL   = 'viacep.com.br/ws/_numero_CEP/json/';
-      cURLP1 = 'viacep.com.br/ws/';
-      cURLP2 = '/json/';
 var
   FRotinaAPICEP: TFRotinaAPICEP;
 
@@ -47,7 +44,7 @@ implementation
 
 {$R *.dfm}
 
-uses ConstWK, UClaCEPAPI;
+uses ConstWK, UClaCEPAPI, UClaAPIRest;
 
 procedure TFRotinaAPICEP.BBLevarClick(Sender: TObject);
 begin
@@ -68,12 +65,8 @@ begin
   begin
     beep;
     ShowMessage('Atenção!!'+cEOL+'Necessário informar o CEP.');
-    ECEP.SetFocus;
     Exit;
   end;
-
-  RESTClient1.BaseURL := cURLP1+ECEP.Text+cURLP2;
-  RESTRequest1.Execute;
 
   MJSON.Lines.Clear;
   ELogradouro.Clear;
@@ -83,7 +76,8 @@ begin
   EUF.Clear;
 
   try
-    MJSON.Lines.Add(RESTRequest1.Response.JSONValue.ToString);
+    MJSON.Lines.Add(DMClaAPIRest.fPesquisaCEPAPI(ECEP.Text));
+
     JSON := MJSON.Text;
     CEPApi := TJson.JsonToObject<TCEPAPI>(Trim(JSON));
     Try

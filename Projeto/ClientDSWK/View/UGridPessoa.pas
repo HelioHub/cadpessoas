@@ -23,6 +23,7 @@ type
     DBECidade: TDBEdit;
     LUF: TLabel;
     DBEUF: TDBEdit;
+    CBAtualizar: TCheckBox;
     procedure BBAtualizarClick(Sender: TObject);
     procedure BBIncluirClick(Sender: TObject);
     procedure BBAlterarClick(Sender: TObject);
@@ -31,6 +32,7 @@ type
     procedure BBImportacaoClick(Sender: TObject);
   private
     procedure pCRUD(pAcao: TAcao);
+    procedure pAtualizacao;
     { Private declarations }
   public
     { Public declarations }
@@ -52,9 +54,14 @@ begin
 end;
 
 procedure TFGridPessoa.BBAtualizarClick(Sender: TObject);
-var sLimiteRegistros : String;
 begin
   inherited;
+  pAtualizacao;
+end;
+
+procedure TFGridPessoa.pAtualizacao;
+var sLimiteRegistros : String;
+begin
   sLimiteRegistros := ENR.Text;
   ClientModuleWKX.LoadPessoa('', sLimiteRegistros);
 end;
@@ -124,6 +131,8 @@ begin
 
   Formulario.ObjetoPessoa.Acao := pAcao;
   Formulario.ShowModal;
+  if CBAtualizar.Checked then
+    pAtualizacao;
 end;
 
 end.

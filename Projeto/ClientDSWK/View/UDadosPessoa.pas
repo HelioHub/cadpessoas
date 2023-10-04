@@ -80,7 +80,7 @@ end;
 procedure TFDadosPessoa.BBGravarClick(Sender: TObject);
 begin
   inherited;
-  if fValidacoesPessoa then exit;
+  if (ObjetoPessoa.acao <> acExcluir) and fValidacoesPessoa then exit;
 
   try
     //Pessoa

@@ -67,7 +67,7 @@ object FRotinaAPICEP: TFRotinaAPICEP
   end
   object ECEP: TEdit
     Left = 16
-    Top = 25
+    Top = 26
     Width = 121
     Height = 24
     TabOrder = 0
