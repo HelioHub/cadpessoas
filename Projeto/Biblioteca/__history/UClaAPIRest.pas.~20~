@@ -13,11 +13,12 @@ type
     RESTResponse1: TRESTResponse;
   private
     { Private declarations }
-    sJSON : String;
-    procedure fPesquisaCEPAPI(wsCEP: String);
   public
     { Public declarations }
-    function fPesquisaCEP(wsCEP: String) : String;
+    sJSON : String;
+
+    function fPesquisaCEPAPI(wsCEP: String) : String;
+    procedure pPesquisaCEPAPI;
   end;
 
 var
@@ -35,16 +36,24 @@ implementation
 
 { TDMClaAPIRest }
 
-function TDMClaAPIRest.fPesquisaCEP(wsCEP: String): String;
+function TDMClaAPIRest.fPesquisaCEPAPI(wsCEP: String): String;
+var sJSON : String;
 begin
-  Result := fPesquisaCEPAPI(wsCEP);
+  try
+    RESTClient1.BaseURL := cURLP1+wsCEP+cURLP2;
+    RESTRequest1.Execute;
+
+    pPesquisaCEPAPI;
+
+    Result := sJSON;
+  except
+    Result := '';
+  end;
 end;
 
-procedure TDMClaAPIRest.fPesquisaCEPAPI(wsCEP: String);
+procedure TDMClaAPIRest.pPesquisaCEPAPI;
 begin
-  RESTClient1.BaseURL := cURLP1+wsCEP+cURLP2;
-  RESTRequest1.Execute;
-  sJSON := RESTRequest1.Response.JSONValue.ToString;
+  sJSON  := RESTRequest1.Response.JSONValue.ToString;
 end;
 
 end.

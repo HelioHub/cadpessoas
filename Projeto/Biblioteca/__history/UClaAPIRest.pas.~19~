@@ -16,7 +16,7 @@ type
   public
     { Public declarations }
     sJSON : String;
-    sCEP : String;
+
     function fPesquisaCEPAPI(wsCEP: String) : String;
     procedure pPesquisaCEPAPI;
   end;
@@ -37,16 +37,19 @@ implementation
 { TDMClaAPIRest }
 
 function TDMClaAPIRest.fPesquisaCEPAPI(wsCEP: String): String;
+var sJSON : String;
 begin
-  sCEP := wsCEP;
-  TThread.CreateAnonymousThread(pPesquisaCEPAPI).Start;
+  RESTClient1.BaseURL := cURLP1+wsCEP+cURLP2;
+  RESTRequest1.Execute;
+
+  pPesquisaCEPAPI;
+
+  Result := sJSON;
 end;
 
 procedure TDMClaAPIRest.pPesquisaCEPAPI;
 begin
-  RESTClient1.BaseURL := cURLP1+sCEP+cURLP2;
-  RESTRequest1.Execute;
-  sJSON := RESTRequest1.Response.JSONValue.ToString;
+  sJSON  := RESTRequest1.Response.JSONValue.ToString;
 end;
 
 end.

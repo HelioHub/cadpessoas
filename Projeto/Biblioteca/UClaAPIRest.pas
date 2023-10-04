@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, IPPeerClient, REST.Client,
-  Data.Bind.Components, Data.Bind.ObjectScope;
+  Data.Bind.Components, Data.Bind.ObjectScope, Vcl.StdCtrls;
 
 type
   TDMClaAPIRest = class(TDataModule)
@@ -15,8 +15,6 @@ type
     { Private declarations }
   public
     { Public declarations }
-    sJSON : String;
-
     function fPesquisaCEPAPI(wsCEP: String) : String;
     procedure pPesquisaCEPAPI;
   end;
@@ -39,17 +37,21 @@ implementation
 function TDMClaAPIRest.fPesquisaCEPAPI(wsCEP: String): String;
 var sJSON : String;
 begin
-  RESTClient1.BaseURL := cURLP1+wsCEP+cURLP2;
+  try
+    RESTClient1.BaseURL := cURLP1+wsCEP+cURLP2;
+    RESTRequest1.Execute;
 
-  pPesquisaCEPAPI;
+    sJSON := RESTRequest1.Response.JSONValue.ToString;
 
-  Result := sJSON;
+    Result := sJSON;
+  except
+    Result := '';
+  end;
 end;
 
 procedure TDMClaAPIRest.pPesquisaCEPAPI;
 begin
-  RESTRequest1.Execute;
-  sJSON  := RESTRequest1.Response.JSONValue.ToString;
+
 end;
 
 end.

@@ -55,7 +55,7 @@ implementation
 
 {$R *.dfm}
 
-uses ConstWK, UControllerPessoa, ClientModuleWK, URotinaAPICEP;
+uses ConstWK, UControllerPessoa, ClientModuleWK, URotinaAPICEP, UClaAPIRest;
 
 { TFDadosPessoa }
 
@@ -229,6 +229,15 @@ begin
     Beep;
     ShowMessage('Atenção! Informe o CEP');
     result := true;
+  end
+  else
+  begin
+    if DMClaAPIRest.fPesquisaCEPAPI(Trim(ECEP.Text)) = Empty then
+    begin
+      Beep;
+      ShowMessage('Atenção! Informe um CEP válido.');
+      result := true;
+    end;
   end;
 
   if Trim(ELogradouro.Text) = Empty then
@@ -244,6 +253,7 @@ begin
     ShowMessage('Atenção! Informe o número do Endereço');
     result := true;
   end;
+
 end;
 
 end.
