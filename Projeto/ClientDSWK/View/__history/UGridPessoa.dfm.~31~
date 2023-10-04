@@ -1,6 +1,7 @@
 inherited FGridPessoa: TFGridPessoa
   Caption = 'Cadastro de Pessoas'
   ClientHeight = 547
+  ExplicitWidth = 906
   ExplicitHeight = 586
   PixelsPerInch = 96
   TextHeight = 13
@@ -17,15 +18,38 @@ inherited FGridPessoa: TFGridPessoa
     inherited BBAlterar: TBitBtn
       OnClick = BBAlterarClick
     end
+    inherited BBExcluir: TBitBtn
+      OnClick = BBExcluirClick
+    end
     inherited BBAtualizar: TBitBtn
       Anchors = [akRight]
+      TabOrder = 6
       OnClick = BBAtualizarClick
+    end
+    inherited BBSair: TBitBtn
+      Left = 332
+      TabOrder = 4
+      ExplicitLeft = 332
     end
     inherited ENR: TEdit
       Anchors = [akRight]
+      TabOrder = 7
     end
     inherited BBImportacao: TBitBtn
+      Left = 251
       Anchors = [akRight]
+      Caption = 'I&mportar'
+      TabOrder = 3
+      OnClick = BBImportacaoClick
+      ExplicitLeft = 251
+    end
+    object CBAtualizar: TCheckBox
+      Left = 508
+      Top = 15
+      Width = 171
+      Height = 17
+      Caption = 'Efetuar Atualiza'#231#227'o Autom'#225'tica'
+      TabOrder = 5
     end
   end
   inherited PRodape: TPanel
@@ -165,6 +189,7 @@ inherited FGridPessoa: TFGridPessoa
         item
           Expanded = False
           FieldName = 'idpessoa'
+          Width = 70
           Visible = True
         end
         item
@@ -176,6 +201,7 @@ inherited FGridPessoa: TFGridPessoa
         item
           Expanded = False
           FieldName = 'dsdocumento'
+          Width = 149
           Visible = True
         end
         item
@@ -194,6 +220,11 @@ inherited FGridPessoa: TFGridPessoa
           Expanded = False
           FieldName = 'flnatureza'
           Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'idendereco'
+          Visible = False
         end
         item
           Expanded = False
@@ -233,6 +264,7 @@ inherited FGridPessoa: TFGridPessoa
     end
   end
   inherited DSBase: TDataSource
+    AutoEdit = False
     DataSet = ClientModuleWKX.PessoaMemTable
     Left = 416
   end

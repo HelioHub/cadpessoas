@@ -184,6 +184,7 @@ inherited FGridPessoa: TFGridPessoa
     ExplicitHeight = 397
     inherited DBGView: TDBGrid
       Height = 395
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       OnDblClick = DBGViewDblClick
       Columns = <
         item
@@ -264,6 +265,7 @@ inherited FGridPessoa: TFGridPessoa
     end
   end
   inherited DSBase: TDataSource
+    AutoEdit = False
     DataSet = ClientModuleWKX.PessoaMemTable
     Left = 416
   end
