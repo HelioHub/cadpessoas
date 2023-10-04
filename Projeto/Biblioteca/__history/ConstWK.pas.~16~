@@ -22,7 +22,6 @@ const
   cSexoM = 'M';
   cSexoF = 'F';
   Empty = '';
-  cZero = 0;
 
 implementation
 

@@ -79,8 +79,7 @@ begin
   EUF.Clear;
 
   try
-    MJSON.Lines.Add(RESTRequest1.Response.JSONValue.ToString);
-
+    MJSON.Lines.Add(DMClaAPIRest.fPesquisaCEPAPI(Trim(ECEP.Text)));
     JSON := MJSON.Text;
     CEPApi := TJson.JsonToObject<TCEPAPI>(Trim(JSON));
     Try

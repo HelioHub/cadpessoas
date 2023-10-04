@@ -82,6 +82,7 @@ begin
   inherited;
   if fValidacoesPessoa then exit;
 
+
   try
     //Pessoa
     ObjetoPessoa.dsdocumento := EDocumento.Text;

@@ -158,23 +158,4 @@ object FRotinaAPICEP: TFRotinaAPICEP
     ReadOnly = True
     TabOrder = 7
   end
-  object RESTClient1: TRESTClient
-    Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-    Params = <>
-    HandleRedirects = True
-    Left = 40
-    Top = 112
-  end
-  object RESTRequest1: TRESTRequest
-    Client = RESTClient1
-    Params = <>
-    Response = RESTResponse1
-    SynchronizedEvents = False
-    Left = 120
-    Top = 112
-  end
-  object RESTResponse1: TRESTResponse
-    Left = 208
-    Top = 112
-  end
 end

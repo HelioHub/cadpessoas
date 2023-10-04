@@ -19,8 +19,7 @@ uses
   URotinaAPICEP in 'View\URotinaAPICEP.pas' {FRotinaAPICEP},
   UClaCEPAPI in '..\Biblioteca\Model\Classes\UClaCEPAPI.pas',
   UClaThread in '..\Biblioteca\UClaThread.pas',
-  URotImpLote in 'View\URotImpLote.pas' {FRotImpLote},
-  UClaAPIRest in '..\Biblioteca\UClaAPIRest.pas' {DMClaAPIRest: TDataModule};
+  URotImpLote in 'View\URotImpLote.pas' {FRotImpLote};
 
 {$R *.res}
 
@@ -30,6 +29,5 @@ begin
   Application.Title := 'Cadastro de Pessoas';
   Application.CreateForm(TFCliCadPessoa, FCliCadPessoa);
   Application.CreateForm(TClientModuleWKX, ClientModuleWKX);
-  Application.CreateForm(TDMClaAPIRest, DMClaAPIRest);
   Application.Run;
 end.

@@ -20,7 +20,7 @@ uses
   UClaCEPAPI in '..\Biblioteca\Model\Classes\UClaCEPAPI.pas',
   UClaThread in '..\Biblioteca\UClaThread.pas',
   URotImpLote in 'View\URotImpLote.pas' {FRotImpLote},
-  UClaAPIRest in '..\Biblioteca\UClaAPIRest.pas' {DMClaAPIRest: TDataModule};
+  UClaAPIRest in '..\Biblioteca\UClaAPIRest.pas' {DataModule1: TDataModule};
 
 {$R *.res}
 
@@ -30,6 +30,6 @@ begin
   Application.Title := 'Cadastro de Pessoas';
   Application.CreateForm(TFCliCadPessoa, FCliCadPessoa);
   Application.CreateForm(TClientModuleWKX, ClientModuleWKX);
-  Application.CreateForm(TDMClaAPIRest, DMClaAPIRest);
+  Application.CreateForm(TDataModule1, DataModule1);
   Application.Run;
 end.

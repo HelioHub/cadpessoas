@@ -22,9 +22,7 @@ inherited FDadosPessoa: TFDadosPessoa
     inherited BBGravar: TBitBtn
       Left = 597
       Top = 7
-      Caption = 'OK'
-      Kind = bkCustom
-      ModalResult = 0
+      Caption = '&OK'
       OnClick = BBGravarClick
       ExplicitLeft = 597
       ExplicitTop = 7
@@ -33,8 +31,6 @@ inherited FDadosPessoa: TFDadosPessoa
   inherited PDados: TPanel
     Width = 766
     Height = 352
-    ExplicitLeft = 0
-    ExplicitTop = 0
     ExplicitWidth = 766
     ExplicitHeight = 352
     object LDocumento: TLabel

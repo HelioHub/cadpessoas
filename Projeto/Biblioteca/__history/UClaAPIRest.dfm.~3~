@@ -1,0 +1,24 @@
+object DMClaAPIRest: TDMClaAPIRest
+  OldCreateOrder = False
+  Height = 106
+  Width = 269
+  object RESTClient1: TRESTClient
+    Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Params = <>
+    HandleRedirects = True
+    Left = 56
+    Top = 24
+  end
+  object RESTRequest1: TRESTRequest
+    Client = RESTClient1
+    Params = <>
+    Response = RESTResponse1
+    SynchronizedEvents = False
+    Left = 104
+    Top = 24
+  end
+  object RESTResponse1: TRESTResponse
+    Left = 152
+    Top = 24
+  end
+end

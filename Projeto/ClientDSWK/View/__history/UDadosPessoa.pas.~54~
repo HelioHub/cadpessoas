@@ -43,6 +43,7 @@ type
     procedure DesabilitarControls(pCEP: Boolean = True);
 
     destructor Destroy; override;
+    procedure pValidacoesPessoa;
   public
     { Public declarations }
     ObjetoPessoa : TPessoa;
@@ -80,7 +81,6 @@ end;
 procedure TFDadosPessoa.BBGravarClick(Sender: TObject);
 begin
   inherited;
-  if fValidacoesPessoa then exit;
 
   try
     //Pessoa
@@ -202,48 +202,7 @@ end;
 
 function TFDadosPessoa.fValidacoesPessoa: Boolean;
 begin
-  result := false;
-  if Trim(EDocumento.Text) = Empty then
-  begin
-    Beep;
-    ShowMessage('Atenção Informe o Documento!');
-    result := true;
-  end;
 
-  if Trim(E1Nome.Text) = Empty then
-  begin
-    Beep;
-    ShowMessage('Atenção! Informe o 1º Nome');
-    result := true;
-  end;
-
-  if Trim(E2Nome.Text) = Empty then
-  begin
-    Beep;
-    ShowMessage('Atenção! Informe o 2º Nome');
-    result := true;
-  end;
-
-  if Trim(ECEP.Text) = Empty then
-  begin
-    Beep;
-    ShowMessage('Atenção! Informe o CEP');
-    result := true;
-  end;
-
-  if Trim(ELogradouro.Text) = Empty then
-  begin
-    Beep;
-    ShowMessage('Atenção! Informe o Endereço válido');
-    result := true;
-  end;
-
-  if StrToIntDef(ENo.Text,0) = cZero then
-  begin
-    Beep;
-    ShowMessage('Atenção! Informe o número do Endereço');
-    result := true;
-  end;
 end;
 
 end.

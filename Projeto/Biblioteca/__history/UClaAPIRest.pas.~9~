@@ -1,0 +1,50 @@
+unit UClaAPIRest;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, IPPeerClient, REST.Client,
+  Data.Bind.Components, Data.Bind.ObjectScope;
+
+type
+  TDMClaAPIRest = class(TDataModule)
+    RESTClient1: TRESTClient;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
+  private
+    { Private declarations }
+    sJSON : String;
+    procedure pPesquisaCEPAPI(wsCEP: String);
+  public
+    { Public declarations }
+    function fPesquisaCEPAPI(wsCEP: String) : String;
+  end;
+
+var
+  DMClaAPIRest: TDMClaAPIRest;
+
+Const cURL   = 'viacep.com.br/ws/_numero_CEP/json/';
+      cURLP1 = 'viacep.com.br/ws/';
+      cURLP2 = '/json/';
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TDMClaAPIRest }
+
+function TDMClaAPIRest.fPesquisaCEPAPI(wsCEP: String): String;
+begin
+  Result := fPesquisaCEPAPI(wsCEP);
+end;
+
+procedure TDMClaAPIRest.pPesquisaCEPAPI(wsCEP: String);
+begin
+  RESTClient1.BaseURL := cURLP1+wsCEP+cURLP2;
+  RESTRequest1.Execute;
+  sJSON := RESTRequest1.Response.JSONValue.ToString;
+end;
+
+end.

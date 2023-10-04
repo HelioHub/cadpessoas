@@ -25,9 +25,6 @@ type
     EBairro: TEdit;
     ECidade: TEdit;
     EUF: TEdit;
-    RESTClient1: TRESTClient;
-    RESTRequest1: TRESTRequest;
-    RESTResponse1: TRESTResponse;
     procedure BBPesquisarClick(Sender: TObject);
     procedure BBLevarClick(Sender: TObject);
   private
@@ -68,9 +65,6 @@ begin
     Exit;
   end;
 
-  RESTClient1.BaseURL := cURLP1+ECEP.Text+cURLP2;
-  RESTRequest1.Execute;
-
   MJSON.Lines.Clear;
   ELogradouro.Clear;
   EComplemento.Clear;
@@ -79,8 +73,7 @@ begin
   EUF.Clear;
 
   try
-    MJSON.Lines.Add(RESTRequest1.Response.JSONValue.ToString);
-
+    MJSON.Lines.Add(DMClaAPIRest.fPesquisaCEPAPI(Trim(ECEP.Text)));
     JSON := MJSON.Text;
     CEPApi := TJson.JsonToObject<TCEPAPI>(Trim(JSON));
     Try

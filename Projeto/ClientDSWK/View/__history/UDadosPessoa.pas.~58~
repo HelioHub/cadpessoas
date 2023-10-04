@@ -43,6 +43,7 @@ type
     procedure DesabilitarControls(pCEP: Boolean = True);
 
     destructor Destroy; override;
+    procedure pValidacoesPessoa;
   public
     { Public declarations }
     ObjetoPessoa : TPessoa;
@@ -80,7 +81,6 @@ end;
 procedure TFDadosPessoa.BBGravarClick(Sender: TObject);
 begin
   inherited;
-  if fValidacoesPessoa then exit;
 
   try
     //Pessoa
