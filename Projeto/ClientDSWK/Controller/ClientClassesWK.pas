@@ -1,6 +1,6 @@
 //
 // Created by the DataSnap proxy generator.
-// 05/10/2023 13:04:21
+// 05/10/2023 15:14:57
 //
 
 unit ClientClassesWK;
@@ -21,6 +21,7 @@ type
     FEchoStringCommand: TDSRestCommand;
     FReverseStringCommand: TDSRestCommand;
     FPersistenciaPessoaCommand: TDSRestCommand;
+    FPersistenciaEnderecoCommand: TDSRestCommand;
   public
     constructor Create(ARestConnection: TDSRestConnection); overload;
     constructor Create(ARestConnection: TDSRestConnection; AInstanceOwner: Boolean); overload;
@@ -31,6 +32,7 @@ type
     function EchoString(Value: string; const ARequestFilter: string = ''): string;
     function ReverseString(Value: string; const ARequestFilter: string = ''): string;
     procedure PersistenciaPessoa(jObjectPessoa: TJSONObject);
+    procedure PersistenciaEndereco(jObjectEndereco: TJSONObject);
   end;
 
   IDSRestCachedTFDJSONDataSets = interface(IDSRestCachedObject<TFDJSONDataSets>)
@@ -76,6 +78,11 @@ const
   TServerMethods_WK_PersistenciaPessoa: array [0..0] of TDSRestParameterMetaData =
   (
     (Name: 'jObjectPessoa'; Direction: 1; DBXType: 37; TypeName: 'TJSONObject')
+  );
+
+  TServerMethods_WK_PersistenciaEndereco: array [0..0] of TDSRestParameterMetaData =
+  (
+    (Name: 'jObjectEndereco'; Direction: 1; DBXType: 37; TypeName: 'TJSONObject')
   );
 
 implementation
@@ -178,6 +185,19 @@ begin
   FPersistenciaPessoaCommand.Execute;
 end;
 
+procedure TServerMethods_WKClient.PersistenciaEndereco(jObjectEndereco: TJSONObject);
+begin
+  if FPersistenciaEnderecoCommand = nil then
+  begin
+    FPersistenciaEnderecoCommand := FConnection.CreateCommand;
+    FPersistenciaEnderecoCommand.RequestType := 'POST';
+    FPersistenciaEnderecoCommand.Text := 'TServerMethods_WK."PersistenciaEndereco"';
+    FPersistenciaEnderecoCommand.Prepare(TServerMethods_WK_PersistenciaEndereco);
+  end;
+  FPersistenciaEnderecoCommand.Parameters[0].Value.SetJSONValue(jObjectEndereco, FInstanceOwner);
+  FPersistenciaEnderecoCommand.Execute;
+end;
+
 constructor TServerMethods_WKClient.Create(ARestConnection: TDSRestConnection);
 begin
   inherited Create(ARestConnection);
@@ -196,6 +216,7 @@ begin
   FEchoStringCommand.DisposeOf;
   FReverseStringCommand.DisposeOf;
   FPersistenciaPessoaCommand.DisposeOf;
+  FPersistenciaEnderecoCommand.DisposeOf;
   inherited;
 end;
 

@@ -74,10 +74,16 @@ object FRotinaAPICEP: TFRotinaAPICEP
   end
   object BBPesquisar: TBitBtn
     Left = 16
-    Top = 54
+    Top = 56
     Width = 121
     Height = 25
-    Caption = 'Pesquisar'
+    Caption = '&Pesquisar'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
     TabOrder = 1
     OnClick = BBPesquisarClick
   end
@@ -86,7 +92,7 @@ object FRotinaAPICEP: TFRotinaAPICEP
     Top = 378
     Width = 161
     Height = 25
-    Caption = 'Levar para Cadastro >'
+    Caption = '&Levar para Cadastro >'
     Default = True
     Glyph.Data = {
       DE010000424DDE01000000000000760000002800000024000000120000000100
@@ -123,6 +129,7 @@ object FRotinaAPICEP: TFRotinaAPICEP
     Top = 216
     Width = 525
     Height = 24
+    Enabled = False
     ReadOnly = True
     TabOrder = 3
   end
@@ -139,6 +146,7 @@ object FRotinaAPICEP: TFRotinaAPICEP
     Top = 276
     Width = 525
     Height = 24
+    Enabled = False
     ReadOnly = True
     TabOrder = 5
   end
@@ -147,6 +155,7 @@ object FRotinaAPICEP: TFRotinaAPICEP
     Top = 306
     Width = 525
     Height = 24
+    Enabled = False
     ReadOnly = True
     TabOrder = 6
   end
@@ -155,15 +164,31 @@ object FRotinaAPICEP: TFRotinaAPICEP
     Top = 336
     Width = 525
     Height = 24
+    Enabled = False
     ReadOnly = True
     TabOrder = 7
+  end
+  object BBIncluir: TBitBtn
+    Left = 16
+    Top = 87
+    Width = 121
+    Height = 25
+    Caption = '&Incluir'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 9
+    OnClick = BBIncluirClick
   end
   object RESTClient1: TRESTClient
     Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
     Params = <>
     HandleRedirects = True
     Left = 40
-    Top = 112
+    Top = 134
   end
   object RESTRequest1: TRESTRequest
     Client = RESTClient1
@@ -171,10 +196,10 @@ object FRotinaAPICEP: TFRotinaAPICEP
     Response = RESTResponse1
     SynchronizedEvents = False
     Left = 120
-    Top = 112
+    Top = 134
   end
   object RESTResponse1: TRESTResponse
     Left = 208
-    Top = 112
+    Top = 134
   end
 end

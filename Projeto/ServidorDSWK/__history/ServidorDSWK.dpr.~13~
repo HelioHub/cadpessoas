@@ -1,0 +1,32 @@
+program ServidorDSWK;
+{$APPTYPE GUI}
+
+{$R *.dres}
+
+uses
+  Vcl.Forms,
+  Web.WebReq,
+  IdHTTPWebBrokerBridge,
+  FUServidorDataSnapRest in 'View\FUServidorDataSnapRest.pas' {FServidorDataSnapRest},
+  ServerMethodsWK in 'Controller\ServerMethodsWK.pas' {ServerMethods_WK: TDataModule},
+  ServerContainerWK in 'View\ServerContainerWK.pas' {ServerContainer_WK: TDataModule},
+  WebModuleWK in 'View\WebModuleWK.pas' {WebModule_WK: TWebModule},
+  UDMBanco in 'Model\UDMBanco.pas' {DataModuleWK: TDataModule},
+  UBuscaCEP in '..\Biblioteca\UBuscaCEP.pas',
+  UCEP in '..\Biblioteca\UCEP.pas',
+  UClaIni in '..\Biblioteca\Model\Classes\UClaIni.pas',
+  ConstWK in '..\Biblioteca\ConstWK.pas',
+  UClaPessoa in '..\Biblioteca\Model\Classes\UClaPessoa.pas',
+  UDAOPessoa in '..\Biblioteca\Model\DAO\UDAOPessoa.pas',
+  UControllerPessoa in '..\Biblioteca\Controller\UControllerPessoa.pas';
+
+{$R *.res}
+
+begin
+  if WebRequestHandler <> nil then
+    WebRequestHandler.WebModuleClass := WebModuleClass;
+  Application.Initialize;
+  Application.CreateForm(TFServidorDataSnapRest, FServidorDataSnapRest);
+  Application.CreateForm(TDataModuleWK, DataModuleWK);
+  Application.Run;
+end.

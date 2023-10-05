@@ -25,6 +25,10 @@ type
     EBairro: TEdit;
     ECidade: TEdit;
     EUF: TEdit;
+    RESTClient1: TRESTClient;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
+    BBIncluir: TBitBtn;
     procedure BBPesquisarClick(Sender: TObject);
     procedure BBLevarClick(Sender: TObject);
   private
@@ -51,7 +55,7 @@ end;
 
 procedure TFRotinaAPICEP.BBPesquisarClick(Sender: TObject);
 begin
-  BBPesquisaCEP;
+  TThread.CreateAnonymousThread(BBPesquisaCEP).Start;
 end;
 
 procedure TFRotinaAPICEP.BBPesquisaCEP;
@@ -62,9 +66,11 @@ begin
   begin
     beep;
     ShowMessage('Atenção!!'+cEOL+'Necessário informar o CEP.');
-    ECEP.SetFocus;
     Exit;
   end;
+
+  RESTClient1.BaseURL := cURLP1+ECEP.Text+cURLP2;
+  RESTRequest1.Execute;
 
   MJSON.Lines.Clear;
   ELogradouro.Clear;
@@ -74,7 +80,8 @@ begin
   EUF.Clear;
 
   try
-    MJSON.Lines.Add(DMClaAPIRest.fPesquisaCEPAPI(Trim(ECEP.Text)));
+    MJSON.Lines.Add(RESTRequest1.Response.JSONValue.ToString);
+
     JSON := MJSON.Text;
     CEPApi := TJson.JsonToObject<TCEPAPI>(Trim(JSON));
     Try

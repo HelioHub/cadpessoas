@@ -40,6 +40,7 @@ type
 
     procedure LoadPessoa(const IDPessoa: string; const SLimit: string);
     procedure InsertPessoa(oObjectPessoa: TPessoa);
+    procedure InsertEndereco(oObjectEndereco: TEndereco);
 
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -79,6 +80,13 @@ end;
 function TClientModuleWKX.DocumentoPessoa(Documento, idPessoa: String): String;
 begin
   result := ServerMethods1Client.GetDocumento(Documento, idPessoa);
+end;
+
+procedure TClientModuleWKX.InsertEndereco(oObjectEndereco: TEndereco);
+var jObjectEndereco : TJSONObject;
+begin
+  jObjectEndereco := TJson.ObjectToJsonObject(oObjectEndereco);
+  ServerMethods1Client.PersistenciaEndereco(jObjectEndereco);
 end;
 
 procedure TClientModuleWKX.InsertPessoa(oObjectPessoa: TPessoa);

@@ -29,12 +29,15 @@ type
     PessoaMemTablenmlogradouro: TWideStringField;
     PessoaMemTabledscomplemento: TWideStringField;
     PessoaMemTabledtregistro: TDateField;
+    PessoaMemTableidendereco: TLargeintField;
   private
     FInstanceOwner: Boolean;
     FServerMethods1Client: TServerMethods_WKClient;
     function GetServerMethods1Client: TServerMethods_WKClient;
     { Private declarations }
   public
+    function DocumentoPessoa(Documento, idPessoa: String) : String;
+
     procedure LoadPessoa(const IDPessoa: string; const SLimit: string);
     procedure InsertPessoa(oObjectPessoa: TPessoa);
 
@@ -73,19 +76,18 @@ begin
   Result := FServerMethods1Client;
 end;
 
+function TClientModuleWKX.DocumentoPessoa(Documento, idPessoa: String): String;
+begin
+  result := ServerMethods1Client.GetDocumento(Documento, idPessoa);
+end;
+
 procedure TClientModuleWKX.InsertPessoa(oObjectPessoa: TPessoa);
 var jObjectPessoa : TJSONObject;
 begin
   jObjectPessoa := TJson.ObjectToJsonObject(oObjectPessoa);
+  ServerMethods1Client.PersistenciaPessoa(jObjectPessoa);
+end;
 
-  ServerMethods1Client.InsertPessoa(jObjectPessoa);
-end;
-{
-procedure TClientModuleWKX.InsertPessoa(oObjectPessoa: TPessoa);
-begin
-  ServerMethods1Client.InsertPessoa(oObjectPessoa);
-end;
-}
 procedure TClientModuleWKX.LoadPessoa(const IDPessoa: string; const SLimit: string);
 var LDataSetList: TFDJSONDataSets;
 begin

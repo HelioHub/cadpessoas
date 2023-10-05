@@ -15,10 +15,11 @@ type
     fnmcidade     : String;
     fdsuf         : String;
 
-    constructor Create;
-    destructor Destroy; override;
   protected
   public
+    constructor Create;
+    destructor Destroy; override;
+
     property idendereco   : integer read fidendereco    write fidendereco;
     property dscep        : String  read fdscep         write fdscep;
     property nmlogradouro : String  read fnmlogradouro  write fnmlogradouro;

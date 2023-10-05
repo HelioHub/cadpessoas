@@ -15,9 +15,6 @@ type
     MJSON: TMemo;
     LCEP: TLabel;
     LJSON: TLabel;
-    RESTClient1: TRESTClient;
-    RESTRequest1: TRESTRequest;
-    RESTResponse1: TRESTResponse;
     LLogradouro: TLabel;
     LComplemento: TLabel;
     LBairro: TLabel;
@@ -28,8 +25,13 @@ type
     EBairro: TEdit;
     ECidade: TEdit;
     EUF: TEdit;
+    RESTClient1: TRESTClient;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
+    BBIncluir: TBitBtn;
     procedure BBPesquisarClick(Sender: TObject);
     procedure BBLevarClick(Sender: TObject);
+    procedure BBIncluirClick(Sender: TObject);
   private
     procedure BBPesquisaCEP;
     { Private declarations }
@@ -37,9 +39,6 @@ type
     { Public declarations }
   end;
 
-Const cURL   = 'viacep.com.br/ws/_numero_CEP/json/';
-      cURLP1 = 'viacep.com.br/ws/';
-      cURLP2 = '/json/';
 var
   FRotinaAPICEP: TFRotinaAPICEP;
 
@@ -47,7 +46,25 @@ implementation
 
 {$R *.dfm}
 
-uses ConstWK, UClaCEPAPI, UClaAPIRest;
+uses ConstWK, UClaCEPAPI, UClaAPIRest, UClaPessoa;
+
+procedure TFRotinaAPICEP.BBIncluirClick(Sender: TObject);
+var oEndereco : TEndereco;
+begin
+  TThread.CreateAnonymousThread(BBPesquisaCEP).Start;
+
+  oEndereco := TEndereco.Create;
+  try
+    oEndereco.dscep         := Trim(ECEP.Text);
+    oEndereco.nmlogradouro  := ELogradouro.Text;
+    oEndereco.nmbairro      := EBairro.Text;
+    oEndereco.dscomplemento := EComplemento.Text;
+    oEndereco.nmcidade      := ECidade.Text;
+    oEndereco.dsuf          := EUF.Text;
+  finally
+    FreeAndNil(oEndereco);
+  end;
+end;
 
 procedure TFRotinaAPICEP.BBLevarClick(Sender: TObject);
 begin
@@ -57,7 +74,7 @@ end;
 
 procedure TFRotinaAPICEP.BBPesquisarClick(Sender: TObject);
 begin
-  BBPesquisaCEP;
+  TThread.CreateAnonymousThread(BBPesquisaCEP).Start;
 end;
 
 procedure TFRotinaAPICEP.BBPesquisaCEP;
@@ -68,7 +85,6 @@ begin
   begin
     beep;
     ShowMessage('Atenção!!'+cEOL+'Necessário informar o CEP.');
-    ECEP.SetFocus;
     Exit;
   end;
 
@@ -84,6 +100,7 @@ begin
 
   try
     MJSON.Lines.Add(RESTRequest1.Response.JSONValue.ToString);
+
     JSON := MJSON.Text;
     CEPApi := TJson.JsonToObject<TCEPAPI>(Trim(JSON));
     Try

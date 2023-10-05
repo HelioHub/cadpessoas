@@ -1,13 +1,13 @@
 //
 // Created by the DataSnap proxy generator.
-// 02/10/2023 21:38:19
+// 05/10/2023 13:04:21
 //
 
 unit ClientClassesWK;
 
 interface
 
-uses System.JSON, Datasnap.DSProxyRest, Datasnap.DSClientRest, Data.DBXCommon, Data.DBXClient, Data.DBXDataSnap, Data.DBXJSON, Datasnap.DSProxy, System.Classes, System.SysUtils, Data.DB, Data.SqlExpr, Data.DBXDBReaders, Data.DBXCDSReaders, Data.FireDACJSONReflect, UClaPessoa, Data.DBXJSONReflect;
+uses System.JSON, Datasnap.DSProxyRest, Datasnap.DSClientRest, Data.DBXCommon, Data.DBXClient, Data.DBXDataSnap, Data.DBXJSON, Datasnap.DSProxy, System.Classes, System.SysUtils, Data.DB, Data.SqlExpr, Data.DBXDBReaders, Data.DBXCDSReaders, Data.FireDACJSONReflect, Data.DBXJSONReflect;
 
 type
 
@@ -17,18 +17,20 @@ type
   private
     FGetPessoaCommand: TDSRestCommand;
     FGetPessoaCommand_Cache: TDSRestCommand;
+    FGetDocumentoCommand: TDSRestCommand;
     FEchoStringCommand: TDSRestCommand;
     FReverseStringCommand: TDSRestCommand;
-    FInsertPessoaCommand: TDSRestCommand;
+    FPersistenciaPessoaCommand: TDSRestCommand;
   public
     constructor Create(ARestConnection: TDSRestConnection); overload;
     constructor Create(ARestConnection: TDSRestConnection; AInstanceOwner: Boolean); overload;
     destructor Destroy; override;
     function GetPessoa(IDPessoa: string; SLimit: string; const ARequestFilter: string = ''): TFDJSONDataSets;
     function GetPessoa_Cache(IDPessoa: string; SLimit: string; const ARequestFilter: string = ''): IDSRestCachedTFDJSONDataSets;
+    function GetDocumento(Documento: string; idPessoa: string; const ARequestFilter: string = ''): string;
     function EchoString(Value: string; const ARequestFilter: string = ''): string;
     function ReverseString(Value: string; const ARequestFilter: string = ''): string;
-    procedure InsertPessoa(oPessoa: TPessoa);
+    procedure PersistenciaPessoa(jObjectPessoa: TJSONObject);
   end;
 
   IDSRestCachedTFDJSONDataSets = interface(IDSRestCachedObject<TFDJSONDataSets>)
@@ -52,6 +54,13 @@ const
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'String')
   );
 
+  TServerMethods_WK_GetDocumento: array [0..2] of TDSRestParameterMetaData =
+  (
+    (Name: 'Documento'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: 'idPessoa'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
+  );
+
   TServerMethods_WK_EchoString: array [0..1] of TDSRestParameterMetaData =
   (
     (Name: 'Value'; Direction: 1; DBXType: 26; TypeName: 'string'),
@@ -64,9 +73,9 @@ const
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
   );
 
-  TServerMethods_WK_InsertPessoa: array [0..0] of TDSRestParameterMetaData =
+  TServerMethods_WK_PersistenciaPessoa: array [0..0] of TDSRestParameterMetaData =
   (
-    (Name: 'oPessoa'; Direction: 1; DBXType: 37; TypeName: 'TPessoa')
+    (Name: 'jObjectPessoa'; Direction: 1; DBXType: 37; TypeName: 'TJSONObject')
   );
 
 implementation
@@ -113,6 +122,21 @@ begin
   Result := TDSRestCachedTFDJSONDataSets.Create(FGetPessoaCommand_Cache.Parameters[2].Value.GetString);
 end;
 
+function TServerMethods_WKClient.GetDocumento(Documento: string; idPessoa: string; const ARequestFilter: string): string;
+begin
+  if FGetDocumentoCommand = nil then
+  begin
+    FGetDocumentoCommand := FConnection.CreateCommand;
+    FGetDocumentoCommand.RequestType := 'GET';
+    FGetDocumentoCommand.Text := 'TServerMethods_WK.GetDocumento';
+    FGetDocumentoCommand.Prepare(TServerMethods_WK_GetDocumento);
+  end;
+  FGetDocumentoCommand.Parameters[0].Value.SetWideString(Documento);
+  FGetDocumentoCommand.Parameters[1].Value.SetWideString(idPessoa);
+  FGetDocumentoCommand.Execute(ARequestFilter);
+  Result := FGetDocumentoCommand.Parameters[2].Value.GetWideString;
+end;
+
 function TServerMethods_WKClient.EchoString(Value: string; const ARequestFilter: string): string;
 begin
   if FEchoStringCommand = nil then
@@ -141,29 +165,17 @@ begin
   Result := FReverseStringCommand.Parameters[1].Value.GetWideString;
 end;
 
-procedure TServerMethods_WKClient.InsertPessoa(oPessoa: TPessoa);
+procedure TServerMethods_WKClient.PersistenciaPessoa(jObjectPessoa: TJSONObject);
 begin
-  if FInsertPessoaCommand = nil then
+  if FPersistenciaPessoaCommand = nil then
   begin
-    FInsertPessoaCommand := FConnection.CreateCommand;
-    FInsertPessoaCommand.RequestType := 'POST';
-    FInsertPessoaCommand.Text := 'TServerMethods_WK."InsertPessoa"';
-    FInsertPessoaCommand.Prepare(TServerMethods_WK_InsertPessoa);
+    FPersistenciaPessoaCommand := FConnection.CreateCommand;
+    FPersistenciaPessoaCommand.RequestType := 'POST';
+    FPersistenciaPessoaCommand.Text := 'TServerMethods_WK."PersistenciaPessoa"';
+    FPersistenciaPessoaCommand.Prepare(TServerMethods_WK_PersistenciaPessoa);
   end;
-  if not Assigned(oPessoa) then
-    FInsertPessoaCommand.Parameters[0].Value.SetNull
-  else
-  begin
-    FMarshal := TDSRestCommand(FInsertPessoaCommand.Parameters[0].ConnectionHandler).GetJSONMarshaler;
-    try
-      FInsertPessoaCommand.Parameters[0].Value.SetJSONValue(FMarshal.Marshal(oPessoa), True);
-      if FInstanceOwner then
-        oPessoa.Free
-    finally
-      FreeAndNil(FMarshal)
-    end
-    end;
-  FInsertPessoaCommand.Execute;
+  FPersistenciaPessoaCommand.Parameters[0].Value.SetJSONValue(jObjectPessoa, FInstanceOwner);
+  FPersistenciaPessoaCommand.Execute;
 end;
 
 constructor TServerMethods_WKClient.Create(ARestConnection: TDSRestConnection);
@@ -180,9 +192,10 @@ destructor TServerMethods_WKClient.Destroy;
 begin
   FGetPessoaCommand.DisposeOf;
   FGetPessoaCommand_Cache.DisposeOf;
+  FGetDocumentoCommand.DisposeOf;
   FEchoStringCommand.DisposeOf;
   FReverseStringCommand.DisposeOf;
-  FInsertPessoaCommand.DisposeOf;
+  FPersistenciaPessoaCommand.DisposeOf;
   inherited;
 end;
 

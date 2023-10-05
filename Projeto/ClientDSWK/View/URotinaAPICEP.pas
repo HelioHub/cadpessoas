@@ -28,8 +28,10 @@ type
     RESTClient1: TRESTClient;
     RESTRequest1: TRESTRequest;
     RESTResponse1: TRESTResponse;
+    BBIncluir: TBitBtn;
     procedure BBPesquisarClick(Sender: TObject);
     procedure BBLevarClick(Sender: TObject);
+    procedure BBIncluirClick(Sender: TObject);
   private
     procedure BBPesquisaCEP;
     { Private declarations }
@@ -44,7 +46,33 @@ implementation
 
 {$R *.dfm}
 
-uses ConstWK, UClaCEPAPI, UClaAPIRest;
+uses ConstWK, UClaCEPAPI, UClaAPIRest, UClaPessoa, ClientModuleWK;
+
+procedure TFRotinaAPICEP.BBIncluirClick(Sender: TObject);
+var oEndereco : TEndereco;
+begin
+  TThread.CreateAnonymousThread(BBPesquisaCEP).Start;
+  ShowMessage('Efetuando Inclusão do CEP na base...Click em Ok!');
+
+  oEndereco := TEndereco.Create;
+  try
+    oEndereco.dscep         := Trim(ECEP.Text);
+    oEndereco.nmlogradouro  := ELogradouro.Text;
+    oEndereco.nmbairro      := EBairro.Text;
+    oEndereco.dscomplemento := EComplemento.Text;
+    oEndereco.nmcidade      := ECidade.Text;
+    oEndereco.dsuf          := EUF.Text;
+    try
+      ClientModuleWKX.InsertEndereco(oEndereco);
+      ShowMessage('Inclusão efetuada com sucesso!');
+    except
+      ShowMessage('Inclusão não efetuada!'+cEOL+
+                  'Procure o Suporte do Sistema.');
+    end;
+  finally
+    FreeAndNil(oEndereco);
+  end;
+end;
 
 procedure TFRotinaAPICEP.BBLevarClick(Sender: TObject);
 begin

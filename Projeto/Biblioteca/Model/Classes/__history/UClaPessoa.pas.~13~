@@ -8,6 +8,7 @@ type
   TEndereco = class
   private
     fidendereco   : integer;
+    fdscep        : String;
     fnmlogradouro : String;
     fnmbairro     : String;
     fdscomplemento: String;
@@ -15,9 +16,11 @@ type
     fdsuf         : String;
 
     constructor Create;
+    destructor Destroy; override;
   protected
   public
     property idendereco   : integer read fidendereco    write fidendereco;
+    property dscep        : String  read fdscep         write fdscep;
     property nmlogradouro : String  read fnmlogradouro  write fnmlogradouro;
     property nmbairro     : String  read fnmbairro      write fnmbairro;
     property dscomplemento: String  read fdscomplemento write fdscomplemento;
@@ -27,18 +30,18 @@ type
 
   TCEP = class
   private
-    fidendereco : TEndereco;
+    fidendereco : integer;
     fidpessoa   : integer;
-    fdscep      : String;
+    fdscep      : TEndereco;
     fdsnumero   : integer;
 
     constructor Create;
     destructor Destroy; override;
   protected
   public
-    property idendereco : TEndereco read fidendereco write fidendereco;
+    property idendereco : integer   read fidendereco write fidendereco;
     property idpessoa   : integer   read fidpessoa   write fidpessoa;
-    property dscep      : String    read fdscep      write fdscep;
+    property dscep      : TEndereco read fdscep      write fdscep;
     property dsnumero   : integer   read fdsnumero   write fdsnumero;
   end;
 
@@ -53,10 +56,10 @@ type
     fflnatureza  : string;
     fCEP         : TCEP;
 
-    destructor Destroy; override;
   protected
   public
     constructor Create;
+    destructor Destroy; override;
 
     property acao        : TAcao     read facao        write facao;
     property idpessoa    : integer   read fidpessoa    write fidpessoa;
@@ -78,10 +81,16 @@ begin
   dsuf := cUFPadrao;
 end;
 
+destructor TEndereco.Destroy;
+begin
+  inherited;
+end;
+
 { TCEP }
 
 constructor TCEP.Create;
 begin
+  dscep := TEndereco.Create;
 end;
 
 destructor TCEP.Destroy;
@@ -94,11 +103,12 @@ end;
 constructor TPessoa.Create;
 begin
   CEP := TCEP.Create;
-  CEP.idendereco := TEndereco.Create;
 end;
 
 destructor TPessoa.Destroy;
 begin
+  CEP.dscep.Free;
+  CEP.Free;
   inherited;
 end;
 
