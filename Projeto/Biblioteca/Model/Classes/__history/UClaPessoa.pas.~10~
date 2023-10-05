@@ -39,9 +39,9 @@ type
     destructor Destroy; override;
   protected
   public
-    property idendereco : integer   read fidendereco write fidendereco;
+    property idendereco : TEndereco read fidendereco write fidendereco;
     property idpessoa   : integer   read fidpessoa   write fidpessoa;
-    property dscep      : TEndereco read fdscep      write fdscep;
+    property dscep      : String    read fdscep      write fdscep;
     property dsnumero   : integer   read fdsnumero   write fdsnumero;
   end;
 
@@ -90,7 +90,7 @@ end;
 
 constructor TCEP.Create;
 begin
-  dscep := TEndereco.Create;
+  idendereco := TEndereco.Create;
 end;
 
 destructor TCEP.Destroy;
@@ -107,7 +107,7 @@ end;
 
 destructor TPessoa.Destroy;
 begin
-  CEP.dscep.Free;
+  CEP.idendereco.Free;
   CEP.Free;
   inherited;
 end;

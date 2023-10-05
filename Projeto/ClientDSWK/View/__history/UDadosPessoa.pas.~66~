@@ -95,14 +95,14 @@ begin
     else
       ObjetoPessoa.flnatureza := cSexoM;
     //CEP
+    ObjetoPessoa.CEP.dscep   := ECEP.Text;
     ObjetoPessoa.CEP.dsnumero:= StrToIntDef(ENo.Text,0);
     //Endereço
-    ObjetoPessoa.CEP.dscep.dscep        := ECEP.Text;
-    ObjetoPessoa.CEP.dscep.nmlogradouro := ELogradouro.Text;
-    ObjetoPessoa.CEP.dscep.nmbairro     := EBairro.Text;
-    ObjetoPessoa.CEP.dscep.nmcidade     := ECidade.Text;
-    ObjetoPessoa.CEP.dscep.dscomplemento:= EComplemento.Text;
-    ObjetoPessoa.CEP.dscep.dsuf         := EUF.Text;
+    ObjetoPessoa.CEP.idendereco.nmlogradouro := ELogradouro.Text;
+    ObjetoPessoa.CEP.idendereco.nmbairro     := EBairro.Text;
+    ObjetoPessoa.CEP.idendereco.nmcidade     := ECidade.Text;
+    ObjetoPessoa.CEP.idendereco.dscomplemento:= EComplemento.Text;
+    ObjetoPessoa.CEP.idendereco.dsuf         := EUF.Text;
 
     ClientModuleWKX.InsertPessoa(ObjetoPessoa);
   finally
@@ -139,14 +139,14 @@ begin
     else
       RGSexo.ItemIndex := Integer(TSexo.F);
     //CEP
+    ECEP.Text          := ObjetoPessoa.CEP.dscep;
     ENo.Text           := IntToStr(ObjetoPessoa.CEP.dsnumero);
     //Endereço
-    ECEP.Text          := ObjetoPessoa.CEP.dscep.dscep;
-    ELogradouro.Text   := ObjetoPessoa.CEP.dscep.nmlogradouro;
-    EBairro.Text       := ObjetoPessoa.CEP.dscep.nmbairro;
-    ECidade.Text       := ObjetoPessoa.CEP.dscep.nmcidade;
-    EComplemento.Text  := ObjetoPessoa.CEP.dscep.dscomplemento;
-    EUF.Text           := ObjetoPessoa.CEP.dscep.dsuf;
+    ELogradouro.Text   := ObjetoPessoa.CEP.idendereco.nmlogradouro;
+    EBairro.Text       := ObjetoPessoa.CEP.idendereco.nmbairro;
+    ECidade.Text       := ObjetoPessoa.CEP.idendereco.nmcidade;
+    EComplemento.Text  := ObjetoPessoa.CEP.idendereco.dscomplemento;
+    EUF.Text           := ObjetoPessoa.CEP.idendereco.dsuf;
 
     if ObjetoPessoa.acao = acExcluir then
     begin
@@ -257,12 +257,11 @@ begin
     result := true;
   end;
 
-  sCodigo := ClientModuleWKX.DocumentoPessoa(Trim(EDocumento.Text));
+  sCodigo := ClientModuleWKX.GetDocumento(ObjetoPessoa);
   if sCodigo <> Empty then
   begin
     Beep;
-    ShowMessage('Atenção! '+cEOL+
-                'Pessoa com Documento '+EDocumento.Text+' já cadastrado com o Código '+sCodigo);
+    ShowMessage('Atenção! Pessoa com Documento '++' já cadastrado no Código '+sCodigo);
     result := true;
   end;
 end;

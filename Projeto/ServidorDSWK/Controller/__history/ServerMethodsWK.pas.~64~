@@ -37,7 +37,7 @@ type
 
 Const
   sSQLPessoaSelect = 'SELECT A.idpessoa, A.dsdocumento, A.nmprimeiro, A.nmsegundo, A.dtregistro, A.flnatureza, ' +
-                     'B.dsnumero, ' +
+                     'B.dscep, B.dsnumero, ' +
                      'C.idendereco, C.dscep, C.nmlogradouro, C.nmbairro, C.dscomplemento, C.nmcidade, C.dsuf ' +
                      'FROM pessoa A ' +
                      'LEFT JOIN endereco B            ON B.idpessoa   = A.idpessoa ' +
@@ -186,7 +186,7 @@ var sSQL,
 
   procedure insertEndereco;
   begin
-    sSequencialEndereco := GetProximoCodigoCEP;
+    sSequencialCEP := GetProximoCodigoCEP;
     sSQL := 'INSERT INTO ENDERECO (idendereco, idpessoa, dscep, dsnumero) '+
             ' VALUES ('+sSequencialEndereco           +', '+
                         sSequencialPessoa             +', '+
@@ -210,7 +210,7 @@ begin
                       QuotedStr(oPessoa.flnatureza) +') ';
   DataModuleWK.WKConnection.ExecSQL(sSQL);
 
-  sCEPExist := GetCEP(oPessoa.CEP.dscep.dscep);
+  sCEPExist := GetCEP(oPessoa.CEP.dscep);
   if sCEPExist = Empty then
   begin
     sSequencialEndereco := GetProximoCodigoEndereco;
@@ -228,7 +228,7 @@ begin
   end
   else
   begin
-    sSequencialCEP := sCEPExist;
+    sSequencialEndereco := sCEPExist;
     insertEndereco;
   end;
 end;

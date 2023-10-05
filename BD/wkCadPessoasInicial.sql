@@ -16,9 +16,9 @@ SET default_with_oids = false;
 ----------------
 --- drop tables
 ----------------
-DROP TABLE IF EXISTS endereco_integracao;
-DROP TABLE IF EXISTS endereco;
 DROP TABLE IF EXISTS pessoa;
+DROP TABLE IF EXISTS endereco;
+DROP TABLE IF EXISTS endereco_integracao;
 
 ----------------------------------------------------------------------
 -- Name: pessoa; Type: TABLE; Schema: public; Owner: -; Tablespace: 
@@ -33,23 +33,6 @@ CREATE TABLE pessoa (
     CONSTRAINT pessoa_pk PRIMARY KEY (idpessoa) 	
 );
 CREATE INDEX pessoa_idpessoa ON pessoa (idpessoa);
-CREATE INDEX pessoa_dsdocumento ON pessoa (dsdocumento);
-
---------------------------------------------------------------------------------
--- Name: endereco_integracao; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---------------------------------------------------------------------------------
-CREATE TABLE endereco_integracao (
-    idendereco bigint NOT NULL,
-    dscep varchar(15) NULL,
-    dsuf varchar(50) NULL,
-    nmcidade varchar(100) NULL,
-    nmbairro varchar(50) NULL,
-    nmlogradouro varchar(100) NULL,
-    dscomplemento varchar(100) NULL,
-    CONSTRAINT enderecointegracao_pk PRIMARY KEY (idendereco)
-);
-CREATE INDEX enderecointegracao_idendereco ON endereco_integracao (idendereco);
-CREATE INDEX enderecointegracao_dscep ON endereco_integracao (dscep);
 
 ----------------------------------------------------------------------
 -- Name: endereco; Type: TABLE; Schema: public; Owner: -; Tablespace: 
@@ -57,19 +40,32 @@ CREATE INDEX enderecointegracao_dscep ON endereco_integracao (dscep);
 CREATE TABLE endereco (
     idendereco bigserial NOT NULL,
     idpessoa bigint NOT NULL,
-    dscep bigint NOT NULL,
-	dsnumero integer NULL,
-    CONSTRAINT endereco_pk PRIMARY KEY (idendereco, idpessoa),
-    CONSTRAINT endereco_fk_pessoa FOREIGN KEY (idpessoa) REFERENCES pessoa(idpessoa) ON DELETE CASCADE,
-    CONSTRAINT endereco_fk_integracao FOREIGN KEY (dscep) REFERENCES endereco_integracao(idendereco) 
+    dscep varchar(15) NULL,
+    CONSTRAINT endereco_pk PRIMARY KEY (idendereco),
+    CONSTRAINT endereco_fk_pessoa FOREIGN KEY (idpessoa) REFERENCES pessoa(idpessoa) ON DELETE CASCADE
 );
 CREATE INDEX endereco_idendereco ON endereco (idendereco);
 CREATE INDEX endereco_idpessoa ON endereco (idpessoa);
-CREATE INDEX endereco_dscep ON endereco (dscep);
+
+--------------------------------------------------------------------------------
+-- Name: endereco_integracao; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--------------------------------------------------------------------------------
+CREATE TABLE endereco_integracao (
+    idendereco bigint NOT NULL,
+    dsuf varchar(50) NULL,
+    nmcidade varchar(100) NULL,
+    nmbairro varchar(50) NULL,
+    nmlogradouro varchar(100) NULL,
+    dscomplemento varchar(100) NULL,
+    CONSTRAINT enderecointegracao_pk PRIMARY KEY (idendereco),
+    CONSTRAINT enderecointegracao_fk_endereco FOREIGN KEY (idendereco) REFERENCES endereco(idendereco) ON DELETE CASCADE
+);
+CREATE INDEX enderecointegracao_idendereco ON endereco_integracao (idendereco);
+
 
 -- AJUSTES NO MODELO
 
--- ALTER TABLE endereco ADD COLUMN  dsnumero integer;		
+ALTER TABLE endereco ADD COLUMN  dsnumero integer;		
 
 ALTER TABLE pessoa DROP COLUMN flnatureza;
 CREATE DOMAIN sexo_full AS char(1) DEFAULT 'M' NOT NULL CHECK ( VALUE IN ('M', 'F'));
@@ -78,3 +74,4 @@ ALTER TABLE pessoa ADD COLUMN flnatureza sexo_full;
 --
 -- PostgreSQL database dump complete
 --
+

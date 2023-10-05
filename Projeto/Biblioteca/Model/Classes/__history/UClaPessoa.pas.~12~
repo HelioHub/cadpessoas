@@ -107,7 +107,7 @@ end;
 
 destructor TPessoa.Destroy;
 begin
-  CEP.dscep.Free;
+  CEP.idendereco.Free;
   CEP.Free;
   inherited;
 end;

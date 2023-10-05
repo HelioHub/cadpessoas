@@ -8,9 +8,17 @@ Hélio Marques
 
 ![## Documento de Requisitos CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/Requisitos/Requisitos.png)
 
-## Diagrama de Entidade e Relacionamento CadPessoas
+## Diagrama Inicial de Entidade e Relacionamento CadPessoas
 
 ![## Diagrama de Entidade e Relacionamento CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/BD/Modelo.png)
+
+## Novo Diagrama de Entidade e Relacionamento CadPessoas 
+
+	• Novo diagrama definido para considerar o Cadastro CEP único e reutilizável. 
+	• Pessoa x Endereco_Integracao relacionamento n para n 
+	• Script main/BD/wkCadPessoas.sql.
+
+![## Diagrama de Entidade e Relacionamento CadPessoas](https://github.com/HelioHub/cadpessoas/blob/main/BD/ModeloNovo.png)
 
 ## Telas Principais Desenvolvidas 
 

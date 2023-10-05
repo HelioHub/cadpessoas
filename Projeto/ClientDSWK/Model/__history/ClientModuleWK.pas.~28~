@@ -36,8 +36,6 @@ type
     function GetServerMethods1Client: TServerMethods_WKClient;
     { Private declarations }
   public
-    function DocumentoPessoa(Documento : String) : String;
-
     procedure LoadPessoa(const IDPessoa: string; const SLimit: string);
     procedure InsertPessoa(oObjectPessoa: TPessoa);
 
@@ -74,11 +72,6 @@ begin
   if FServerMethods1Client = nil then
     FServerMethods1Client:= TServerMethods_WKClient.Create(DSRestConnectionWK, FInstanceOwner);
   Result := FServerMethods1Client;
-end;
-
-function TClientModuleWKX.DocumentoPessoa(Documento: String): String;
-begin
-  result := ServerMethods1Client.GetDocumento(Documento);
 end;
 
 procedure TClientModuleWKX.InsertPessoa(oObjectPessoa: TPessoa);

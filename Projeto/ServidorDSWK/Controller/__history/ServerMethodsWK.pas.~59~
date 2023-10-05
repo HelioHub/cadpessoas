@@ -18,8 +18,8 @@ type
     //Pessoa
     function GetProximoCodigoPessoa: String;
     function GetProximoCodigoEndereco: String;
-    function GetProximoCodigoCEP: String;
     function GetCEP(wCEP: String): String;
+
 
     procedure InsertPessoa(const oPessoa: TPessoa);
     procedure UpdatePessoa(const oPessoa: TPessoa);
@@ -37,11 +37,11 @@ type
 
 Const
   sSQLPessoaSelect = 'SELECT A.idpessoa, A.dsdocumento, A.nmprimeiro, A.nmsegundo, A.dtregistro, A.flnatureza, ' +
-                     'B.dsnumero, ' +
-                     'C.idendereco, C.dscep, C.nmlogradouro, C.nmbairro, C.dscomplemento, C.nmcidade, C.dsuf ' +
+                     'B.idendereco, B.dscep, B.dsnumero, ' +
+                     'C.nmlogradouro, C.nmbairro, C.dscomplemento, C.nmcidade, C.dsuf ' +
                      'FROM pessoa A ' +
-                     'LEFT JOIN endereco B            ON B.idpessoa   = A.idpessoa ' +
-                     'LEFT JOIN endereco_integracao C ON C.idendereco = B.dscep ';
+                     'LEFT JOIN endereco B            ON B.idpessoa = A.idpessoa ' +
+                     'LEFT JOIN endereco_integracao C ON C.idendereco = B.idendereco ';
 
   sSQLPessoaWhere = 'WHERE A.idpessoa = ';
   sSQLPessoaOrder = 'ORDER BY A.idpessoa ';
@@ -62,7 +62,7 @@ function TServerMethods_WK.GetCEP(wCEP: String): String;
 begin
   try
     DataModuleWK.WKSequencial.Close;
-    DataModuleWK.WKSequencial.SQL.Text := 'SELECT idendereco FROM endereco_integracao WHERE dscep = '+QuotedStr(wCEP);
+    DataModuleWK.WKSequencial.SQL.Text := 'SELECT idendereco FROM endereco WHERE dscep = '+QuotedStr(wCEP);
     DataModuleWK.WKSequencial.Open;
     Result := DataModuleWK.WKSequencial.FieldByName('idendereco').AsString;
   finally
@@ -125,22 +125,9 @@ begin
   end;
 end;
 
-function TServerMethods_WK.GetProximoCodigoCEP: String;
-begin
-  {Recupera o próximo código sequencial da entity Endereco(CEP)}
-  try
-    DataModuleWK.WKSequencial.Close;
-    DataModuleWK.WKSequencial.SQL.Text := 'SELECT (COALESCE(MAX(idendereco),0)+1) AS SEQUENCIAL FROM ENDERECO ';
-    DataModuleWK.WKSequencial.Open;
-    Result := DataModuleWK.WKSequencial.FieldByName('SEQUENCIAL').AsString;
-  finally
-    DataModuleWK.WKSequencial.Close;
-  end;
-end;
-
 function TServerMethods_WK.GetProximoCodigoEndereco: String;
 begin
-  {Recupera o próximo código sequencial da entity Endereco_Integracao}
+  {Recupera o próximo código sequencial da entity Endereçc}
   try
     DataModuleWK.WKSequencial.Close;
     DataModuleWK.WKSequencial.SQL.Text := 'SELECT (COALESCE(MAX(idendereco),0)+1) AS SEQUENCIAL FROM ENDERECO_INTEGRACAO ';
@@ -181,16 +168,15 @@ end;
 
 procedure TServerMethods_WK.InsertPessoa(const oPessoa: TPessoa);
 var sSQL,
-    sSequencialPessoa, sSequencialEndereco, sSequencialCEP,
+    sSequencialPessoa, sSequencialEndereco,
     sCEPExist : string;
 
   procedure insertEndereco;
   begin
-    sSequencialEndereco := GetProximoCodigoCEP;
     sSQL := 'INSERT INTO ENDERECO (idendereco, idpessoa, dscep, dsnumero) '+
             ' VALUES ('+sSequencialEndereco           +', '+
                         sSequencialPessoa             +', '+
-                        sSequencialCEP                +', '+
+                        QuotedStr(oPessoa.CEP.dscep)  +', '+
                         IntToStr(oPessoa.CEP.dsnumero)+') ';
     DataModuleWK.WKConnection.ExecSQL(sSQL);
   end;
@@ -210,25 +196,24 @@ begin
                       QuotedStr(oPessoa.flnatureza) +') ';
   DataModuleWK.WKConnection.ExecSQL(sSQL);
 
-  sCEPExist := GetCEP(oPessoa.CEP.dscep.dscep);
+  sCEPExist := GetCEP(oPessoa.CEP.dscep);
   if sCEPExist = Empty then
   begin
     sSequencialEndereco := GetProximoCodigoEndereco;
-    sSQL := 'INSERT INTO ENDERECO_INTEGRACAO (idendereco, dscep, dsuf, nmcidade, nmbairro, nmlogradouro, dscomplemento) '+
-            ' VALUES ('+sSequencialEndereco                        +', '+
-                        QuotedStr(oPessoa.CEP.dscep.dscep)         +', '+
-                        QuotedStr(oPessoa.CEP.dscep.dsuf)          +', '+
-                        QuotedStr(oPessoa.CEP.dscep.nmcidade)      +', '+
-                        QuotedStr(oPessoa.CEP.dscep.nmbairro)      +', '+
-                        QuotedStr(oPessoa.CEP.dscep.nmlogradouro)  +', '+
-                        QuotedStr(oPessoa.CEP.dscep.dscomplemento) +')';
-    DataModuleWK.WKConnection.ExecSQL(sSQL);
-
     insertEndereco;
+
+    sSQL := 'INSERT INTO ENDERECO_INTEGRACAO (idendereco, dsuf, nmcidade, nmbairro, nmlogradouro, dscomplemento) '+
+            ' VALUES ('+sSequencialEndereco                             +', '+
+                        QuotedStr(oPessoa.CEP.idendereco.dsuf)          +', '+
+                        QuotedStr(oPessoa.CEP.idendereco.nmcidade)      +', '+
+                        QuotedStr(oPessoa.CEP.idendereco.nmbairro)      +', '+
+                        QuotedStr(oPessoa.CEP.idendereco.nmlogradouro)  +', '+
+                        QuotedStr(oPessoa.CEP.idendereco.dscomplemento) +')';
+    DataModuleWK.WKConnection.ExecSQL(sSQL);
   end
   else
   begin
-    sSequencialCEP := sCEPExist;
+    sSequencialEndereco := sCEPExist;
     insertEndereco;
   end;
 end;

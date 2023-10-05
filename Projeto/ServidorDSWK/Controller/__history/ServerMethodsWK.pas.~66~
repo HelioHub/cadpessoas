@@ -186,7 +186,7 @@ var sSQL,
 
   procedure insertEndereco;
   begin
-    sSequencialEndereco := GetProximoCodigoCEP;
+    sSequencialCEP := GetProximoCodigoCEP;
     sSQL := 'INSERT INTO ENDERECO (idendereco, idpessoa, dscep, dsnumero) '+
             ' VALUES ('+sSequencialEndereco           +', '+
                         sSequencialPessoa             +', '+
@@ -228,7 +228,7 @@ begin
   end
   else
   begin
-    sSequencialCEP := sCEPExist;
+    sSequencialEndereco := sCEPExist;
     insertEndereco;
   end;
 end;

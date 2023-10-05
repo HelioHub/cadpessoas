@@ -78,7 +78,7 @@ end;
 
 function TClientModuleWKX.DocumentoPessoa(Documento: String): String;
 begin
-  result := ServerMethods1Client.GetDocumento(Documento);
+  result := ServerMethods1Client.DocumentoPessoa(Documento);
 end;
 
 procedure TClientModuleWKX.InsertPessoa(oObjectPessoa: TPessoa);

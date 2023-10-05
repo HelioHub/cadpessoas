@@ -8,7 +8,6 @@ type
   TEndereco = class
   private
     fidendereco   : integer;
-    fdscep        : String;
     fnmlogradouro : String;
     fnmbairro     : String;
     fdscomplemento: String;
@@ -20,7 +19,6 @@ type
   protected
   public
     property idendereco   : integer read fidendereco    write fidendereco;
-    property dscep        : String  read fdscep         write fdscep;
     property nmlogradouro : String  read fnmlogradouro  write fnmlogradouro;
     property nmbairro     : String  read fnmbairro      write fnmbairro;
     property dscomplemento: String  read fdscomplemento write fdscomplemento;
@@ -30,18 +28,18 @@ type
 
   TCEP = class
   private
-    fidendereco : integer;
+    fidendereco : TEndereco;
     fidpessoa   : integer;
-    fdscep      : TEndereco;
+    fdscep      : String;
     fdsnumero   : integer;
 
     constructor Create;
     destructor Destroy; override;
   protected
   public
-    property idendereco : integer   read fidendereco write fidendereco;
+    property idendereco : TEndereco read fidendereco write fidendereco;
     property idpessoa   : integer   read fidpessoa   write fidpessoa;
-    property dscep      : TEndereco read fdscep      write fdscep;
+    property dscep      : String    read fdscep      write fdscep;
     property dsnumero   : integer   read fdsnumero   write fdsnumero;
   end;
 
@@ -90,7 +88,7 @@ end;
 
 constructor TCEP.Create;
 begin
-  dscep := TEndereco.Create;
+  idendereco := TEndereco.Create;
 end;
 
 destructor TCEP.Destroy;
@@ -107,7 +105,7 @@ end;
 
 destructor TPessoa.Destroy;
 begin
-  CEP.dscep.Free;
+  CEP.idendereco.Free;
   CEP.Free;
   inherited;
 end;

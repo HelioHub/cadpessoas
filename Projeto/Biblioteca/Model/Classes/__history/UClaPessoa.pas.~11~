@@ -90,7 +90,7 @@ end;
 
 constructor TCEP.Create;
 begin
-  dscep := TEndereco.Create;
+  idendereco := TEndereco.Create;
 end;
 
 destructor TCEP.Destroy;
@@ -107,7 +107,7 @@ end;
 
 destructor TPessoa.Destroy;
 begin
-  CEP.dscep.Free;
+  CEP.idendereco.Free;
   CEP.Free;
   inherited;
 end;

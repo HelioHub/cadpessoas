@@ -38,7 +38,7 @@ inherited FDadosPessoa: TFDadosPessoa
     ExplicitWidth = 766
     ExplicitHeight = 352
     object LDocumento: TLabel
-      Left = 10
+      Left = 8
       Top = 24
       Width = 68
       Height = 14
@@ -51,7 +51,7 @@ inherited FDadosPessoa: TFDadosPessoa
       ParentFont = False
     end
     object L1Nome: TLabel
-      Left = 10
+      Left = 8
       Top = 57
       Width = 83
       Height = 14
@@ -64,7 +64,7 @@ inherited FDadosPessoa: TFDadosPessoa
       ParentFont = False
     end
     object LSegundoNome: TLabel
-      Left = 10
+      Left = 8
       Top = 94
       Width = 89
       Height = 14
@@ -186,7 +186,7 @@ inherited FDadosPessoa: TFDadosPessoa
       TabOrder = 3
     end
     object EDocumento: TEdit
-      Left = 103
+      Left = 98
       Top = 22
       Width = 121
       Height = 21
@@ -194,7 +194,7 @@ inherited FDadosPessoa: TFDadosPessoa
       TabOrder = 0
     end
     object E1Nome: TEdit
-      Left = 103
+      Left = 98
       Top = 55
       Width = 344
       Height = 21
@@ -202,7 +202,7 @@ inherited FDadosPessoa: TFDadosPessoa
       TabOrder = 1
     end
     object E2Nome: TEdit
-      Left = 103
+      Left = 98
       Top = 92
       Width = 344
       Height = 21

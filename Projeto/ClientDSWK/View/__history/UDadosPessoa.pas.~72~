@@ -261,8 +261,7 @@ begin
   if sCodigo <> Empty then
   begin
     Beep;
-    ShowMessage('Atenção! '+cEOL+
-                'Pessoa com Documento '+EDocumento.Text+' já cadastrado com o Código '+sCodigo);
+    ShowMessage('Atenção! Pessoa com Documento '+EDocumento.Text+' já cadastrado com o Código '+sCodigo);
     result := true;
   end;
 end;
