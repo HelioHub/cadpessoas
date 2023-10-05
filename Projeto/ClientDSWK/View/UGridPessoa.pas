@@ -24,12 +24,18 @@ type
     LUF: TLabel;
     DBEUF: TDBEdit;
     CBAtualizar: TCheckBox;
+    LCodigo: TLabel;
+    ECodigo: TEdit;
+    SPPesquisa: TSpeedButton;
+    BBCEP: TBitBtn;
     procedure BBAtualizarClick(Sender: TObject);
     procedure BBIncluirClick(Sender: TObject);
     procedure BBAlterarClick(Sender: TObject);
     procedure DBGViewDblClick(Sender: TObject);
     procedure BBExcluirClick(Sender: TObject);
     procedure BBImportacaoClick(Sender: TObject);
+    procedure SPPesquisaClick(Sender: TObject);
+    procedure BBCEPClick(Sender: TObject);
   private
     procedure pCRUD(pAcao: TAcao);
     procedure pAtualizacao;
@@ -45,7 +51,7 @@ implementation
 
 {$R *.dfm}
 
-uses ClientModuleWK, UDadosPessoa, URotImpLote;
+uses ClientModuleWK, UDadosPessoa, URotImpLote, URotinaAPICEP;
 
 procedure TFGridPessoa.BBAlterarClick(Sender: TObject);
 begin
@@ -57,6 +63,16 @@ procedure TFGridPessoa.BBAtualizarClick(Sender: TObject);
 begin
   inherited;
   pAtualizacao;
+end;
+
+procedure TFGridPessoa.BBCEPClick(Sender: TObject);
+var Formulario: TFRotinaAPICEP;
+begin
+  inherited;
+  Formulario := TFRotinaAPICEP.Create(Application);
+  Formulario.BBLevar.Enabled := False;
+  Formulario.ShowModal;
+  Formulario.Destroy;
 end;
 
 procedure TFGridPessoa.pAtualizacao;
@@ -133,6 +149,12 @@ begin
   Formulario.ShowModal;
   if CBAtualizar.Checked then
     pAtualizacao;
+end;
+
+procedure TFGridPessoa.SPPesquisaClick(Sender: TObject);
+begin
+  inherited;
+  ClientModuleWKX.PessoaMemTable.Locate('idpessoa',Trim(ECodigo.Text));
 end;
 
 end.

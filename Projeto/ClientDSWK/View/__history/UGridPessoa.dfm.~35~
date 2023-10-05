@@ -6,11 +6,20 @@ inherited FGridPessoa: TFGridPessoa
   PixelsPerInch = 96
   TextHeight = 13
   inherited PHead: TPanel
+    Height = 79
     Color = 13565951
     ParentBackground = False
-    ExplicitTop = 0
+    ExplicitLeft = 1
+    ExplicitHeight = 79
     inherited LNR: TLabel
-      Anchors = [akRight]
+      Anchors = [akTop, akRight]
+    end
+    object Label1: TLabel [1]
+      Left = 14
+      Top = 50
+      Width = 37
+      Height = 13
+      Caption = 'C'#243'digo:'
     end
     inherited BBIncluir: TBitBtn
       OnClick = BBIncluirClick
@@ -18,15 +27,38 @@ inherited FGridPessoa: TFGridPessoa
     inherited BBAlterar: TBitBtn
       OnClick = BBAlterarClick
     end
+    inherited BBExcluir: TBitBtn
+      OnClick = BBExcluirClick
+    end
     inherited BBAtualizar: TBitBtn
-      Anchors = [akRight]
+      Anchors = [akTop, akRight]
+      TabOrder = 6
       OnClick = BBAtualizarClick
     end
+    inherited BBSair: TBitBtn
+      Left = 412
+      TabOrder = 4
+      ExplicitLeft = 412
+    end
     inherited ENR: TEdit
-      Anchors = [akRight]
+      Anchors = [akTop, akRight]
+      TabOrder = 7
     end
     inherited BBImportacao: TBitBtn
-      Anchors = [akRight]
+      Left = 251
+      Anchors = [akTop, akRight]
+      Caption = 'I&mportar'
+      TabOrder = 3
+      OnClick = BBImportacaoClick
+      ExplicitLeft = 251
+    end
+    object CBAtualizar: TCheckBox
+      Left = 508
+      Top = 15
+      Width = 171
+      Height = 17
+      Caption = 'Efetuar Atualiza'#231#227'o Autom'#225'tica'
+      TabOrder = 5
     end
   end
   inherited PRodape: TPanel
@@ -157,10 +189,12 @@ inherited FGridPessoa: TFGridPessoa
     end
   end
   inherited PView: TPanel
-    Height = 397
+    Top = 79
+    Height = 362
     ExplicitHeight = 397
     inherited DBGView: TDBGrid
-      Height = 395
+      Height = 360
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       OnDblClick = DBGViewDblClick
       Columns = <
         item
@@ -241,6 +275,7 @@ inherited FGridPessoa: TFGridPessoa
     end
   end
   inherited DSBase: TDataSource
+    AutoEdit = False
     DataSet = ClientModuleWKX.PessoaMemTable
     Left = 416
   end
