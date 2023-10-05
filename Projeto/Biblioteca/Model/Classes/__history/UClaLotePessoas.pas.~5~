@@ -1,0 +1,41 @@
+unit UClaLotePessoas;
+
+interface
+
+uses ConstWK, System.Generics.Collections, System.SysUtils, UClaPessoa;
+
+type
+  TLotePessoas = class
+  private
+    fListaPessoa: TObjectList<TPessoa>;
+  protected
+  public
+    property ListaPessoa: TObjectList<TPessoa> read fListaPessoa write fListaPessoa;
+
+    constructor Create;
+    destructor Destroy; override;
+    procedure AdicionarPessoa(oProduto: TPessoa);
+  end;
+
+
+implementation
+
+{ TLotePessoas }
+
+procedure TLotePessoas.AdicionarPessoa(oProduto: TPessoa);
+begin
+
+end;
+
+constructor TLotePessoas.Create;
+begin
+  fListaPessoa := TObjectList<TLotePessoas>.Create;
+end;
+
+destructor TLotePessoas.Destroy;
+begin
+  FreeAndNil(fListaPessoa);
+  inherited;
+end;
+
+end.

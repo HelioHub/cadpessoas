@@ -33,23 +33,18 @@ implementation
 
 {$R *.dfm}
 
-uses UClaPessoa, UClaLotePessoas, ConstWK;
+uses UClaPessoa, UClaLotePessoas;
 
 procedure TFRotImpLote.BBImportarClick(Sender: TObject);
 var oPessoa : TPessoa;
     oListaPessoa : TLotePessoas;
-    i: Integer;
 begin
-  oPessoa.Create;
-  oListaPessoa.Create;
+
   try
-    for i := 0 to MArquivo.Lines.Count-1 do
-    begin
-      oPessoa.acao := acIncluir;
-      oPessoa.acao := acIncluir;
-    end;
+
   finally
-    FreeAndNil(oPessoa);
+
+
   end;
 end;
 

@@ -64,7 +64,6 @@ object FRotImpLote: TFRotImpLote
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
-    OnClick = BBImportarClick
   end
   object BBLer: TBitBtn
     Left = 8

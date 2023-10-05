@@ -243,10 +243,6 @@ var sSQL,
     sSequencialPessoa, sSequencialCEP,
     sCEPExist : string;
 begin
-  {Requisitos novos:
-    1) Caso o CEP já exista reutilizar na relação com a Entidade Pessoa;
-    2) Não perminitir cadastro com o mesmo documento (ser unique no Banco 'dsdocumento', criar a constraint;
-  }
   sSequencialPessoa := GetProximoCodigoPessoa;
   sSQL := 'INSERT INTO pessoa (idpessoa, dsdocumento, nmprimeiro, nmsegundo, dtregistro, flnatureza) '+
           ' VALUES ('+sSequencialPessoa             +', '+
@@ -257,6 +253,7 @@ begin
                       QuotedStr(oPessoa.flnatureza) +') ';
   DataModuleWK.WKConnection.ExecSQL(sSQL);
 
+  //Verifica se o CEP já existe na base
   sCEPExist := GetCEP(oPessoa.CEP.dscep.dscep);
   if sCEPExist = Empty then
   begin

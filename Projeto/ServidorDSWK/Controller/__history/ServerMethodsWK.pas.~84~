@@ -29,12 +29,14 @@ type
       dsNumero: String);
   public
     { Public declarations }
+
     function GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
     function GetDocumento(const Documento: string; const idPessoa: string): String;
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
 
     procedure PersistenciaPessoa(const jObjectPessoa: TJSONObject);
+    procedure PersistenciaEndereco(const jObjectEndereco: TJSONObject);
   end;
 {$METHODINFO OFF}
 
@@ -166,6 +168,34 @@ begin
   end;
 end;
 
+procedure TServerMethods_WK.PersistenciaEndereco(const jObjectEndereco: TJSONObject);
+var sSQL,
+    sCEPExist, sSequencialCEP : String;
+    oEndereco: TEndereco;
+begin
+  try
+    oEndereco := TJson.JsonToObject<TEndereco>(jObjectEndereco);
+
+    sCEPExist := GetCEP(oEndereco.dscep);
+    if sCEPExist = Empty then
+    begin
+      sSequencialCEP := GetProximoCodigoCEP;
+      sSQL := 'INSERT INTO endereco_integracao (idendereco, dscep, dsuf, nmcidade, nmbairro, nmlogradouro, dscomplemento) '+
+              ' VALUES ('+sSequencialCEP                     +', '+
+                          QuotedStr(oEndereco.dscep)         +', '+
+                          QuotedStr(oEndereco.dsuf)          +', '+
+                          QuotedStr(oEndereco.nmcidade)      +', '+
+                          QuotedStr(oEndereco.nmbairro)      +', '+
+                          QuotedStr(oEndereco.nmlogradouro)  +', '+
+                          QuotedStr(oEndereco.dscomplemento) +')';
+      DataModuleWK.WKConnection.ExecSQL(sSQL);
+    end;
+
+  finally
+    FreeAndNil(oEndereco);
+  end;
+end;
+
 procedure TServerMethods_WK.PersistenciaPessoa(const jObjectPessoa: TJSONObject);
 var oPessoa: TPessoa;
 begin
@@ -212,23 +242,7 @@ procedure TServerMethods_WK.InsertPessoa(const oPessoa: TPessoa);
 var sSQL,
     sSequencialPessoa, sSequencialCEP,
     sCEPExist : string;
-  {
-  procedure insertEndereco;
-  begin
-    sSequencialEndereco := GetProximoCodigoCEP;
-    sSQL := 'INSERT INTO endereco (idendereco, idpessoa, dscep, dsnumero) '+
-            ' VALUES ('+sSequencialEndereco           +', '+
-                        sSequencialPessoa             +', '+
-                        sSequencialCEP                +', '+
-                        IntToStr(oPessoa.CEP.dsnumero)+') ';
-    DataModuleWK.WKConnection.ExecSQL(sSQL);
-  end;
-  }
 begin
-  {Requisitos novos:
-    1) Caso o CEP já exista reutilizar na relação com a Entidade Pessoa;
-    2) Não perminitir cadastro com o mesmo documento (ser unique no Banco 'dsdocumento', criar a constraint;
-  }
   sSequencialPessoa := GetProximoCodigoPessoa;
   sSQL := 'INSERT INTO pessoa (idpessoa, dsdocumento, nmprimeiro, nmsegundo, dtregistro, flnatureza) '+
           ' VALUES ('+sSequencialPessoa             +', '+
@@ -239,6 +253,7 @@ begin
                       QuotedStr(oPessoa.flnatureza) +') ';
   DataModuleWK.WKConnection.ExecSQL(sSQL);
 
+  //Verifica se o CEP já existe na base
   sCEPExist := GetCEP(oPessoa.CEP.dscep.dscep);
   if sCEPExist = Empty then
   begin
@@ -301,7 +316,7 @@ begin
           'WHERE idpessoa = '+IntToStr(oPessoa.idpessoa);
   DataModuleWK.WKConnection.ExecSQL(sSQL);
 
-  insertEndereco(IntToStr(oPessoa.CEP.idpessoa), sSequencialCEP, IntToStr(oPessoa.CEP.dsnumero));
+  insertEndereco(IntToStr(oPessoa.idpessoa), sSequencialCEP, IntToStr(oPessoa.CEP.dsnumero));
 end;
 
 procedure TServerMethods_WK.DeletePessoa(const oPessoa: TPessoa);

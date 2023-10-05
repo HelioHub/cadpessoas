@@ -4,8 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtDlgs,
-  System.Generics.Collections;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtDlgs;
 
 type
   TFRotImpLote = class(TForm)
@@ -18,7 +17,6 @@ type
     EArquivo: TEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BBLerClick(Sender: TObject);
-    procedure BBImportarClick(Sender: TObject);
   private
     { Private declarations }
     procedure ImportaCSV(pNomeArquivo : String);
@@ -32,26 +30,6 @@ var
 implementation
 
 {$R *.dfm}
-
-uses UClaPessoa, UClaLotePessoas, ConstWK;
-
-procedure TFRotImpLote.BBImportarClick(Sender: TObject);
-var oPessoa : TPessoa;
-    oListaPessoa : TLotePessoas;
-    i: Integer;
-begin
-  oPessoa.Create;
-  oListaPessoa.Create;
-  try
-    for i := 0 to MArquivo.Lines.Count-1 do
-    begin
-      oPessoa.acao := acIncluir;
-      oPessoa.acao := acIncluir;
-    end;
-  finally
-    FreeAndNil(oPessoa);
-  end;
-end;
 
 procedure TFRotImpLote.BBLerClick(Sender: TObject);
 begin

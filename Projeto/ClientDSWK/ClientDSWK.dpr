@@ -20,7 +20,8 @@ uses
   UClaCEPAPI in '..\Biblioteca\Model\Classes\UClaCEPAPI.pas',
   UClaThread in '..\Biblioteca\UClaThread.pas',
   URotImpLote in 'View\URotImpLote.pas' {FRotImpLote},
-  UClaAPIRest in '..\Biblioteca\UClaAPIRest.pas' {DMClaAPIRest: TDataModule};
+  UClaAPIRest in '..\Biblioteca\UClaAPIRest.pas' {DMClaAPIRest: TDataModule},
+  UClaLotePessoas in '..\Biblioteca\Model\Classes\UClaLotePessoas.pas';
 
 {$R *.res}
 
