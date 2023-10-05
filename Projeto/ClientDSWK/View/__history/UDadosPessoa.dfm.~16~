@@ -3,6 +3,7 @@ inherited FDadosPessoa: TFDadosPessoa
   ClientHeight = 393
   ClientWidth = 766
   OnCreate = FormCreate
+  OnShow = FormShow
   ExplicitWidth = 772
   ExplicitHeight = 422
   PixelsPerInch = 96
@@ -21,6 +22,10 @@ inherited FDadosPessoa: TFDadosPessoa
     inherited BBGravar: TBitBtn
       Left = 597
       Top = 7
+      Caption = 'OK'
+      Kind = bkCustom
+      ModalResult = 0
+      OnClick = BBGravarClick
       ExplicitLeft = 597
       ExplicitTop = 7
     end
@@ -28,10 +33,12 @@ inherited FDadosPessoa: TFDadosPessoa
   inherited PDados: TPanel
     Width = 766
     Height = 352
+    ExplicitLeft = 0
+    ExplicitTop = 0
     ExplicitWidth = 766
     ExplicitHeight = 352
     object LDocumento: TLabel
-      Left = 8
+      Left = 10
       Top = 24
       Width = 68
       Height = 14
@@ -44,7 +51,7 @@ inherited FDadosPessoa: TFDadosPessoa
       ParentFont = False
     end
     object L1Nome: TLabel
-      Left = 8
+      Left = 10
       Top = 57
       Width = 83
       Height = 14
@@ -57,7 +64,7 @@ inherited FDadosPessoa: TFDadosPessoa
       ParentFont = False
     end
     object LSegundoNome: TLabel
-      Left = 8
+      Left = 10
       Top = 94
       Width = 89
       Height = 14
@@ -179,7 +186,7 @@ inherited FDadosPessoa: TFDadosPessoa
       TabOrder = 3
     end
     object EDocumento: TEdit
-      Left = 98
+      Left = 103
       Top = 22
       Width = 121
       Height = 21
@@ -187,7 +194,7 @@ inherited FDadosPessoa: TFDadosPessoa
       TabOrder = 0
     end
     object E1Nome: TEdit
-      Left = 98
+      Left = 103
       Top = 55
       Width = 344
       Height = 21
@@ -195,7 +202,7 @@ inherited FDadosPessoa: TFDadosPessoa
       TabOrder = 1
     end
     object E2Nome: TEdit
-      Left = 98
+      Left = 103
       Top = 92
       Width = 344
       Height = 21
@@ -223,6 +230,7 @@ inherited FDadosPessoa: TFDadosPessoa
       Font.Style = []
       ParentFont = False
       TabOrder = 5
+      OnClick = BBCEPClick
     end
     object ELogradouro: TEdit
       Left = 82

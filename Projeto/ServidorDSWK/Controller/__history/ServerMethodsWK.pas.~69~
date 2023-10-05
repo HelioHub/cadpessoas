@@ -27,7 +27,7 @@ type
   public
     { Public declarations }
     function GetPessoa(const IDPessoa: string; const SLimit: string): TFDJSONDataSets;
-    function GetDocumento(const Documento: string): String;
+    function GetDocumento(const Documento: string; const idPessoa: string): String;
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
 
@@ -37,7 +37,7 @@ type
 
 Const
   sSQLPessoaSelect = 'SELECT A.idpessoa, A.dsdocumento, A.nmprimeiro, A.nmsegundo, A.dtregistro, A.flnatureza, ' +
-                     'B.dscep, B.dsnumero, ' +
+                     'B.dsnumero, ' +
                      'C.idendereco, C.dscep, C.nmlogradouro, C.nmbairro, C.dscomplemento, C.nmcidade, C.dsuf ' +
                      'FROM pessoa A ' +
                      'LEFT JOIN endereco B            ON B.idpessoa   = A.idpessoa ' +
@@ -70,11 +70,11 @@ begin
   end;
 end;
 
-function TServerMethods_WK.GetDocumento(const Documento: string): String;
+function TServerMethods_WK.GetDocumento(const Documento: string; const idPessoa: string): String;
 begin
   try
     DataModuleWK.WKSequencial.Close;
-    DataModuleWK.WKSequencial.SQL.Text := 'SELECT idpessoa FROM pessoa WHERE dsdocumento = '+QuotedStr(Documento);
+    DataModuleWK.WKSequencial.SQL.Text := 'SELECT idpessoa FROM pessoa WHERE dsdocumento = '+QuotedStr(Documento)+' AND idPessoa <> '+idPessoa;
     DataModuleWK.WKSequencial.Open;
     Result := DataModuleWK.WKSequencial.FieldByName('idpessoa').AsString;
   finally
@@ -181,15 +181,16 @@ end;
 
 procedure TServerMethods_WK.InsertPessoa(const oPessoa: TPessoa);
 var sSQL,
-    sSequencialPessoa, sSequencialEndereco,
+    sSequencialPessoa, sSequencialEndereco, sSequencialCEP,
     sCEPExist : string;
 
   procedure insertEndereco;
   begin
+    sSequencialEndereco := GetProximoCodigoCEP;
     sSQL := 'INSERT INTO ENDERECO (idendereco, idpessoa, dscep, dsnumero) '+
             ' VALUES ('+sSequencialEndereco           +', '+
                         sSequencialPessoa             +', '+
-                        QuotedStr(oPessoa.CEP.dscep)  +', '+
+                        sSequencialCEP                +', '+
                         IntToStr(oPessoa.CEP.dsnumero)+') ';
     DataModuleWK.WKConnection.ExecSQL(sSQL);
   end;
@@ -209,7 +210,7 @@ begin
                       QuotedStr(oPessoa.flnatureza) +') ';
   DataModuleWK.WKConnection.ExecSQL(sSQL);
 
-  sCEPExist := GetCEP(oPessoa.CEP.dscep);
+  sCEPExist := GetCEP(oPessoa.CEP.dscep.dscep);
   if sCEPExist = Empty then
   begin
     sSequencialEndereco := GetProximoCodigoEndereco;
@@ -227,13 +228,14 @@ begin
   end
   else
   begin
-    sSequencialEndereco := sCEPExist;
+    sSequencialCEP := sCEPExist;
     insertEndereco;
   end;
 end;
 
 procedure TServerMethods_WK.UpdatePessoa(const oPessoa: TPessoa);
-var sSQL: string;
+var sSQL,
+    sSequencialEndereco, sCEPExist: string;
 begin
   sSQL := 'UPDATE PESSOA SET '+
           ' dsdocumento = '+ QuotedStr(oPessoa.dsdocumento)+', '+
@@ -242,6 +244,25 @@ begin
           ' flnatureza  = '+ QuotedStr(oPessoa.flnatureza) +'  '+
           'WHERE idpessoa = '+IntToStr(oPessoa.idpessoa);
   DataModuleWK.WKConnection.ExecSQL(sSQL);
+
+  sCEPExist := GetCEP(oPessoa.CEP.dscep.dscep);
+  if sCEPExist = Empty then
+  begin
+    sSequencialEndereco := GetProximoCodigoEndereco;
+    sSQL := 'INSERT INTO ENDERECO_INTEGRACAO (idendereco, dscep, dsuf, nmcidade, nmbairro, nmlogradouro, dscomplemento) '+
+            ' VALUES ('+sSequencialEndereco                        +', '+
+                        QuotedStr(oPessoa.CEP.dscep.dscep)         +', '+
+                        QuotedStr(oPessoa.CEP.dscep.dsuf)          +', '+
+                        QuotedStr(oPessoa.CEP.dscep.nmcidade)      +', '+
+                        QuotedStr(oPessoa.CEP.dscep.nmbairro)      +', '+
+                        QuotedStr(oPessoa.CEP.dscep.nmlogradouro)  +', '+
+                        QuotedStr(oPessoa.CEP.dscep.dscomplemento) +')';
+    DataModuleWK.WKConnection.ExecSQL(sSQL);
+  end
+  else
+  begin
+
+  end;
 end;
 
 procedure TServerMethods_WK.DeletePessoa(const oPessoa: TPessoa);

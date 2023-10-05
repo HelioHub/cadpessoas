@@ -1,6 +1,6 @@
 //
 // Created by the DataSnap proxy generator.
-// 05/10/2023 11:09:00
+// 05/10/2023 13:04:21
 //
 
 unit ClientClassesWK;
@@ -27,7 +27,7 @@ type
     destructor Destroy; override;
     function GetPessoa(IDPessoa: string; SLimit: string; const ARequestFilter: string = ''): TFDJSONDataSets;
     function GetPessoa_Cache(IDPessoa: string; SLimit: string; const ARequestFilter: string = ''): IDSRestCachedTFDJSONDataSets;
-    function GetDocumento(Documento: string; const ARequestFilter: string = ''): string;
+    function GetDocumento(Documento: string; idPessoa: string; const ARequestFilter: string = ''): string;
     function EchoString(Value: string; const ARequestFilter: string = ''): string;
     function ReverseString(Value: string; const ARequestFilter: string = ''): string;
     procedure PersistenciaPessoa(jObjectPessoa: TJSONObject);
@@ -54,9 +54,10 @@ const
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'String')
   );
 
-  TServerMethods_WK_GetDocumento: array [0..1] of TDSRestParameterMetaData =
+  TServerMethods_WK_GetDocumento: array [0..2] of TDSRestParameterMetaData =
   (
     (Name: 'Documento'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: 'idPessoa'; Direction: 1; DBXType: 26; TypeName: 'string'),
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
   );
 
@@ -121,7 +122,7 @@ begin
   Result := TDSRestCachedTFDJSONDataSets.Create(FGetPessoaCommand_Cache.Parameters[2].Value.GetString);
 end;
 
-function TServerMethods_WKClient.GetDocumento(Documento: string; const ARequestFilter: string): string;
+function TServerMethods_WKClient.GetDocumento(Documento: string; idPessoa: string; const ARequestFilter: string): string;
 begin
   if FGetDocumentoCommand = nil then
   begin
@@ -131,8 +132,9 @@ begin
     FGetDocumentoCommand.Prepare(TServerMethods_WK_GetDocumento);
   end;
   FGetDocumentoCommand.Parameters[0].Value.SetWideString(Documento);
+  FGetDocumentoCommand.Parameters[1].Value.SetWideString(idPessoa);
   FGetDocumentoCommand.Execute(ARequestFilter);
-  Result := FGetDocumentoCommand.Parameters[1].Value.GetWideString;
+  Result := FGetDocumentoCommand.Parameters[2].Value.GetWideString;
 end;
 
 function TServerMethods_WKClient.EchoString(Value: string; const ARequestFilter: string): string;

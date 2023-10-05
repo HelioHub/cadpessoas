@@ -1,6 +1,6 @@
 //
 // Created by the DataSnap proxy generator.
-// 02/10/2023 11:05:13
+// 05/10/2023 11:09:00
 //
 
 unit ClientClassesWK;
@@ -17,16 +17,20 @@ type
   private
     FGetPessoaCommand: TDSRestCommand;
     FGetPessoaCommand_Cache: TDSRestCommand;
+    FGetDocumentoCommand: TDSRestCommand;
     FEchoStringCommand: TDSRestCommand;
     FReverseStringCommand: TDSRestCommand;
+    FPersistenciaPessoaCommand: TDSRestCommand;
   public
     constructor Create(ARestConnection: TDSRestConnection); overload;
     constructor Create(ARestConnection: TDSRestConnection; AInstanceOwner: Boolean); overload;
     destructor Destroy; override;
     function GetPessoa(IDPessoa: string; SLimit: string; const ARequestFilter: string = ''): TFDJSONDataSets;
     function GetPessoa_Cache(IDPessoa: string; SLimit: string; const ARequestFilter: string = ''): IDSRestCachedTFDJSONDataSets;
+    function GetDocumento(Documento: string; const ARequestFilter: string = ''): string;
     function EchoString(Value: string; const ARequestFilter: string = ''): string;
     function ReverseString(Value: string; const ARequestFilter: string = ''): string;
+    procedure PersistenciaPessoa(jObjectPessoa: TJSONObject);
   end;
 
   IDSRestCachedTFDJSONDataSets = interface(IDSRestCachedObject<TFDJSONDataSets>)
@@ -50,6 +54,12 @@ const
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'String')
   );
 
+  TServerMethods_WK_GetDocumento: array [0..1] of TDSRestParameterMetaData =
+  (
+    (Name: 'Documento'; Direction: 1; DBXType: 26; TypeName: 'string'),
+    (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
+  );
+
   TServerMethods_WK_EchoString: array [0..1] of TDSRestParameterMetaData =
   (
     (Name: 'Value'; Direction: 1; DBXType: 26; TypeName: 'string'),
@@ -60,6 +70,11 @@ const
   (
     (Name: 'Value'; Direction: 1; DBXType: 26; TypeName: 'string'),
     (Name: ''; Direction: 4; DBXType: 26; TypeName: 'string')
+  );
+
+  TServerMethods_WK_PersistenciaPessoa: array [0..0] of TDSRestParameterMetaData =
+  (
+    (Name: 'jObjectPessoa'; Direction: 1; DBXType: 37; TypeName: 'TJSONObject')
   );
 
 implementation
@@ -106,6 +121,20 @@ begin
   Result := TDSRestCachedTFDJSONDataSets.Create(FGetPessoaCommand_Cache.Parameters[2].Value.GetString);
 end;
 
+function TServerMethods_WKClient.GetDocumento(Documento: string; const ARequestFilter: string): string;
+begin
+  if FGetDocumentoCommand = nil then
+  begin
+    FGetDocumentoCommand := FConnection.CreateCommand;
+    FGetDocumentoCommand.RequestType := 'GET';
+    FGetDocumentoCommand.Text := 'TServerMethods_WK.GetDocumento';
+    FGetDocumentoCommand.Prepare(TServerMethods_WK_GetDocumento);
+  end;
+  FGetDocumentoCommand.Parameters[0].Value.SetWideString(Documento);
+  FGetDocumentoCommand.Execute(ARequestFilter);
+  Result := FGetDocumentoCommand.Parameters[1].Value.GetWideString;
+end;
+
 function TServerMethods_WKClient.EchoString(Value: string; const ARequestFilter: string): string;
 begin
   if FEchoStringCommand = nil then
@@ -134,6 +163,19 @@ begin
   Result := FReverseStringCommand.Parameters[1].Value.GetWideString;
 end;
 
+procedure TServerMethods_WKClient.PersistenciaPessoa(jObjectPessoa: TJSONObject);
+begin
+  if FPersistenciaPessoaCommand = nil then
+  begin
+    FPersistenciaPessoaCommand := FConnection.CreateCommand;
+    FPersistenciaPessoaCommand.RequestType := 'POST';
+    FPersistenciaPessoaCommand.Text := 'TServerMethods_WK."PersistenciaPessoa"';
+    FPersistenciaPessoaCommand.Prepare(TServerMethods_WK_PersistenciaPessoa);
+  end;
+  FPersistenciaPessoaCommand.Parameters[0].Value.SetJSONValue(jObjectPessoa, FInstanceOwner);
+  FPersistenciaPessoaCommand.Execute;
+end;
+
 constructor TServerMethods_WKClient.Create(ARestConnection: TDSRestConnection);
 begin
   inherited Create(ARestConnection);
@@ -148,8 +190,10 @@ destructor TServerMethods_WKClient.Destroy;
 begin
   FGetPessoaCommand.DisposeOf;
   FGetPessoaCommand_Cache.DisposeOf;
+  FGetDocumentoCommand.DisposeOf;
   FEchoStringCommand.DisposeOf;
   FReverseStringCommand.DisposeOf;
+  FPersistenciaPessoaCommand.DisposeOf;
   inherited;
 end;
 

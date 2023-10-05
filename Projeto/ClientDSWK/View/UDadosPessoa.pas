@@ -157,12 +157,6 @@ begin
     begin
       DesabilitarControls(False);
       Self.Caption := Self.Caption + ' - ' + cAcaoAlterar;
-      //Em Desenvolvimento:
-      Beep;
-      ShowMessage('Atenção! Nesta versão não é possível alterar o CEP.'+cEOL+
-                  'Está em desenvolvimento tal funcionalidade com as devidas regras definidas.')
-
-      //
     end;
   end;
 
@@ -193,13 +187,13 @@ begin
     E1Nome.ReadOnly      := True;
     E2Nome.ReadOnly      := True;
     RGSexo.Enabled       := False;
+    //CEP
+    ECEP.ReadOnly        := True;
+    BBCEP.Enabled        := False;
+    ENo.ReadOnly         := True;
+    //Endereço
+    EComplemento.ReadOnly:= True;
   end;
-  //CEP
-  ECEP.ReadOnly        := True;
-  BBCEP.Enabled        := False;
-  ENo.ReadOnly         := True;
-  //Endereço
-  EComplemento.ReadOnly:= True;
 end;
 
 function TFDadosPessoa.fValidacoesPessoa: Boolean;
@@ -257,7 +251,7 @@ begin
     result := true;
   end;
 
-  sCodigo := ClientModuleWKX.DocumentoPessoa(Trim(EDocumento.Text));
+  sCodigo := ClientModuleWKX.DocumentoPessoa(Trim(EDocumento.Text), IntToStr(ObjetoPessoa.idpessoa));
   if sCodigo <> Empty then
   begin
     Beep;
