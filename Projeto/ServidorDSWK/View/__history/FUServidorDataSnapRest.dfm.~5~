@@ -23,31 +23,15 @@ object FServidorDataSnapRest: TFServidorDataSnapRest
     Height = 13
     Caption = 'Port:'
   end
-  object LWK: TLabel
-    Left = 0
-    Top = 0
-    Width = 382
-    Height = 46
-    Hint = 'Click para acessa nosso Site. Seja Bem-Vindo!!'
-    Align = alTop
-    Alignment = taCenter
-    Caption = 'WK Technology'
-    Color = clSilver
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clRed
-    Font.Height = -40
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    ParentShowHint = False
-    ShowHint = True
-    ExplicitLeft = -16
-    ExplicitTop = 64
+  object Image1: TImage
+    Left = 72
+    Top = 32
+    Width = 105
+    Height = 105
   end
   object ButtonStart: TButton
     Left = 109
-    Top = 64
+    Top = 49
     Width = 75
     Height = 25
     Caption = 'Start'
@@ -56,7 +40,7 @@ object FServidorDataSnapRest: TFServidorDataSnapRest
   end
   object ButtonStop: TButton
     Left = 190
-    Top = 64
+    Top = 49
     Width = 75
     Height = 25
     Caption = 'Stop'
@@ -72,9 +56,9 @@ object FServidorDataSnapRest: TFServidorDataSnapRest
     Text = '8080'
   end
   object ButtonOpenBrowser: TButton
-    Left = 32
-    Top = 132
-    Width = 305
+    Left = 128
+    Top = 129
+    Width = 121
     Height = 25
     Caption = 'Open Browser'
     TabOrder = 3
@@ -83,6 +67,6 @@ object FServidorDataSnapRest: TFServidorDataSnapRest
   object ApplicationEvents1: TApplicationEvents
     OnIdle = ApplicationEvents1Idle
     Left = 344
-    Top = 64
+    Top = 8
   end
 end
