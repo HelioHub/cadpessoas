@@ -6,42 +6,73 @@ inherited FGridPessoa: TFGridPessoa
   PixelsPerInch = 96
   TextHeight = 13
   inherited PHead: TPanel
+    Height = 79
     Color = 13565951
     ParentBackground = False
-    ExplicitTop = 0
+    ExplicitHeight = 79
     inherited LNR: TLabel
-      Anchors = [akRight]
+      Anchors = [akTop, akRight]
+    end
+    object LCodigo: TLabel [1]
+      Left = 14
+      Top = 47
+      Width = 37
+      Height = 13
+      Caption = 'C'#243'digo:'
+    end
+    object SPPesquisa: TSpeedButton [2]
+      Left = 121
+      Top = 44
+      Width = 23
+      Height = 22
+      Hint = 'Clique para efetuar pesquisa pelo C'#243'digo.'
+      Glyph.Data = {
+        F6000000424DF600000000000000760000002800000010000000100000000100
+        04000000000080000000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00555555000555
+        55555555008880055555555088CCC880555555508C888C8055555508CCCCCCC8
+        05555508CECCCCC805555508CEECCCC8055555508C444C805555555088FFF880
+        5555555508FFF80555555555508F805555555555508F805555555555508F8055
+        55555555508F8055555555550888880555555555500000555555}
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = SPPesquisaClick
     end
     inherited BBIncluir: TBitBtn
       OnClick = BBIncluirClick
     end
     inherited BBAlterar: TBitBtn
+      Left = 88
       OnClick = BBAlterarClick
+      ExplicitLeft = 88
     end
     inherited BBExcluir: TBitBtn
+      Left = 169
       OnClick = BBExcluirClick
+      ExplicitLeft = 169
     end
     inherited BBAtualizar: TBitBtn
-      Anchors = [akRight]
-      TabOrder = 6
+      Anchors = [akTop, akRight]
+      TabOrder = 7
       OnClick = BBAtualizarClick
     end
     inherited BBSair: TBitBtn
-      Left = 332
-      TabOrder = 4
-      ExplicitLeft = 332
+      Left = 412
+      TabOrder = 5
+      ExplicitLeft = 412
     end
     inherited ENR: TEdit
-      Anchors = [akRight]
-      TabOrder = 7
+      Anchors = [akTop, akRight]
+      TabOrder = 8
     end
     inherited BBImportacao: TBitBtn
-      Left = 251
-      Anchors = [akRight]
+      Left = 250
+      Anchors = [akTop, akRight]
       Caption = 'I&mportar'
       TabOrder = 3
       OnClick = BBImportacaoClick
-      ExplicitLeft = 251
+      ExplicitLeft = 250
     end
     object CBAtualizar: TCheckBox
       Left = 508
@@ -49,7 +80,34 @@ inherited FGridPessoa: TFGridPessoa
       Width = 171
       Height = 17
       Caption = 'Efetuar Atualiza'#231#227'o Autom'#225'tica'
-      TabOrder = 5
+      TabOrder = 6
+    end
+    object ECodigo: TEdit
+      Left = 57
+      Top = 44
+      Width = 64
+      Height = 21
+      NumbersOnly = True
+      TabOrder = 9
+    end
+    object BBCEP: TBitBtn
+      Left = 331
+      Top = 8
+      Width = 75
+      Height = 30
+      Hint = 'Acessa cadastro de CEP'
+      Anchors = [akTop, akRight]
+      Caption = 'CEP'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 4
+      OnClick = BBCEPClick
     end
   end
   inherited PRodape: TPanel
@@ -180,10 +238,13 @@ inherited FGridPessoa: TFGridPessoa
     end
   end
   inherited PView: TPanel
-    Height = 397
-    ExplicitHeight = 397
+    Top = 79
+    Height = 362
+    ExplicitTop = 79
+    ExplicitHeight = 362
     inherited DBGView: TDBGrid
-      Height = 395
+      Height = 360
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       OnDblClick = DBGViewDblClick
       Columns = <
         item

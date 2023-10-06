@@ -20,27 +20,25 @@ object FCliCadPessoa: TFCliCadPessoa
     Left = 0
     Top = 0
     Width = 662
-    Height = 46
+    Height = 48
     Hint = 'Click para acessa nosso Site. Seja Bem-Vindo!!'
     Align = alTop
     Alignment = taCenter
     Caption = 'WK Technology'
-    Color = clSilver
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
     Font.Height = -40
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
-    ParentColor = False
+    Font.Name = 'Tahoma'
+    Font.Style = []
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
     OnClick = LWKClick
-    ExplicitWidth = 295
+    ExplicitWidth = 274
   end
   object BBCadPessoas: TBitBtn
     Left = 0
-    Top = 46
+    Top = 48
     Width = 662
     Height = 291
     Hint = 'Acessa Cadastro de Pessoas'
@@ -6387,13 +6385,13 @@ object FCliCadPessoa: TFCliCadPessoa
     ShowHint = True
     TabOrder = 0
     OnClick = BBCadPessoasClick
-    ExplicitTop = 48
+    ExplicitTop = 42
   end
   object BBFechar: TBitBtn
     Left = 0
-    Top = 337
+    Top = 339
     Width = 662
-    Height = 60
+    Height = 58
     Hint = 'Fecha aplica'#231#227'o'
     Align = alClient
     Caption = 'Fechar'
@@ -6407,8 +6405,7 @@ object FCliCadPessoa: TFCliCadPessoa
     ShowHint = True
     TabOrder = 1
     OnClick = BBFecharClick
-    ExplicitTop = 339
-    ExplicitHeight = 58
+    ExplicitHeight = 166
   end
   object PHost: TPanel
     Left = 0
@@ -6419,6 +6416,7 @@ object FCliCadPessoa: TFCliCadPessoa
     Alignment = taLeftJustify
     Caption = '  Host:'
     TabOrder = 2
+    ExplicitTop = 407
     object EHostName: TEdit
       Left = 41
       Top = 6

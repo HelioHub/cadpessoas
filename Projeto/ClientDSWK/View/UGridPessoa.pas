@@ -152,9 +152,29 @@ begin
 end;
 
 procedure TFGridPessoa.SPPesquisaClick(Sender: TObject);
+var sCodigo: String;
 begin
   inherited;
-  ClientModuleWKX.PessoaMemTable.Locate('idpessoa',Trim(ECodigo.Text));
+  sCodigo := Trim(ECodigo.Text);
+  if sCodigo = Empty then
+  begin
+    ShowMessage('Sem dado para pesquisar!');
+    exit;
+  end;
+  try
+    BBAtualizar.Click;
+    if ClientModuleWKX.PessoaMemTable.State = dsBrowse then
+    begin
+      if ClientModuleWKX.PessoaMemTable.Locate('idpessoa',sCodigo) then
+      else
+        ShowMessage('Não localizado Código '+sCodigo);
+    end;
+  except on E: Exception do
+    ShowMessage('Sem dados na View para Pesquisar!'+cEOL+
+                'Verifica a conexão com o Servidor.'+cEOL+
+                'Mensagem de Error: '+E.Message);
+
+  end;
 end;
 
 end.

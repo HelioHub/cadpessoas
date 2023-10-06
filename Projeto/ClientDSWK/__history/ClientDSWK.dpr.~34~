@@ -16,7 +16,13 @@ uses
   UControllerPessoa in '..\Biblioteca\Controller\UControllerPessoa.pas',
   UDAOPessoa in '..\Biblioteca\Model\DAO\UDAOPessoa.pas',
   ClientClassesWK in 'Controller\ClientClassesWK.pas',
-  URotinaAPICEP in 'View\URotinaAPICEP.pas' {Form1};
+  URotinaAPICEP in 'View\URotinaAPICEP.pas' {FRotinaAPICEP},
+  UClaCEPAPI in '..\Biblioteca\Model\Classes\UClaCEPAPI.pas',
+  UClaThread in '..\Biblioteca\UClaThread.pas',
+  URotImpLote in 'View\URotImpLote.pas' {FRotImpLote},
+  UClaAPIRest in '..\Biblioteca\UClaAPIRest.pas' {DMClaAPIRest: TDataModule},
+  UClaLotePessoas in '..\Biblioteca\Model\Classes\UClaLotePessoas.pas',
+  UPrincipalCliCadPessoa in 'View\UPrincipalCliCadPessoa.pas' {Form1};
 
 {$R *.res}
 
@@ -26,6 +32,7 @@ begin
   Application.Title := 'Cadastro de Pessoas';
   Application.CreateForm(TFCliCadPessoa, FCliCadPessoa);
   Application.CreateForm(TClientModuleWKX, ClientModuleWKX);
+  Application.CreateForm(TDMClaAPIRest, DMClaAPIRest);
   Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

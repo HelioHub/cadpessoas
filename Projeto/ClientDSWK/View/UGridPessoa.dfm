@@ -9,7 +9,7 @@ inherited FGridPessoa: TFGridPessoa
     Height = 79
     Color = 13565951
     ParentBackground = False
-    ExplicitLeft = 1
+    ExplicitTop = 0
     ExplicitHeight = 79
     inherited LNR: TLabel
       Anchors = [akTop, akRight]
@@ -241,7 +241,8 @@ inherited FGridPessoa: TFGridPessoa
   inherited PView: TPanel
     Top = 79
     Height = 362
-    ExplicitHeight = 397
+    ExplicitTop = 79
+    ExplicitHeight = 362
     inherited DBGView: TDBGrid
       Height = 360
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]

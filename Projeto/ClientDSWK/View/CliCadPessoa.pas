@@ -5,19 +5,19 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons,
-  dxGDIPlusClasses, Vcl.ExtCtrls, Winapi.ShellApi;
+  Vcl.ExtCtrls, Winapi.ShellApi;
 
 type
   TFCliCadPessoa = class(TForm)
-    ImageWK: TImage;
     BBCadPessoas: TBitBtn;
     BBFechar: TBitBtn;
     PHost: TPanel;
     EHostName: TEdit;
+    LWK: TLabel;
     procedure BBFecharClick(Sender: TObject);
-    procedure ImageWKClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BBCadPessoasClick(Sender: TObject);
+    procedure LWKClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -60,7 +60,7 @@ begin
   end;
 end;
 
-procedure TFCliCadPessoa.ImageWKClick(Sender: TObject);
+procedure TFCliCadPessoa.LWKClick(Sender: TObject);
 begin
   ShellExecute(Handle, nil, PChar(curlWK), nil, nil, SW_SHOWNORMAL);
 end;

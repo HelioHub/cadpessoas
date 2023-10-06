@@ -13,7 +13,7 @@ type
     BBCadPessoas: TBitBtn;
     BBFechar: TBitBtn;
     PHost: TPanel;
-    edtHostName: TEdit;
+    EHostName: TEdit;
     procedure BBFecharClick(Sender: TObject);
     procedure ImageWKClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -31,13 +31,12 @@ implementation
 
 {$R *.dfm}
 
-uses ClientConstWK, UGridPessoa;
+uses ConstWK, UGridPessoa, UClaIni, ClientModuleWK;
 
 procedure TFCliCadPessoa.BBCadPessoasClick(Sender: TObject);
 var Formulario: TFGridPessoa;
 begin
   Formulario := TFGridPessoa.Create(Application);
-  Formulario.WindowState := wsMaximized;
   Formulario.ShowModal;
 end;
 
@@ -47,8 +46,18 @@ begin
 end;
 
 procedure TFCliCadPessoa.FormShow(Sender: TObject);
+var sHost : string;
 begin
-  edtHostName.Text := cHostServidorWK;
+  try
+    sHost := TClaIni.LerIni(cArquivoConnection, cTabServerINI, cCamServerINI);
+    EHostName.Text := sHost;
+
+    ClientModuleWKX.DSRestConnectionWK.Host := sHost;
+    ClientModuleWKX.DSRestConnectionWK.TestConnection;
+  except
+    on E: Exception do
+       ShowMessage(cMensagemConexaoServer + E.Message);
+  end;
 end;
 
 procedure TFCliCadPessoa.ImageWKClick(Sender: TObject);

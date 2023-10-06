@@ -24,13 +24,19 @@ type
     LUF: TLabel;
     DBEUF: TDBEdit;
     CBAtualizar: TCheckBox;
-    Label1: TLabel;
+    LCodigo: TLabel;
+    ECodigo: TEdit;
+    SPPesquisa: TSpeedButton;
+    BBCEP: TBitBtn;
     procedure BBAtualizarClick(Sender: TObject);
     procedure BBIncluirClick(Sender: TObject);
     procedure BBAlterarClick(Sender: TObject);
     procedure DBGViewDblClick(Sender: TObject);
     procedure BBExcluirClick(Sender: TObject);
     procedure BBImportacaoClick(Sender: TObject);
+    procedure SPPesquisaClick(Sender: TObject);
+    procedure BBCEPClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     procedure pCRUD(pAcao: TAcao);
     procedure pAtualizacao;
@@ -46,7 +52,7 @@ implementation
 
 {$R *.dfm}
 
-uses ClientModuleWK, UDadosPessoa, URotImpLote;
+uses ClientModuleWK, UDadosPessoa, URotImpLote, URotinaAPICEP;
 
 procedure TFGridPessoa.BBAlterarClick(Sender: TObject);
 begin
@@ -58,6 +64,16 @@ procedure TFGridPessoa.BBAtualizarClick(Sender: TObject);
 begin
   inherited;
   pAtualizacao;
+end;
+
+procedure TFGridPessoa.BBCEPClick(Sender: TObject);
+var Formulario: TFRotinaAPICEP;
+begin
+  inherited;
+  Formulario := TFRotinaAPICEP.Create(Application);
+  Formulario.BBLevar.Enabled := False;
+  Formulario.ShowModal;
+  Formulario.Destroy;
 end;
 
 procedure TFGridPessoa.pAtualizacao;
@@ -91,6 +107,12 @@ procedure TFGridPessoa.DBGViewDblClick(Sender: TObject);
 begin
   inherited;
   pCRUD(acAlterar);
+end;
+
+procedure TFGridPessoa.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  ClientModuleWKX.PessoaMemTable.Close;
+  inherited;
 end;
 
 procedure TFGridPessoa.pCRUD(pAcao: TAcao);
@@ -134,6 +156,29 @@ begin
   Formulario.ShowModal;
   if CBAtualizar.Checked then
     pAtualizacao;
+end;
+
+procedure TFGridPessoa.SPPesquisaClick(Sender: TObject);
+var sCodigo: String;
+begin
+  inherited;
+  sCodigo := Trim(ECodigo.Text);
+  if sCodigo = Empty then
+  begin
+    ShowMessage('Sem dado para pesquisar!');
+    exit;
+  end;
+
+  BBAtualizar.Click;
+  if ClientModuleWKX.PessoaMemTable.State = dsBrowse then
+  begin
+    if ClientModuleWKX.PessoaMemTable.Locate('idpessoa',sCodigo) then
+    else
+      ShowMessage('Não localizado Código '+sCodigo);
+  end
+  else
+    ShowMessage('Sem dados na View para Pesquisar!'+cEOL+
+                ' Verifica a conexão com o Servidor.');
 end;
 
 end.
