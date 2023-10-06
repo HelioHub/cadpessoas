@@ -3,7 +3,7 @@ unit UClaIni;
 interface
 
 uses
-  SysUtils, Classes, IniFiles;
+  SysUtils, Classes, IniFiles, IWSystem;
 
 type
 
@@ -20,10 +20,8 @@ uses ConstWK;
 
 class function TClaIni.LerIni(StrArquivo, StrTabela, StrCampo : string) : string;
 var ServerIni: TIniFile;
-    Caminho: String;
 begin
-  Caminho := ExtractFileDir(GetCurrentDir);
-  StrArquivo := Caminho + StrArquivo;
+  StrArquivo := gsAppPath + StrArquivo;
   if not FileExists(StrArquivo) then
     GravaIni(StrArquivo, cTabServerINI, cCamServerINI, cHostServidorWK);
 
