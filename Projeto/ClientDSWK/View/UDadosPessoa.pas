@@ -69,6 +69,8 @@ begin
   Formulario.BBPesquisar.Click;
   if Formulario.ShowModal = mrOK then
   begin
+     ECEP.Text        := Formulario.ECEP.Text;
+
      ELogradouro.Text := Formulario.ELogradouro.Text;
      ECidade.Text     := Formulario.ECidade.Text;
      EBairro.Text     := Formulario.EBairro.Text;
