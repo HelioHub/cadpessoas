@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.AppEvnts, Vcl.StdCtrls, IdHTTPWebBrokerBridge, Web.HTTPApp,  Vcl.ExtCtrls;
+  Vcl.AppEvnts, Vcl.StdCtrls, IdHTTPWebBrokerBridge, Web.HTTPApp,
+  dxGDIPlusClasses, Vcl.ExtCtrls;
 
 type
   TFServidorDataSnapRest = class(TForm)

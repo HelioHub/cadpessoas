@@ -4,7 +4,7 @@ object FServidorDataSnapRest: TFServidorDataSnapRest
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Servidor DataSnap Rest x JSON x FireDAC'
-  ClientHeight = 189
+  ClientHeight = 268
   ClientWidth = 382
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,8 +17,8 @@ object FServidorDataSnapRest: TFServidorDataSnapRest
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 88
-    Top = 105
+    Left = 64
+    Top = 54
     Width = 20
     Height = 13
     Caption = 'Port'
@@ -43,7 +43,7 @@ object FServidorDataSnapRest: TFServidorDataSnapRest
   end
   object EditPort: TEdit
     Left = 128
-    Top = 102
+    Top = 174
     Width = 121
     Height = 21
     TabOrder = 2
@@ -51,7 +51,7 @@ object FServidorDataSnapRest: TFServidorDataSnapRest
   end
   object ButtonOpenBrowser: TButton
     Left = 128
-    Top = 129
+    Top = 201
     Width = 121
     Height = 25
     Caption = 'Open Browser'
